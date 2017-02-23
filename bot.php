@@ -20,7 +20,7 @@ if (!is_null($events['events'])) {
 		
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v2 : '.$text.' to key'.$replyToken 
+					'text' => 'ตอบจาก  Bot v2 : '.$text.' to key' 
 			];	
 					
 
