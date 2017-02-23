@@ -169,7 +169,7 @@ if (!is_null($events['events'])) {
 					[
 							'type' => 'text',
 							'text' => 'ตอบจาก  Bot v3.1.19 : สามารถใช้ Key Word ได้ คือ  
-     im  (Image) ,  
+       im  (Image) ,  
          cf (Confirm), 
          tmp (Tempalte), 
          con (Carousel), 
