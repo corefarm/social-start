@@ -30,7 +30,35 @@ if (!is_null($events['events'])) {
 						'originalContentUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
 						'previewImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig_pre.jpg'
 				];			
-			}			
+			}	
+
+			if ($text == 'tmp') {
+				$messages = [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => {
+							'type' => 'buttons',
+							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+							'title' => 'Menu',
+							'text' => 'Please select',
+							'action' => [
+								{
+								'type' => 'postback',
+								'label' => 'Buy',
+								'type' => 'action=buy&itemid=123',
+								},{
+								'type' => 'postback',
+								'label' => 'Sale',
+								'type' => 'action=buy&itemid=123',									
+								},{
+								'type' => 'url',
+								'label' => 'View detail',
+								'type' => 'http://www.cpfworldwide.com/th',							
+								}
+							]
+						}
+				];			
+			}				
 				/* $messages = [
 						  'type': 'template',
 						  'altText': 'this is a buttons template',
