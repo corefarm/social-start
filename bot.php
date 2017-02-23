@@ -19,12 +19,12 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 		
 			
-			$messages = [
-					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v2 : '.$text 
-			];	
+		//	$messages = [
+		//			'type' => 'text',
+		//			'text' => 'ตอบจาก  Bot v2 : '.$text 
+		//	];	
 					
-			if ($text == 'tp') {
+			
 				$messages = [
 						  "type": "template",
 						  "altText": "this is a buttons template",
@@ -51,8 +51,8 @@ if (!is_null($events['events'])) {
 								  }
 							  ]
 						  }
-						];
-			}
+				];
+
 
 
 			// Make a POST Request to Messaging API to reply to sender
