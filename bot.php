@@ -45,11 +45,11 @@ if (!is_null($events['events'])) {
 								[
 								'type' => 'message',
 								'label' => 'Yes',
-								'data' => 'yes',
+								'text' => 'yes',
 								],[
 								'type' => 'message',
 								'label' => 'No',
-								'data' => 'No',									
+								'text' => 'No',									
 								]
 							)
 						]
@@ -105,10 +105,10 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 			$myfile = fopen('newfile.txt', 'w') or die('Unable to open file!');
-			$txt = 'log '.$text.'<br>';
+			$txt = 'log '.$text.PHP_EOL;
 			fwrite($myfile, $txt);	
-			fwrite($myfile, json_encode($result).'<br>');
-			fwrite($myfile, json_encode($messages).'<br>');
+			fwrite($myfile, print_r($result).PHP_EOL);
+			fwrite($myfile, json_encode($messages).PHP_EOL);
 			fclose($myfile);
 			
 			echo $result . '\r\n';
