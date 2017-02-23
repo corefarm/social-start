@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 					
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v3.1.7 : '.$text
+					'text' => 'ตอบจาก  Bot v3.1.8 : '.$text
 			];	
 					
 
@@ -93,32 +93,18 @@ if (!is_null($events['events'])) {
 							'columns' => array (
 									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
-										'title' => 'Stock ',
+										'title' => 'Stock',
 										'actions' => array(
 											[
 											'type' => 'postback',
-											'label' => 'Confirm Cf',
+											'label' => 'ConfirmCf',
 											'data' => 'action=buy&itemid=123',
 											],[
 											'type' => 'uri',
 											'label' => 'View detail',
 											'uri' => 'https://www.google.com/',							
 											]
-									)],
-									[
-										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/po.jpg',
-										'title' => 'RequestOrder',
-										'actions' => array(
-											[
-											'type' => 'postback',
-											'label' => 'OpenOrder',
-											'data' => 'action=buy&itemid=123',
-											],[
-											'type' => 'uri',
-											'label' => 'View detail',
-											'uri' => 'https://www.google.com/',							
-											]
-									)]									
+									)]								
 							)													
 						]
 				];			
