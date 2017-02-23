@@ -168,7 +168,7 @@ if (!is_null($events['events'])) {
 					$messages = 
 					[
 							'type' => 'text',
-							'text' => 'ตอบจาก  Bot v3.1.17 : ตอบจาก  Bot v3.1.18 : สามารถใช้ Key Word ได้ คือ  
+							'text' => 'ตอบจาก  Bot v3.1.18 : ตอบจาก  Bot v3.1.18 : สามารถใช้ Key Word ได้ คือ  
      im  (Image) ,  
          cf (Confirm), 
          tmp (Tempalte), 
@@ -178,13 +178,13 @@ if (!is_null($events['events'])) {
 			}
 			
 			$mes_line = array (
-			[$messages]
+				[$messages]
 			); 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
 				'replyToken' => $replyToken,
-				'messages' => $mes_line,
+				'messages' => [$messages],
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
@@ -203,6 +203,7 @@ if (!is_null($events['events'])) {
 			fwrite($myfile, $txt);	
 			fwrite($myfile, print_r($result).PHP_EOL);
 			fwrite($myfile, json_encode($messages).PHP_EOL);
+			fwrite($myfile, json_encode($data).PHP_EOL);
 			fclose($myfile);
 			
 			echo $result . '\r\n';
