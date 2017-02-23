@@ -17,7 +17,13 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			$messages =''
+		
+			
+			$messages = [
+					'type' => 'text',
+					'text' => 'ตอบจาก  Bot v2 : '.$text 
+			];	
+					
 			if ($text == 'tp') {
 				$messages = [
 						  "type": "template",
@@ -46,11 +52,6 @@ if (!is_null($events['events'])) {
 							  ]
 						  }
 						];
-			}else{
-					$messages = [
-						'type' => 'text',
-						'text' => 'ตอบจาก  Bot : '.$text 
-					];				
 			}
 
 
