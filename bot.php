@@ -19,13 +19,13 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
 		
 			
-		//	$messages = [
-		//			'type' => 'text',
-		//			'text' => 'ตอบจาก  Bot v2 : '.$text 
-		//	];	
+			$messages = [
+					'type' => 'text',
+					'text' => 'ตอบจาก  Bot v2 : '.$text 
+			];	
 					
 			
-				$messages = [
+				/* $messages = [
 						  'type': 'template',
 						  'altText': 'this is a buttons template',
 						  'template': {
@@ -51,7 +51,7 @@ if (!is_null($events['events'])) {
 								  }
 							  ]
 						  }
-				];
+				]; */
 
 
 
