@@ -45,11 +45,11 @@ if (!is_null($events['events'])) {
 								[
 								'type' => 'message',
 								'label' => 'Yes',
-								'data' => 'yes',
+								'text' => 'yes',
 								],[
 								'type' => 'message',
 								'label' => 'No',
-								'data' => 'No',									
+								'text' => 'no',									
 								]
 							]
 						]
