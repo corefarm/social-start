@@ -1,4 +1,6 @@
 <?php
+
+
 $access_token = 'ki/sALGeAGtfPJsCbQY+Ama0bBSByknlDdsU32D1fnAGwt2/L9KqasU/HxA9ojgPHNcSaItAV2cJEasYBZj1qQ+dZOEt7ZKaTz/OG7ZZNISFHh4NWE/P5Mg7hX84D+AZtaYHVjv2VS9oQiObD6Kl+QdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
@@ -20,7 +22,7 @@ if (!is_null($events['events'])) {
 		
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v2 : '.$text.' to key' 
+					'text' => 'ตอบจาก  Bot v2.9 : '.$text.' to key' 
 			];	
 					
 
@@ -102,6 +104,13 @@ if (!is_null($events['events'])) {
 			$result = curl_exec($ch);
 			curl_close($ch);
 
+			$myfile = fopen('newfile.txt', 'w') or die('Unable to open file!');
+			$txt = 'conf \n';
+			fwrite($myfile, $txt);
+			$txt = $result;
+			fwrite($myfile, $txt);
+			fclose($myfile);
+			
 			echo $result . '\r\n';
 			
 			
