@@ -92,7 +92,7 @@ if (!is_null($events['events'])) {
 							'type' => 'carousel',
 							'columns' => array (
 								[
-								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
 								'title' => ' Stock คงเหลือ',
 								'text' => 'บันทึก Stock ',
 								'actions' => array(
@@ -107,7 +107,7 @@ if (!is_null($events['events'])) {
 									]
 								)],
 									[
-								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/po.jpg',
 								'title' => ' Request Order',
 								'text' => 'สั่งซื้อ ชิ้นส่วนสุกร ',
 								'actions' => array(
@@ -128,7 +128,7 @@ if (!is_null($events['events'])) {
 									]
 								)],	
 								[
-								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/StatusReport.png',
 								'title' => 'Report',
 								'text' => 'Report Status ',
 								'actions' => array(
@@ -141,23 +141,7 @@ if (!is_null($events['events'])) {
 									'label' => 'View detail',
 									'uri' => 'http://www.sanook.com/',							
 									]
-								)],
-								[
-								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-								'title' => 'Ai ',
-								'text' => 'Auto Report Bug  ',
-								'actions' => array(
-									[
-									'type' => 'message',
-									'label' => 'Yes',
-									'text' => 'Yes.',
-									],[
-									'type' => 'message',
-									'label' => 'No',
-									'text' => 'No.',									
-									]
-								)								
-								]								
+								)]								
 							)													
 						]
 				];			
