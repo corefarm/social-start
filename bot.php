@@ -36,27 +36,27 @@ if (!is_null($events['events'])) {
 				$messages = [
 						'type' => 'template',
 						'altText' => 'this is a buttons template',
-						'template' => {
+						'template' => [
 							'type' => 'buttons',
 							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
 							'title' => 'Menu',
 							'text' => 'Please select',
 							'action' => [
-								{
+								[
 								'type' => 'postback',
 								'label' => 'Buy',
 								'type' => 'action=buy&itemid=123',
-								},{
+								],[
 								'type' => 'postback',
 								'label' => 'Sale',
 								'type' => 'action=buy&itemid=123',									
-								},{
+								],[
 								'type' => 'url',
 								'label' => 'View detail',
 								'type' => 'http://www.cpfworldwide.com/th',							
-								}
+								]
 							]
-						}
+						]
 				];			
 			}				
 				/* $messages = [
