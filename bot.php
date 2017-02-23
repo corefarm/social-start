@@ -75,9 +75,9 @@ if (!is_null($events['events'])) {
 								'label' => 'Sale',
 								'data' => 'action=buy&itemid=123',									
 								],[
-								'type' => 'url',
+								'type' => 'uri',
 								'label' => 'View detail',
-								'data' => 'http://www.cpfworldwide.com/th',							
+								'uri' => 'http://www.cpfworldwide.com/th',							
 								]
 							)
 						]
