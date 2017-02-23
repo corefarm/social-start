@@ -168,7 +168,7 @@ if (!is_null($events['events'])) {
 					$messages = 
 					[
 							'type' => 'text',
-							'text' => 'ตอบจาก  Bot v3.1.19 : สามารถใช้ Key Word ได้ คือ  
+							'text' => 'ตอบจาก  Bot v3.1.20 : สามารถใช้ Key Word ได้ คือ  
        im  (Image) ,  
          cf (Confirm), 
          tmp (Tempalte), 
