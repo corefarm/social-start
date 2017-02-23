@@ -105,7 +105,22 @@ if (!is_null($events['events'])) {
 											'label' => 'View detail',
 											'uri' => 'https://www.google.com/',							
 											]
-									)]														
+									)],
+									[
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
+										'title' => 'Stock',
+										'text' => 'รายงานคงเหลือ ',
+										'actions' => array(
+											[
+											'type' => 'postback',
+											'label' => 'confirm',
+											'data' => 'action=buy&itemid=123',
+											],[
+											'type' => 'uri',
+											'label' => 'View detail',
+											'uri' => 'https://www.google.com/',							
+											]
+									)]									
 							)													
 						]
 				];			
