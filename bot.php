@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 					
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v3.1.1 : '.$text
+					'text' => 'ตอบจาก  Bot v3.1.2 : '.$text
 			];	
 					
 
@@ -93,8 +93,8 @@ if (!is_null($events['events'])) {
 							'columns' => array (
 									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
-										'title' => 'StockCf',
-										'text' => 'RecordStock ',
+										'title' => 'Stock',
+										'text' => 'รายงานคงเหลือ ',
 										'actions' => array(
 											[
 											'type' => 'postback',
