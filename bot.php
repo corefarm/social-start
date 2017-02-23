@@ -22,7 +22,11 @@ if (!is_null($events['events'])) {
 					
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v3.1.14 : '.$text
+					'text' => 'ตอบจาก  Bot v3.1.15 : สามารถใช้ Key Word ได้ คือ  
+					          im  (Image) , 
+							  cf (Confirm),
+							  tmp (Tempalte),
+							  con (Carousel)'.$text
 			];	
 					
 
@@ -139,7 +143,7 @@ if (!is_null($events['events'])) {
 											]
 									)],
 									[
-										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.png',
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
 										'title' => 'Infor',
 										'text' => 'Get Infor',
 										'actions' => array(
