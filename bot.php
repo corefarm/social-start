@@ -22,12 +22,13 @@ if (!is_null($events['events'])) {
 					
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v3.1.15 : สามารถใช้ Key Word ได้ คือ  
-					          im  (Image) , 
+					'text' => 'ตอบจาก  Bot v3.1.16 : สามารถใช้ Key Word ได้ คือ 
+					im  (Image) , 
 							  cf (Confirm),
 							  tmp (Tempalte),
-							  con (Carousel)'.$text
-			];	
+							  con (Carousel),
+							  st (sticker) '
+					];	
 					
 
 			if (strtolower($text)  == 'im') {
@@ -38,6 +39,14 @@ if (!is_null($events['events'])) {
 				];			
 			}	
 
+			if (strtolower($text)  == 'st') {
+				$messages = [
+						'type' => 'sticker',
+						'packageId' => '1',
+						'stickerId' => '15'
+				];			
+			}	
+			
 			if (strtolower($text)  == 'cf') {
 				$messages = [
 						'type' => 'template',
@@ -96,6 +105,22 @@ if (!is_null($events['events'])) {
 							'type' => 'carousel',
 							'columns' => array (
 									[
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+										'title' => 'Infor',
+										'text' => 'Get Infor',
+										'actions' => array(
+											[
+											'type' => 'postback',
+											'label' => 'Daily Price',
+											'data' => 'action=buy&itemid=123',
+											],
+											[
+											'type' => 'uri',
+											'label' => 'Information',
+											'uri' => 'https://en.wikipedia.org/wiki/Wiki',
+											]
+									)],							
+									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
 										'title' => 'Stock',
 										'text' => 'รายงานคงเหลือ ',
@@ -140,22 +165,6 @@ if (!is_null($events['events'])) {
 											'type' => 'postback',
 											'label' => 'Information',
 											'data' => 'action=buy&itemid=123',
-											]
-									)],
-									[
-										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-										'title' => 'Infor',
-										'text' => 'Get Infor',
-										'actions' => array(
-											[
-											'type' => 'postback',
-											'label' => 'Daily Price',
-											'data' => 'action=buy&itemid=123',
-											],
-											[
-											'type' => 'uri',
-											'label' => 'Information',
-											'uri' => 'https://en.wikipedia.org/wiki/Wiki',
 											]
 									)]											
 							)													
