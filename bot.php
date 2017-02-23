@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 		
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v2.9 : '.$text.' to key' 
+					'text' => 'ตอบจาก  Bot v2.9 : '.$text
 			];	
 					
 
@@ -107,8 +107,8 @@ if (!is_null($events['events'])) {
 			$myfile = fopen('newfile.txt', 'w') or die('Unable to open file!');
 			$txt = 'conf \n';
 			fwrite($myfile, $txt);
-			$txt = $result;
-			fwrite($myfile, $txt);
+			$lo = json_decode($result, true);
+			fwrite($myfile, $lo);
 			fclose($myfile);
 			
 			echo $result . '\r\n';
@@ -118,4 +118,5 @@ if (!is_null($events['events'])) {
 	}
 }
 echo 'OK';
+	
 ?>
