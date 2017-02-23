@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 		
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v2.9.2 : '.$text
+					'text' => 'ตอบจาก  Bot v3.0 : '.$text
 			];	
 					
 
@@ -41,17 +41,17 @@ if (!is_null($events['events'])) {
 						'template' => [
 							'type' => 'confirm',
 							'text' => 'Are you sure?',
-							'action' => [
+							'action' => array(
 								[
 								'type' => 'message',
 								'label' => 'Yes',
-								'text' => 'yes',
+								'data' => 'yes',
 								],[
 								'type' => 'message',
 								'label' => 'No',
-								'text' => 'no',									
+								'data' => 'No',									
 								]
-							]
+							)
 						]
 				];			
 			}			
@@ -105,9 +105,10 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 			$myfile = fopen('newfile.txt', 'w') or die('Unable to open file!');
-			$txt = 'log '.$text;
+			$txt = 'log '.$text.'<br>';
 			fwrite($myfile, $txt);	
-			fwrite($myfile, print_r($result,true));
+			fwrite($myfile, json_encode($result).'<br>');
+			fwrite($myfile, json_encode($messages).'<br>');
 			fclose($myfile);
 			
 			echo $result . '\r\n';
@@ -118,6 +119,6 @@ if (!is_null($events['events'])) {
 }
 echo 'OK';
 
-			
 
+				
 ?>
