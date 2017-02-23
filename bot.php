@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 					
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v3.1.11 : '.$text
+					'text' => 'ตอบจาก  Bot v3.1.12 : '.$text
 			];	
 					
 
@@ -108,6 +108,7 @@ if (!is_null($events['events'])) {
 									)],	
 									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/po.jpg',
+										'title' => 'Order',
 										'text' => 'สั่งซื้อ ชิ้นส่วนสุกร ',
 										'actions' => array(
 											[
