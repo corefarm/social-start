@@ -169,7 +169,7 @@ if (!is_null($events['events'])) {
 					$messages = 
 					[
 							'type' => 'text',
-							'text' => 'ตอบจาก  Bot v3.1.21 : สามารถใช้ Key Word ได้ คือ  
+							'text' => 'ตอบจาก  Bot v3.1.22 : สามารถใช้ Key Word ได้ คือ  
        im  (Image) ,  
          cf (Confirm), 
          tmp (Tempalte), 
@@ -187,9 +187,9 @@ if (!is_null($events['events'])) {
 			$mes_line ='';
 			
 			if ($messages_2 =='X') {
-					$mes_line = array (	$messages,$messages_2); 
+				$mes_line = array (	$messages); 				
 			}else{
-					$mes_line = array (	$messages); 
+				$mes_line = array (	$messages,$messages_2); 	
 			}
 
 			// Make a POST Request to Messaging API to reply to sender
