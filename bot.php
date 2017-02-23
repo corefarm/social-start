@@ -97,7 +97,7 @@ if (!is_null($events['events'])) {
 										'actions' => array(
 											[
 											'type' => 'postback',
-											'label' => 'confirm',
+											'label' => 'Confirm',
 											'data' => 'action=buy&itemid=123',
 											],[
 											'type' => 'uri',
@@ -111,7 +111,7 @@ if (!is_null($events['events'])) {
 										'actions' => array(
 											[
 											'type' => 'postback',
-											'label' => 'เปิดรายการสั่งซื้อ',
+											'label' => 'RequestOrder',
 											'data' => 'action=buy&itemid=123',
 											],[
 											'type' => 'uri',
