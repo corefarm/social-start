@@ -20,15 +20,7 @@ if (!is_null($events['events'])) {
 
 			// Build message to reply back
 					
-			$messages = [
-					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v3.1.16 : สามารถใช้ Key Word ได้ คือ 
-					im  (Image) , 
-							  cf (Confirm),
-							  tmp (Tempalte),
-							  con (Carousel),
-							  st (sticker) '
-					];	
+			$messages = 'X';
 					
 
 			if (strtolower($text)  == 'im') {
@@ -172,7 +164,23 @@ if (!is_null($events['events'])) {
 				];			
 			}			 		
 
-
+			if ( $messages == 'X') {
+					$messages = array(
+					[
+							'type' => 'text',
+							'text' => 'ตอบจาก  Bot v3.1.17 : ตอบจาก  Bot v3.1.16 : สามารถใช้ Key Word ได้ คือ  
+     im  (Image) ,  
+         cf (Confirm), 
+         tmp (Tempalte), 
+         con (Carousel), 
+         st (sticker)'
+					],
+					[
+							'type' => 'text',
+							'text' => 'ตอบจาก  Bot  v3.1.17 stpe 2 : '.$text
+					]	
+					);
+			}
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
