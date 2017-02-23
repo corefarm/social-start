@@ -18,13 +18,19 @@ if (!is_null($events['events'])) {
 
 			// Build message to reply back
 		
-			
 			$messages = [
 					'type' => 'text',
 					'text' => 'ตอบจาก  Bot v2 : '.$text 
 			];	
 					
-			
+
+			if ($text == 'im') {
+				$messages = [
+						'type' => 'image',
+						'originalContentUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+						'previewImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig_pre.jpg'
+				];			
+			}			
 				/* $messages = [
 						  'type': 'template',
 						  'altText': 'this is a buttons template',
