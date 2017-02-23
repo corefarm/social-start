@@ -115,6 +115,11 @@ if (!is_null($events['events'])) {
 											'type' => 'postback',
 											'label' => 'สั่งซื้อ',
 											'data' => 'action=buy&itemid=123',
+											],
+																						[
+											'type' => 'postback',
+											'label' => 'ยกเลิกสั่งซื้อ',
+											'data' => 'action=buy&itemid=123',
 											],[
 											'type' => 'uri',
 											'label' => 'View detail',
