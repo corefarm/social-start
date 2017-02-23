@@ -82,7 +82,86 @@ if (!is_null($events['events'])) {
 							)
 						]
 				];			
-			}		 		
+			}	
+
+			if (strtolower($text)  == 'con') {
+				$messages = [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'carousel',
+							'columns' => array (
+								[
+								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+								'title' => ' Stock คงเหลือ',
+								'text' => 'บันทึก Stock ',
+								'actions' => array(
+									[
+									'type' => 'postback',
+									'label' => 'ต้องการบันทึก',
+									'data' => 'action=buy&itemid=123',
+									],[
+									'type' => 'uri',
+									'label' => 'View detail',
+									'uri' => 'https://www.google.com/',							
+									]
+								)],
+									[
+								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+								'title' => ' Request Order',
+								'text' => 'สั่งซื้อ ชิ้นส่วนสุกร ',
+								'actions' => array(
+									[
+									'type' => 'postback',
+									'label' => 'เปิดรายการสั่งซื้อ',
+									'data' => 'action=buy&itemid=123',
+									],
+									[
+									'type' => 'postback',
+									'label' => 'ยกเลิกรายการ',
+									'data' => 'action=buy&itemid=123',
+									]									
+									,[
+									'type' => 'uri',
+									'label' => 'View detail',
+									'uri' => 'http://www.sanook.com/',							
+									]
+								)],	
+								[
+								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+								'title' => 'Report',
+								'text' => 'Report Status ',
+								'actions' => array(
+									[
+									'type' => 'postback',
+									'label' => 'เปิดรายการสั่งซื้อ',
+									'data' => 'action=buy&itemid=123',
+									],[
+									'type' => 'uri',
+									'label' => 'View detail',
+									'uri' => 'http://www.sanook.com/',							
+									]
+								)],
+								[
+								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+								'title' => 'Ai ',
+								'text' => 'Auto Report Bug  ',
+								'actions' => array(
+									[
+									'type' => 'message',
+									'label' => 'Yes',
+									'text' => 'Yes.',
+									],[
+									'type' => 'message',
+									'label' => 'No',
+									'text' => 'No.',									
+									]
+								)								
+								]								
+							)													
+						]
+				];			
+			}			 		
 
 
 
