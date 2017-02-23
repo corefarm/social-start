@@ -98,7 +98,7 @@ if (!is_null($events['events'])) {
 										'actions' => array(
 											[
 											'type' => 'postback',
-											'label' => 'รายงานคงเหลือ',
+											'label' => 'ต้องการบันทึก',
 											'data' => 'action=buy&itemid=123',
 											],[
 											'type' => 'uri',
@@ -121,7 +121,39 @@ if (!is_null($events['events'])) {
 											'label' => 'ยกเลิกสั่งซื้อ',
 											'data' => 'action=buy&itemid=123',
 											]
-									)]									
+									)],
+									[
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/StatusReport.png',
+										'title' => 'Report',
+										'text' => 'Daily Farm',
+										'actions' => array(
+											[
+											'type' => 'postback',
+											'label' => 'Routine Report',
+											'data' => 'action=buy&itemid=123',
+											],
+											[
+											'type' => 'postback',
+											'label' => 'Information',
+											'data' => 'action=buy&itemid=123',
+											]
+									)],
+									[
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.png',
+										'title' => 'Infor',
+										'text' => 'Get Infor',
+										'actions' => array(
+											[
+											'type' => 'postback',
+											'label' => 'Daily Price',
+											'data' => 'action=buy&itemid=123',
+											],
+											[
+											'type' => 'uri',
+											'label' => 'Information',
+											'uri' => 'https://en.wikipedia.org/wiki/Wiki',
+											]
+									)]											
 							)													
 						]
 				];			
