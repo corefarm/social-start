@@ -165,21 +165,16 @@ if (!is_null($events['events'])) {
 			}			 		
 
 			if ( $messages == 'X') {
-					$messages = array(
+					$messages = 
 					[
 							'type' => 'text',
-							'text' => 'ตอบจาก  Bot v3.1.17 : ตอบจาก  Bot v3.1.16 : สามารถใช้ Key Word ได้ คือ  
+							'text' => 'ตอบจาก  Bot v3.1.17 : ตอบจาก  Bot v3.1.17 : สามารถใช้ Key Word ได้ คือ  
      im  (Image) ,  
          cf (Confirm), 
          tmp (Tempalte), 
          con (Carousel), 
          st (sticker)'
-					],
-					[
-							'type' => 'text',
-							'text' => 'ตอบจาก  Bot  v3.1.17 stpe 2 : '.$text
-					]	
-					);
+					];
 			}
 
 			// Make a POST Request to Messaging API to reply to sender
