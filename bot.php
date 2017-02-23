@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 					
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v3.1 : '.$text
+					'text' => 'ตอบจาก  Bot v3.1.1 : '.$text
 			];	
 					
 
@@ -91,57 +91,21 @@ if (!is_null($events['events'])) {
 						'template' => [
 							'type' => 'carousel',
 							'columns' => array (
-								[
-								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
-								'title' => ' Stock คงเหลือ',
-								'text' => 'บันทึก Stock ',
-								'actions' => array(
 									[
-									'type' => 'postback',
-									'label' => 'ต้องการบันทึก',
-									'data' => 'action=buy&itemid=123',
-									],[
-									'type' => 'uri',
-									'label' => 'View detail',
-									'uri' => 'https://www.google.com/',							
-									]
-								)],
-									[
-								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/po.jpg',
-								'title' => ' Request Order',
-								'text' => 'สั่งซื้อ ชิ้นส่วนสุกร ',
-								'actions' => array(
-									[
-									'type' => 'postback',
-									'label' => 'เปิดรายการสั่งซื้อ',
-									'data' => 'action=buy&itemid=123',
-									],
-									[
-									'type' => 'postback',
-									'label' => 'ยกเลิกรายการ',
-									'data' => 'action=buy&itemid=123',
-									]									
-									,[
-									'type' => 'uri',
-									'label' => 'View detail',
-									'uri' => 'http://www.sanook.com/',							
-									]
-								)],	
-								[
-								'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/StatusReport.png',
-								'title' => 'Report',
-								'text' => 'Report Status ',
-								'actions' => array(
-									[
-									'type' => 'postback',
-									'label' => 'เปิดรายการสั่งซื้อ',
-									'data' => 'action=buy&itemid=123',
-									],[
-									'type' => 'uri',
-									'label' => 'View detail',
-									'uri' => 'http://www.sanook.com/',							
-									]
-								)]								
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
+										'title' => 'StockCf',
+										'text' => 'RecordStock ',
+										'actions' => array(
+											[
+											'type' => 'postback',
+											'label' => 'confirm',
+											'data' => 'action=buy&itemid=123',
+											],[
+											'type' => 'uri',
+											'label' => 'View detail',
+											'uri' => 'https://www.google.com/',							
+											]
+									)]														
 							)													
 						]
 				];			
