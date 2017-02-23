@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 					
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v3.1.9 : '.$text
+					'text' => 'ตอบจาก  Bot v3.1.10 : '.$text
 			];	
 					
 
@@ -98,7 +98,7 @@ if (!is_null($events['events'])) {
 										'actions' => array(
 											[
 											'type' => 'postback',
-											'label' => 'ConfirmCf',
+											'label' => 'รายงานคงเหลือ',
 											'data' => 'action=buy&itemid=123',
 											],[
 											'type' => 'uri',
