@@ -17,10 +17,42 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			$messages = [
-				'type' => 'text',
-				'text' => 'ตอบจาก  Bot : '.$text 
-			];
+			$messages =''
+			if ($text == 'tp') {
+				$messages = [
+						  "type": "template",
+						  "altText": "this is a buttons template",
+						  "template": {
+							  "type": "buttons",
+							  "thumbnailImageUrl": "https://immense-stream-37827.herokuapp.com/pig.jpg",
+							  "title": "Menu",
+							  "text": "Please select",
+							  "actions": [
+								  {
+									"type": "postback",
+									"label": "Buy",
+									"data": "action=buy&itemid=123"
+								  },
+								  {
+									"type": "postback",
+									"label": "Add to cart",
+									"data": "action=add&itemid=123"
+								  },
+								  {
+									"type": "uri",
+									"label": "View detail",
+									"uri": "http://www.cpfworldwide.com/th"
+								  }
+							  ]
+						  }
+						];
+			}else{
+					$messages = [
+						'type' => 'text',
+						'text' => 'ตอบจาก  Bot : '.$text 
+					];				
+			}
+
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
