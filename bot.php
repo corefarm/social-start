@@ -32,6 +32,28 @@ if (!is_null($events['events'])) {
 				];			
 			}	
 
+			if ($text == 'cf') {
+				$messages = [
+						'type' => 'template',
+						'altText' => 'this is a confirm  template',
+						'template' => [
+							'type' => 'confirm',
+							'text' => 'Are you sure?',
+							'action' => [
+								[
+								'type' => 'message',
+								'label' => 'Yes',
+								'data' => 'yes',
+								],[
+								'type' => 'message',
+								'label' => 'No',
+								'data' => 'No',									
+								]
+							]
+						]
+				];			
+			}			
+			
 			if ($text == 'tmp') {
 				$messages = [
 						'type' => 'template',
