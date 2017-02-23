@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 					
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v3.1.12 : '.$text
+					'text' => 'ตอบจาก  Bot v3.1.13 : '.$text
 			];	
 					
 
