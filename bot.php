@@ -19,7 +19,7 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-		
+					
 			$messages = [
 					'type' => 'text',
 					'text' => 'ตอบจาก  Bot v3.1 : '.$text
@@ -40,16 +40,16 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'Are you sure?',
+							'text' => 'ยืนยันยอดสั่งซื้อ ?',
 							'actions' => array(
 								[
 								'type' => 'message',
 								'label' => 'Yes',
-								'text' => 'yes',
+								'text' => 'Yes.',
 								],[
 								'type' => 'message',
 								'label' => 'No',
-								'text' => 'No',									
+								'text' => 'No.',									
 								]
 							)
 						]
