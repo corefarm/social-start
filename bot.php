@@ -22,11 +22,11 @@ if (!is_null($events['events'])) {
 		
 			$messages = [
 					'type' => 'text',
-					'text' => 'ตอบจาก  Bot v3.0 : '.$text
+					'text' => 'ตอบจาก  Bot v3.1 : '.$text
 			];	
 					
 
-			if ($text == 'im') {
+			if (strtolower($text)  == 'im') {
 				$messages = [
 						'type' => 'image',
 						'originalContentUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
@@ -34,14 +34,14 @@ if (!is_null($events['events'])) {
 				];			
 			}	
 
-			if ($text == 'cf') {
+			if (strtolower($text)  == 'cf') {
 				$messages = [
 						'type' => 'template',
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
 							'text' => 'Are you sure?',
-							'action' => array(
+							'actions' => array(
 								[
 								'type' => 'message',
 								'label' => 'Yes',
@@ -56,7 +56,7 @@ if (!is_null($events['events'])) {
 				];			
 			}			
 			
-			if ($text == 'tmp') {
+			if (strtolower($text)  == 'tmp') {
 				$messages = [
 						'type' => 'template',
 						'altText' => 'this is a buttons template',
@@ -65,7 +65,7 @@ if (!is_null($events['events'])) {
 							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
 							'title' => 'Menu',
 							'text' => 'Please select',
-							'action' => [
+							'actions' => array(
 								[
 								'type' => 'postback',
 								'label' => 'Buy',
@@ -79,7 +79,7 @@ if (!is_null($events['events'])) {
 								'label' => 'View detail',
 								'data' => 'http://www.cpfworldwide.com/th',							
 								]
-							]
+							)
 						]
 				];			
 			}		 		
