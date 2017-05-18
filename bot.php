@@ -76,10 +76,12 @@ if (!is_null($events['events'])) {
 								'type' => 'postback',
 								'label' => 'Buy',
 								'data' => 'action=buy&itemid=123',
+								'text' => 'Buy.',
 								],[
 								'type' => 'postback',
 								'label' => 'Sale',
-								'data' => 'action=buy&itemid=123',									
+								'data' => 'action=buy&itemid=123',	
+								'text' => 'Sale.',
 								],[
 								'type' => 'uri',
 								'label' => 'View detail',
