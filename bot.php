@@ -101,24 +101,26 @@ if (!is_null($events['events'])) {
 							'columns' => array (
 									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-										'title' => 'Infor',
-										'text' => 'Get Infor',
+										'title' => 'RecodeData',
+										'text' => 'บันทึกข้อมูล',
 										'actions' => array(
 											[
 											'type' => 'postback',
-											'label' => 'Daily Price',
+											'label' => 'บันทืกตาย',
 											'data' => 'action=buy&itemid=123',
+											'text' => '!Dead/Cull'
 											],
 											[
 											'type' => 'uri',
-											'label' => 'Information',
+											'label' => 'บันทืกอาหาร',
 											'uri' => 'https://en.wikipedia.org/wiki/Wiki',
+											'text' => '!Feed'
 											]
 									)],							
 									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
 										'title' => 'Stock',
-										'text' => 'รายงานคงเหลือ ',
+										'text' => 'รายงาน',
 										'actions' => array(
 											[
 											'type' => 'postback',
@@ -132,17 +134,12 @@ if (!is_null($events['events'])) {
 									)],	
 									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/po.jpg',
-										'title' => 'Order',
-										'text' => 'สั่งซื้อ ชิ้นส่วนสุกร ',
+										'title' => 'Help',
+										'text' => 'ช่วยเหลือ ',
 										'actions' => array(
 											[
 											'type' => 'postback',
-											'label' => 'สั่งซื้อ',
-											'data' => 'action=buy&itemid=123',
-											],
-											[
-											'type' => 'postback',
-											'label' => 'ยกเลิกสั่งซื้อ',
+											'label' => 'Infor',
 											'data' => 'action=buy&itemid=123',
 											]
 									)],
