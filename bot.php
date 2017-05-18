@@ -62,7 +62,7 @@ if (!is_null($events['events'])) {
 				];			
 			}			
 			
-			if (strtolower($text)  == '!MaDeadCull') {
+			if ($text  == '!MaDeadCull') {
 				$messages = [
 						'type' => 'template',
 						'altText' => 'this is a buttons template',
