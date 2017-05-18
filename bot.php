@@ -62,7 +62,7 @@ if (!is_null($events['events'])) {
 				];			
 			}			
 			
-			if (strtolower($text)  == 'tmp') {
+			if (strtolower($text)  == '!MaDeadCull') {
 				$messages = [
 						'type' => 'template',
 						'altText' => 'this is a buttons template',
@@ -74,18 +74,14 @@ if (!is_null($events['events'])) {
 							'actions' => array(
 								[
 								'type' => 'postback',
-								'label' => 'Buy',
+								'label' => '620500-0-2-4-775',
 								'data' => 'action=buy&itemid=123',
-								'text' => 'Buy.',
+								'text' => '!620500-0-2-4-6',
 								],[
 								'type' => 'postback',
-								'label' => 'Sale',
+								'label' => '620500-0-2-4-775',
 								'data' => 'action=buy&itemid=123',	
-								'text' => 'Sale.',
-								],[
-								'type' => 'uri',
-								'label' => 'View detail',
-								'uri' => 'http://www.cpfworldwide.com/th',							
+								'text' => '!620500-0-2-4-775',
 								]
 							)
 						]
