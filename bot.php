@@ -88,7 +88,13 @@ if (!is_null($events['events'])) {
 				];			
 			}	
 			
-		
+			if ($text  == '!620500-0-2-4-6')  {
+					$messages = 
+					[
+							'type' => 'text',
+							'text' => 'กรุณาระบุจำนวนตาย  '
+				];		
+			}		
 
 			if (strtolower($text)  == 'con') {
 				$messages = [
