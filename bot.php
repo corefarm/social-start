@@ -108,7 +108,7 @@ if (!is_null($events['events'])) {
 											'type' => 'postback',
 											'label' => 'ตาย/คัดทิ้ง',
 											'data' => 'action=buy&itemid=123',
-											'text' => 'DeadCull',
+											'text' => '!DeadCull',
 											],
 											[
 											'type' => 'uri',
