@@ -120,7 +120,7 @@ if (!is_null($events['events'])) {
 											'uri' => 'https://en.wikipedia.org/wiki/Wiki', */
 											]
 									)],							
-									[
+/* 									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
 										'title' => 'Stock',
 										'text' => 'รายงานคงเหลือ ',
@@ -150,21 +150,21 @@ if (!is_null($events['events'])) {
 											'label' => 'ยกเลิกสั่งซื้อ',
 											'data' => 'action=buy&itemid=123',
 											]
-									)],
+									)], */
 									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/StatusReport.png',
 										'title' => 'Report',
 										'text' => 'Daily Farm',
 										'actions' => array(
 											[
-											'type' => 'postback',
-											'label' => 'Routine Report',
-											'data' => 'action=buy&itemid=123',
+ 											'type' => 'uri',
+											'label' => 'Qty',
+											'uri' => 'https://en.wikipedia.org/wiki/Wiki', 
 											],
 											[
-											'type' => 'postback',
-											'label' => 'Information',
-											'data' => 'action=buy&itemid=123',
+ 											'type' => 'uri',
+											'label' => 'Feed',
+											'uri' => 'https://www.google.com/', 
 											]
 									)]											
 							)													
