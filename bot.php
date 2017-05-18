@@ -106,8 +106,9 @@ if (!is_null($events['events'])) {
 										'actions' => array(
 											[
 											'type' => 'postback',
-											'label' => 'Daily Price',
+											'label' => 'ตาย/คัดทิ้ง',
 											'data' => 'action=buy&itemid=123',
+											'text' => 'DeadCull',
 											],
 											[
 											'type' => 'uri',
