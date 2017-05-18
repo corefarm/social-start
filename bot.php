@@ -113,7 +113,7 @@ if (!is_null($events['events'])) {
 											[
 											'type' => 'uri',
 											'label' => 'บันทืกอาหาร',
-											'uri' => 'https://en.wikipedia.org/wiki/Wiki',
+											'data' => 'action=buy&itemid=123',
 											'text' => '!Feed'
 											]
 									)],							
