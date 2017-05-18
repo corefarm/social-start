@@ -111,9 +111,13 @@ if (!is_null($events['events'])) {
 											'text' => '!DeadCull',
 											],
 											[
-											'type' => 'uri',
+											'type' => 'postback',
+											'label' => 'ใข้อาหาร',
+											'data' => 'action=buy&itemid=123',
+											'text' => '!Feed',											
+/* 											'type' => 'uri',
 											'label' => 'Information',
-											'uri' => 'https://en.wikipedia.org/wiki/Wiki',
+											'uri' => 'https://en.wikipedia.org/wiki/Wiki', */
 											]
 									)],							
 									[
