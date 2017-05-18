@@ -102,7 +102,6 @@ if (!is_null($events['events'])) {
 									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
 										'title' => 'Record Data',
-										'text' => 'Get Infor',
 										'actions' => array(
 											[
 											'type' => 'postback',
