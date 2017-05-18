@@ -91,6 +91,8 @@ if (!is_null($events['events'])) {
 						]
 				];			
 			}	
+			
+		
 
 			if (strtolower($text)  == 'con') {
 				$messages = [
@@ -108,13 +110,13 @@ if (!is_null($events['events'])) {
 											'type' => 'postback',
 											'label' => 'ตาย/คัดทิ้ง',
 											'data' => 'action=buy&itemid=123',
-											'text' => '!DeadCull',
+											'text' => '!MaDeadCull',
 											],
 											[
 											'type' => 'postback',
 											'label' => 'ใข้อาหาร',
 											'data' => 'action=buy&itemid=123',
-											'text' => '!Feed',											
+											'text' => '!MaFeed',											
 /* 											'type' => 'uri',
 											'label' => 'Information',
 											'uri' => 'https://en.wikipedia.org/wiki/Wiki', */
@@ -158,12 +160,12 @@ if (!is_null($events['events'])) {
 										'actions' => array(
 											[
  											'type' => 'uri',
-											'label' => 'Qty',
+											'label' => 'สุกรคงเหลือ',
 											'uri' => 'https://en.wikipedia.org/wiki/Wiki', 
 											],
 											[
  											'type' => 'uri',
-											'label' => 'Feed',
+											'label' => 'อาหารคงเหลือ',
 											'uri' => 'https://www.google.com/', 
 											]
 									)]											
