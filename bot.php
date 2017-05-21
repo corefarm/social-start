@@ -45,7 +45,7 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		
-		$userid = $event['source']['userid'];
+		$userid = $event['source']['userId'];
 		
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
