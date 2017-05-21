@@ -1,10 +1,33 @@
 <?php
 
 
+function writeData($sql) {
+    # This function reads your DATABASE_URL config var and returns a connection
+# string suitable for pg_connect. Put this in your app.
+function pg_connection_string_from_database_url() {
+  extract(parse_url($_ENV["DATABASE_URL"]));
+  return "user=$user password=$pass host=$host dbname=" . substr($path, 1); # <- you may want to add sslmode=require there too
+}
+# Here we establish the connection. Yes, that's all.
+$pg_conn = pg_connect(pg_connection_string_from_database_url());
+$result = pg_query($pg_conn, $sql);
+
+Return $result;
+
+}
+
+
+
 $access_token = 'ki/sALGeAGtfPJsCbQY+Ama0bBSByknlDdsU32D1fnAGwt2/L9KqasU/HxA9ojgPHNcSaItAV2cJEasYBZj1qQ+dZOEt7ZKaTz/OG7ZZNISFHh4NWE/P5Mg7hX84D+AZtaYHVjv2VS9oQiObD6Kl+QdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
 $content = file_get_contents('php://input');
+
+$sql = " INSERT INTO \"Fr_User_Log\"(
+	\"Request\", \"ReplyConfirm\", \"CreateDate\")
+	VALUES ($content, 'N', now())";
+
+	writeData($sql);
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
