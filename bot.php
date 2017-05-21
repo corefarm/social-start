@@ -137,10 +137,10 @@ if (!is_null($events['events'])) {
 			if(stristr($text,'FARMSEL!') ) {
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						SET  \"STEP_ACTION\"='KEY QTY', \"STEP1_VALUE\"=$text
+						SET  \"STEP_ACTION\"='KEY QTY', \"STEP1_VALUE\"='$text'
 							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
 							
-				writeData($sql);
+				writeData($sql); 
 				
 				$messages = 
 					[
