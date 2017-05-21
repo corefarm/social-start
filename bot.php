@@ -26,7 +26,8 @@ $content = file_get_contents('php://input');
 $sql = " INSERT INTO \"Fr_User_Log\"(
 	\"Request\", \"ReplyConfirm\", \"CreateDate\")
 	VALUES ($content, 'N', now())";
-
+	
+	echo $sql . '\r\n';
 	writeData($sql);
 // Parse JSON
 $events = json_decode($content, true);
