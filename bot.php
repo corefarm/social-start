@@ -33,7 +33,7 @@ $content_sql   = str_replace('"', '\"', $content_sql);
 
 $sql = " INSERT INTO \"Fr_User_Log\"(
 	\"Request\", \"ReplyConfirm\", \"CreateDate\")
-	VALUES ($content_sql, 'N', now())";
+	VALUES ('$content_sql', 'N', now())";
 	
 	echo $sql . '\r\n';
 	writeData($sql);
