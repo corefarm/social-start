@@ -100,7 +100,7 @@ if (!is_null($events['events'])) {
 										
 			}			
 					
-			if (strtolower($text)  == '!YesDEADCULL') {
+			if ($text  == '!YesDEADCULL') {
 
 					$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"PROCESS_STATUS\"='COMPLETE'
