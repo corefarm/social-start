@@ -29,7 +29,8 @@ $content = file_get_contents('php://input');
 
 $content_sql = $content;
 
-$content_sql   = str_replace('"', '\"', $content_sql);
+//$content_sql   = str_replace('"', '\"', $content_sql);
+
 
 $sql = " INSERT INTO \"Fr_User_Log\"(
 	\"Request\", \"ReplyConfirm\", \"CreateDate\")
