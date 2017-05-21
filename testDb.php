@@ -13,7 +13,7 @@ $pg_conn = pg_connect(pg_connection_string_from_database_url());
 //$result = pg_query($pg_conn, "SELECT relname FROM pg_stat_user_tables WHERE schemaname='public'");
 
 echo "bf insert \n INSERT INTO public.''Fr_User_Log''(
-	'Request', 'ReplyConfirm', 'CreateDate')
+	''Request'', ''ReplyConfirm'', ''CreateDate'')
 	VALUES ('test', 'test', now())";	
 
 $result = pg_query($pg_conn, "INSERT INTO public.'Fr_User_Log'(
