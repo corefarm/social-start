@@ -40,10 +40,13 @@ $sql = " INSERT INTO \"Fr_User_Log\"(
 	writeData($sql);
 // Parse JSON
 $events = json_decode($content, true);
+
+
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
+		$userid = $event['source']['userid'];
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
@@ -96,6 +99,15 @@ if (!is_null($events['events'])) {
 			}			
 			
 			if ($text  == '!MaDeadCull') {
+				
+				
+				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
+				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
+				VALUES ('$userid', 'DEADCULL', 'SELECT FARM', now(), 'KEYING') ";
+				
+				writeData($sql);
+				
+				
 				$messages = [
 						'type' => 'template',
 						'altText' => 'this is a buttons template',
@@ -109,25 +121,35 @@ if (!is_null($events['events'])) {
 								'type' => 'postback',
 								'label' => '620500-0-2-4-775',
 								'data' => 'action=buy&itemid=123',
-								'text' => '!620500-0-2-4-6',
+								'text' => 'FARMSEL!620500-0-2-4-6',
 								],[
 								'type' => 'postback',
 								'label' => '620500-0-2-4-775',
 								'data' => 'action=buy&itemid=123',	
-								'text' => '!620500-0-2-4-775',
+								'text' => 'FARMSEL!620500-0-2-4-775',
 								]
 							)
 						]
 				];			
 			}	
 			
-			if ($text  == '!620500-0-2-4-6')  {
-					$messages = 
+			
+			if(stristr('FARMSEL!', $text) ) {
+				
+				sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+						SET  \"STEP_ACTION\"='KEY QTY', \"STEP1_VALUE\"=$text
+							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' "
+							
+				writeData($sql);
+				
+				$messages = 
 					[
 							'type' => 'text',
 							'text' => 'กรุณาระบุจำนวนตาย  '
-				];		
-			}		
+					];	
+    //Do stuff
+			}
+		
 
 			if (strtolower($text)  == 'con') {
 				$messages = [
