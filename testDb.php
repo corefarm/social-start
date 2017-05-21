@@ -16,7 +16,7 @@ $pg_conn = pg_connect(pg_connection_string_from_database_url());
 
 $sql = ' INSERT INTO "Fr_User_Log"(
 	"Request", "ReplyConfirm", "CreateDate")
-	VALUES (''test'', ''test'', now()) ';
+	VALUES (''test'', ''test'', now())';
 
 echo "bf insert \n ".$sql." <BR/> ";	
 
