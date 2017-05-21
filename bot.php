@@ -138,7 +138,7 @@ if (!is_null($events['events'])) {
 				
 				sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='KEY QTY', \"STEP1_VALUE\"=$text
-							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' "
+							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
 							
 				writeData($sql);
 				
