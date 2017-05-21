@@ -59,7 +59,7 @@ if (!is_null($events['events'])) {
 			$messages = 'X';
 			$messages_2 = 'X';
 					
-			$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY'  " ;
+			$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
 			$result =  writeData($sql);
 			while ($row = pg_fetch_assoc($result)) {
 				
@@ -74,7 +74,7 @@ if (!is_null($events['events'])) {
 						'template' => [
 							'type' => 'confirm',
 							'text' => 'บันทึกตาย เล้า '.$row['STEP1_VALUE'].'  
-										จำนวน  '.$row['STEP2_VALUE'].' 
+										จำนวน  '.$text.' 
 										ยืนยันข้อมูล ? ',
 							'actions' => array(
 								[
@@ -94,13 +94,31 @@ if (!is_null($events['events'])) {
 					$messages = 
 					[
 							'type' => 'text',
-							'text' => 'กรุณาระบุตัวเลข เท่านั้น ! '
-					];
+							'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
+					];					
 				}				
 										
 			}			
 					
+			if (strtolower($text)  == '!YesDEADCULL') {
+
+					$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+						SET  \"PROCESS_STATUS\"='COMPLETE'
+							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";	
+							
+					$messages = 
+					[
+							'type' => 'text',
+							'text' => 'บันทึกข้อมูลเรียบร้อย'
+					];
 					
+					$messages_2 =  [
+						'type' => 'sticker',
+						'packageId' => '1',
+						'stickerId' => 138
+				];				
+			}
+			
 			if (strtolower($text)  == 'im') {
 				$messages = [
 						'type' => 'image',
