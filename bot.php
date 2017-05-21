@@ -10,7 +10,11 @@ function pg_connection_string_from_database_url() {
 }
 # Here we establish the connection. Yes, that's all.
 $pg_conn = pg_connect(pg_connection_string_from_database_url());
-$result = pg_query($pg_conn, $sql);
+
+	$result = pg_query($pg_conn, $sql);
+
+
+
 
 Return $result;
 
@@ -23,9 +27,13 @@ $access_token = 'ki/sALGeAGtfPJsCbQY+Ama0bBSByknlDdsU32D1fnAGwt2/L9KqasU/HxA9ojg
 // Get POST body content
 $content = file_get_contents('php://input');
 
+$content_sql = $content;
+
+$content_sql   = str_replace('"', "\"", $content_sql);
+
 $sql = " INSERT INTO \"Fr_User_Log\"(
 	\"Request\", \"ReplyConfirm\", \"CreateDate\")
-	VALUES ($content, 'N', now())";
+	VALUES ($content_sql, 'N', now())";
 	
 	echo $sql . '\r\n';
 	writeData($sql);
