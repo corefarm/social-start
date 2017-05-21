@@ -14,13 +14,13 @@ $pg_conn = pg_connect(pg_connection_string_from_database_url());
 
 echo "bf insert \n INSERT INTO public.''Fr_User_Log''(
 	''Request'', ''ReplyConfirm'', ''CreateDate'')
-	VALUES ('test', 'test', now())";	
+	VALUES ('test', 'test', now()) <BR/> ";	
 
-$result = pg_query($pg_conn, "INSERT INTO public.'Fr_User_Log'(
-	'Request', 'ReplyConfirm', 'CreateDate')
-	VALUES ('test', 'test', now())");
+$result = pg_query($pg_conn, "INSERT INTO public.''Fr_User_Log''(
+	''Request'', ''ReplyConfirm'', ''CreateDate'')
+	VALUES ('test', 'test', now()) ");
 	
-echo "af insert \n ".$result;	
+echo "af insert  ".$result;	
 /* print "<pre>\n";
 if (!pg_num_rows($result)) {
   print("Your connection is working, but your database is empty.\nFret not. This is expected for new apps.\n");
