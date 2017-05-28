@@ -294,7 +294,7 @@ if (!is_null($events['events'])) {
 					$messages = 
 					[
 							'type' => 'text',
-							'text' => 'ตอบจาก  Bot v3.1.22 : สามารถใช้ Key Word ได้ คือ  
+							'text' => 'ตอบจาก  Bot v4.1.22 pj corefarm : สามารถใช้ Key Word ได้ คือ  
        im  (Image) ,  
          cf (Confirm), 
          tmp (Tempalte), 
