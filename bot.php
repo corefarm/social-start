@@ -1,21 +1,21 @@
 <?php
 function pg_connection_string_from_database_url() {
-  extract(parse_url($_ENV["DATABASE_URL"]));
-  return "user=$user password=$pass host=$host dbname=" . substr($path, 1); # <- you may want to add sslmode=require there too
+    extract(parse_url($_ENV["DATABASE_URL"]));
+    return "user=$user password=$pass host=$host dbname=" . substr($path, 1); # <- you may want to add sslmode=require there too
 }
 
 function writeData($sql) {
     # This function reads your DATABASE_URL config var and returns a connection
-# string suitable for pg_connect. Put this in your app.
+    # string suitable for pg_connect. Put this in your app.
 
-# Here we establish the connection. Yes, that's all.
-$pg_conn = pg_connect(pg_connection_string_from_database_url());
+    # Here we establish the connection. Yes, that's all.
+    $pg_conn = pg_connect(pg_connection_string_from_database_url());
 
 	$result = pg_query($pg_conn, $sql);
-Return $result;
+    Return $result;
 
 }
-$asdas = 'asdsdsdsssdd33d';
+$testing = 'Matext lawka';
 
 $access_token = 'ki/sALGeAGtfPJsCbQY+Ama0bBSByknlDdsU32D1fnAGwt2/L9KqasU/HxA9ojgPHNcSaItAV2cJEasYBZj1qQ+dZOEt7ZKaTz/OG7ZZNISFHh4NWE/P5Mg7hX84D+AZtaYHVjv2VS9oQiObD6Kl+QdB04t89/1O/w1cDnyilFU=';
 
@@ -30,9 +30,9 @@ $content_sql = $content;
 $sql = " INSERT INTO \"Fr_User_Log\"(
 	\"Request\", \"ReplyConfirm\", \"CreateDate\")
 	VALUES ('$content_sql', 'N', now())";
-	
+
 //	echo $sql . '\r\n';
-	writeData($sql);
+writeData($sql);
 // Parse JSON
 $events = json_decode($content, true);
 
@@ -51,40 +51,40 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-					
+            
 			$messages = 'X';
 			$messages_2 = 'X';
-					
+            
 			$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
 			$result =  writeData($sql);
 			while ($row = pg_fetch_assoc($result)) {
 				
 				if (is_numeric($text)) {
-				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+                    $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
 							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";		
-				writeData($sql);
-				$messages = [
-						'type' => 'template',
-						'altText' => 'this is a confirm  template',
-						'template' => [
-							'type' => 'confirm',
-							'text' => 'บันทึกตาย เล้า '.$row['STEP1_VALUE'].'  
+                    writeData($sql);
+                    $messages = [
+                            'type' => 'template',
+                            'altText' => 'this is a confirm  template',
+                            'template' => [
+                                'type' => 'confirm',
+                                'text' => 'บันทึกตาย เล้า '.$row['STEP1_VALUE'].'  
 										จำนวน  '.$text.' 
 										ยืนยันข้อมูล ? ',
-							'actions' => array(
-								[
-								'type' => 'message',
-								'label' => 'ยืนยัน',
-								'text' => '!YesDEADCULL',
-								],[
-								'type' => 'message',
-								'label' => 'ยกเลิก',
-								'text' => '!NoDEADCULL',									
-								]
-							)
-						]
-				];							
+                                'actions' => array(
+                                    [
+                                    'type' => 'message',
+                                    'label' => 'ยืนยัน',
+                                    'text' => '!YesDEADCULL',
+                                    ],[
+                                    'type' => 'message',
+                                    'label' => 'ยกเลิก',
+                                    'text' => '!NoDEADCULL',									
+                                    ]
+                                )
+                            ]
+                    ];							
 					
 				} else {
 					$messages = 
@@ -93,26 +93,26 @@ if (!is_null($events['events'])) {
 							'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
 					];					
 				}				
-										
+                
 			}			
-					
+            
 			if ($text  == '!YesDEADCULL') {
 
-					$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+                $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"PROCESS_STATUS\"='COMPLETE'
 							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";	
-							
-					$messages = 
-					[
-							'type' => 'text',
-							'text' => 'บันทึกข้อมูลเรียบร้อย'
-					];
-					
-					$messages_2 =  [
-						'type' => 'sticker',
-						'packageId' => '1',
-						'stickerId' => 138
-				];				
+                
+                $messages = 
+                [
+                        'type' => 'text',
+                        'text' => 'บันทึกข้อมูลเรียบร้อย'
+                ];
+                
+                $messages_2 =  [
+                    'type' => 'sticker',
+                    'packageId' => '1',
+                    'stickerId' => 138
+            ];				
 			}
 			
 			if (strtolower($text)  == 'im') {
@@ -196,7 +196,7 @@ if (!is_null($events['events'])) {
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='KEY QTY', \"STEP1_VALUE\"='$STEP1_VALUE'
 							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
-							
+                
 				writeData($sql); 
 				
 				$messages = 
@@ -206,7 +206,7 @@ if (!is_null($events['events'])) {
 					];	
 
 			}
-		
+            
 
 			if (strtolower($text)  == 'con') {
 				$messages = [
@@ -289,22 +289,22 @@ if (!is_null($events['events'])) {
 			}			 		
 
 			if ( $messages == 'X') {
-					$messages = 
-					[
-							'type' => 'text',
-							'text' => 'ตอบจาก  Bot v4.1.22 pj corefarm : สามารถใช้ Key Word ได้ คือ  
+                $messages = 
+                [
+                        'type' => 'text',
+                        'text' => 'ตอบจาก  Bot v4.1.22 pj corefarm : สามารถใช้ Key Word ได้ คือ  
        im  (Image) ,  
          cf (Confirm), 
          tmp (Tempalte), 
          con (Carousel), 
          st (sticker)'
-					];
-					
-					$messages_2 =  [
-						'type' => 'sticker',
-						'packageId' => '1',
-						'stickerId' => rand(100, 118)
-				];	
+                ];
+                
+                $messages_2 =  [
+                    'type' => 'sticker',
+                    'packageId' => '1',
+                    'stickerId' => rand(100, 118)
+            ];	
 			}
 			
 			$mes_line ='';
@@ -350,5 +350,5 @@ if (!is_null($events['events'])) {
 echo 'OK';
 
 
-				
+
 ?>
