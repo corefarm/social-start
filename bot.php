@@ -15,7 +15,7 @@ $pg_conn = pg_connect(pg_connection_string_from_database_url());
 Return $result;
 
 }
-
+//LEARING sdsdasd
 $access_token = 'ki/sALGeAGtfPJsCbQY+Ama0bBSByknlDdsU32D1fnAGwt2/L9KqasU/HxA9ojgPHNcSaItAV2cJEasYBZj1qQ+dZOEt7ZKaTz/OG7ZZNISFHh4NWE/P5Mg7hX84D+AZtaYHVjv2VS9oQiObD6Kl+QdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
