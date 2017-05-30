@@ -325,7 +325,7 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a buttons template',
 						'template' => [
 							'type' => 'buttons',
-							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+							//'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
 							'title' => 'กรุณาเลือกวันที่',
 							'text' => 'Please select date.',
 							'actions' => array(
@@ -378,7 +378,7 @@ if (!is_null($events['events'])) {
 						array_push($arrMessageDs,[
 							'type' => 'postback',
 							'label' => $val['name'],
-							//'data' => 'action=buy&itemid=123',
+							'data' => 'action=buy&itemid=123',
 							'text' => '!SelCvDe '.$val['name'],
 						]);
 					}
