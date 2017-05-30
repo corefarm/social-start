@@ -187,7 +187,7 @@ if (!is_null($events['events'])) {
 				];			
 			}	*/
 			
-			if(stristr($text,'FARMSEL!') ) {
+			/*if(stristr($text,'FARMSEL!') ) {
 				
 				$STEP1_VALUE = str_replace('FARMSEL!','',$text);
 				
@@ -203,7 +203,7 @@ if (!is_null($events['events'])) {
 							'text' => 'กรุณาระบุจำนวนตาย  '
 					];	
 
-			}
+			}*/
             
 			if (strtolower($text)  == 'con') {
 				$messages = [
@@ -326,29 +326,64 @@ if (!is_null($events['events'])) {
 						'template' => [
 							'type' => 'buttons',
 							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-							'title' => 'Menu',
-							'text' => 'Please select',
+							'title' => 'กรุณาเลือกวันที่',
+							'text' => 'Please select date.',
 							'actions' => array(
 								[
 								'type' => 'postback',
-								//'label' => '620500-0-2-4-775',
 								'label' => $today,
 								'data' => 'action=buy&itemid=123',
 								'text' => 'FARMSEL!620500-0-2-4-6',
 								],[
 								'type' => 'postback',
-								//'label' => '620500-0-2-4-775',
 								'label' => $yesterday,
 								'data' => 'action=buy&itemid=123',	
 								'text' => 'FARMSEL!620500-0-2-4-775',
 								]
 							)
 						]
-				];		
-				
-				
+				];
 			}
-			
+			if(stristr($text,'FARMSEL!') ) {
+				
+				$STEP1_VALUE = str_replace('FARMSEL!','',$text);
+				
+				// $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+						// SET  \"STEP_ACTION\"='KEY QTY', \"STEP1_VALUE\"='$STEP1_VALUE'
+							// WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
+                
+				// writeData($sql); 
+				
+				
+				$arrCv = array("นาย จิรศักดิ์", "นาย สุทธินัย", "นาย พงศธร");
+				if(count($a) > 1) {
+					
+					$arrMessageDs = array(count($arrCv));
+					
+					foreach ($arrCv as $val) {
+						array_push($arrMessageDs,[
+							'type' => 'postback',
+							'label' => $val,
+							'data' => 'action=buy&itemid=123',
+							'text' => 'FARMSEL!620500-0-2-4-6',
+						]);
+					}
+					
+					$messages = [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'buttons',
+							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+							'title' => 'กรุณาเลือกวันที่',
+							'text' => 'Please select date.',
+							'actions' => $arrMessageDs
+						]
+					];
+				}
+				
+
+			}
 			
 			// END SABPAROD LANDING HERE
 			$mes_line ='';
