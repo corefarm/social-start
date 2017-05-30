@@ -358,22 +358,22 @@ if (!is_null($events['events'])) {
 				
 				 if(count($arrCv) > 1) {
 					
-					//$arrMessageDs = array(); 
+					$arrMessageDs = array(); 
 
-					// foreach ($arrCv as $val) {
-						// array_push($arrMessageDs,[
-							// 'type' => 'postback',
-							// 'label' => $val,
-							// 'data' => 'action=buy&itemid=123',
-							// 'text' => 'gg!620500-0-2-4-6',
-						// ]);
-					// }
-					
-					$strTest = '';
-					foreach($arrCv as $val) {
-						$strTest.$val;
+					foreach ($arrCv as $val) {
+						array_push($arrMessageDs,[
+							'type' => 'postback',
+							'label' => $val,
+							'data' => 'action=buy&itemid=123',
+							'text' => 'gg!620500-0-2-4-6',
+						]);
 					}
-				
+					$strTest = '';
+					
+					foreach ($arrMessageDs as $val) {
+						$strTest = $strTest.$val['data'];
+					}
+
 					$messages = 
 					[
 							'type' => 'text',
