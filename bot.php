@@ -333,7 +333,7 @@ if (!is_null($events['events'])) {
 								'type' => 'postback',
 								'label' => $today,
 								'data' => 'action=buy&itemid=123',
-								'text' => 'Date!'.$today,
+								'text' => 'Date! '.$today,
 								],[
 								'type' => 'postback',
 								'label' => $yesterday,
@@ -354,7 +354,21 @@ if (!is_null($events['events'])) {
                 
 				// writeData($sql); 
 				
-				$arrCv = array("นาย จิรศักดิ์", "นาย สุทธินัย", "นาย พงศธร");
+				// $arrCv = array([
+					// 'name' =>  'นาย จิรศักดิ์',
+					// 'type' => 'A77'
+				// ],[
+					// 'name' => 'นาย สุทธินัย',
+					// 'type' => 'A88'
+				// ] , [
+					// 'name' => 'นาย พงศธร',
+					// 'type' => 'A99'
+				// ]);
+				
+				$arrCv = array([
+					'name' =>  'นาย จิรศักดิ์',
+					'type' => 'A77'
+				]);
 				
 				 if(count($arrCv) > 1) {
 					
@@ -363,22 +377,11 @@ if (!is_null($events['events'])) {
 					foreach ($arrCv as $val) {
 						array_push($arrMessageDs,[
 							'type' => 'postback',
-							'label' => $val,
+							'label' => $val['name'],
 							'data' => 'action=buy&itemid=123',
 							'text' => 'gg!620500-0-2-4-6',
 						]);
 					}
-					$strTest = '';
-					
-					foreach ($arrMessageDs as $val) {
-						$strTest = $strTest.$val['data'];
-					}
-
-					// $messages = 
-					// [
-							// 'type' => 'text',
-							// 'text' => $strTest
-					// ];
 					
 					$messages = [
 						'type' => 'template',
@@ -386,8 +389,8 @@ if (!is_null($events['events'])) {
 						'template' => [
 							'type' => 'buttons',
 							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-							'title' => 'กรุณาเลือกวันที่',
-							'text' => 'Please select date.',
+							'title' => 'กรุณาเลือก Customer / Vender',
+							'text' => 'Please select Customer / Vender.',
 							'actions' => $arrMessageDs
 						]
 					];
@@ -396,7 +399,7 @@ if (!is_null($events['events'])) {
 					$messages = 
 					[
 							'type' => 'text',
-							'text' => 'เน่า cv'
+							'text' => $arrCv[0]['name']
 					];
 				}
 			}
