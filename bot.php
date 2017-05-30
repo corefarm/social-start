@@ -374,23 +374,23 @@ if (!is_null($events['events'])) {
 						$strTest = $strTest.$val['data'];
 					}
 
-					$messages = 
-					[
-							'type' => 'text',
-							'text' => $strTest
-					];
-					
-					// $messages = [
-						// 'type' => 'template',
-						// 'altText' => 'this is a buttons template',
-						// 'template' => [
-							// 'type' => 'buttons',
-							// 'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-							// 'title' => 'กรุณาเลือกวันที่',
-							// 'text' => 'Please select date.',
-							// 'actions' => $arrMessageDs
-						// ]
+					// $messages = 
+					// [
+							// 'type' => 'text',
+							// 'text' => $strTest
 					// ];
+					
+					$messages = [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'buttons',
+							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+							'title' => 'กรุณาเลือกวันที่',
+							'text' => 'Please select date.',
+							'actions' => $arrMessageDs
+						]
+					];
 				}
 				else {
 					$messages = 
