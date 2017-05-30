@@ -354,8 +354,8 @@ if (!is_null($events['events'])) {
                 
 				// writeData($sql); 
 				
-				
 				$arrCv = array("นาย จิรศักดิ์", "นาย สุทธินัย", "นาย พงศธร");
+				
 				if(count($a) > 1) {
 					
 					$arrMessageDs = array(count($arrCv));
@@ -369,16 +369,22 @@ if (!is_null($events['events'])) {
 						]);
 					}
 					
-					$messages = [
-						'type' => 'template',
-						'altText' => 'this is a buttons template',
-						'template' => [
-							'type' => 'buttons',
-							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-							'title' => 'กรุณาเลือกวันที่',
-							'text' => 'Please select date.',
-							'actions' => $arrMessageDs
-						]
+					// $messages = [
+						// 'type' => 'template',
+						// 'altText' => 'this is a buttons template',
+						// 'template' => [
+							// 'type' => 'buttons',
+							// 'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+							// 'title' => 'กรุณาเลือกวันที่',
+							// 'text' => 'Please select date.',
+							// 'actions' => $arrMessageDs
+						// ]
+					// ];
+					
+					$messages = 
+					[
+							'type' => 'text',
+							'text' => 'กรุณาระบุจำนวนตาย  '
 					];
 				}
 				
