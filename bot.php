@@ -354,21 +354,21 @@ if (!is_null($events['events'])) {
                 
 				// writeData($sql); 
 				
-				$arrCv = array([
-					'name' =>  'นาย จิรศักดิ์',
-					'type' => 'A77'
-				],[
-					'name' => 'นาย สุทธินัย',
-					'type' => 'A88'
-				] , [
-					'name' => 'นาย พงศธร',
-					'type' => 'A99'
-				]);
-				
 				// $arrCv = array([
 					// 'name' =>  'นาย จิรศักดิ์',
 					// 'type' => 'A77'
+				// ],[
+					// 'name' => 'นาย สุทธินัย',
+					// 'type' => 'A88'
+				// ] , [
+					// 'name' => 'นาย พงศธร',
+					// 'type' => 'A99'
 				// ]);
+				
+				$arrCv = array([
+					'name' =>  'นาย จิรศักดิ์',
+					'type' => 'A77'
+				]);
 				
 				 if(count($arrCv) > 1) {
 					
@@ -436,7 +436,61 @@ if (!is_null($events['events'])) {
 						'actions' => $arrMessageDs
 					]
 				];
+			}
+			if(stristr($text,'!SelFarmDe') ) {
+				
+				//check stock
+				//
+				
+				$arrCv = array([
+					'name' =>  'เพศเมีย',
+					'qty' => 100
+				],[
+					'name' => 'เพศผู้',
+					'qty' => 50
+				]);
+				
+				$arrMessageDs = array(); 
+
+				if($arrCv[0]['qty'] > 0 && $arrCv[1]['qty'] > 0) {
 					
+					foreach ($arrCv as $val) {
+						array_push($arrMessageDs,[
+							'type' => 'postback',
+							'label' => $val['name'],
+							'data' => 'action=buy&itemid=123',
+							'text' => '!SelFarmDe '.$val['name'],
+						]);
+					}
+				}
+				else {
+					$availSex = '';
+					if($arrCv[0]['qty'] > 0) {
+						$availSex = $arrCv[0]['name'];
+					}
+					else {
+						$availSex = $arrCv[1]['name'];
+					}
+					array_push($arrMessageDs,[
+						'type' => 'postback',
+						'label' => $availSex,
+						'data' => 'action=buy&itemid=123',
+						'text' => '!SelFarmDe '.$availSex,
+					]);
+				}
+				
+				
+				
+				$messages = [
+					'type' => 'template',
+					'altText' => 'this is a buttons template',
+					'template' => [
+						'type' => 'buttons',
+						'title' => 'กรุณาเลือกเล้า',
+						'text' => 'Please select pen.',
+						'actions' => $arrMessageDs
+					]
+				];
 			}
 			// END SABPAROD LANDING HERE
 			$mes_line ='';
