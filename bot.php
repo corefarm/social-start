@@ -315,7 +315,8 @@ if (!is_null($events['events'])) {
 				
 				// writeData($sql);
 				
-				$today = date("d/m/Y");   
+				$today = date('d/m/Y');   
+				$yesterday = date('d/m/Y', strtotime(' -1 day'));
 				
 				echo $today;
 				
@@ -330,12 +331,14 @@ if (!is_null($events['events'])) {
 							'actions' => array(
 								[
 								'type' => 'postback',
-								'label' => '620500-0-2-4-775',
+								//'label' => '620500-0-2-4-775',
+								'label' => $today,
 								'data' => 'action=buy&itemid=123',
 								'text' => 'FARMSEL!620500-0-2-4-6',
 								],[
 								'type' => 'postback',
-								'label' => '620500-0-2-4-775',
+								//'label' => '620500-0-2-4-775',
+								'label' => $yesterday,
 								'data' => 'action=buy&itemid=123',	
 								'text' => 'FARMSEL!620500-0-2-4-775',
 								]
