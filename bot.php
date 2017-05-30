@@ -380,12 +380,6 @@ if (!is_null($events['events'])) {
 							'actions' => $arrMessageDs
 						]
 					];
-					
-					$messages = 
-					[
-							'type' => 'text',
-							'text' => 'กรุณาระบุจำนวนตาย  '
-					];
 				}
 				else {
 					$messages = 
