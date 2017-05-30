@@ -92,9 +92,8 @@ if (!is_null($events['events'])) {
 							'type' => 'text',
 							'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
 					];					
-				}				
-                
-			}			
+				}
+			}
             
 			if ($text  == '!YesDEADCULL') {
 
@@ -153,7 +152,7 @@ if (!is_null($events['events'])) {
 				];			
 			}			
 			
-			if ($text  == '!MaDeadCull') {
+			/*if ($text  == '!MaDeadCull') {
 				
 				
 				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
@@ -186,8 +185,7 @@ if (!is_null($events['events'])) {
 							)
 						]
 				];			
-			}	
-			
+			}	*/
 			
 			if(stristr($text,'FARMSEL!') ) {
 				
@@ -207,7 +205,6 @@ if (!is_null($events['events'])) {
 
 			}
             
-
 			if (strtolower($text)  == 'con') {
 				$messages = [
 						'type' => 'template',
@@ -307,6 +304,50 @@ if (!is_null($events['events'])) {
             ];	
 			}
 			
+			
+			
+			// SABPAROD LANDING HERE
+			if($text == '!MaDeadCull') {
+				
+				// $sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
+				// \"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
+				// VALUES ('$userid', 'DEADCULL', 'SELECT FARM', now(), 'KEYING') ";
+				
+				// writeData($sql);
+				
+				$today = date("d/m/Y");   
+				
+				echo today
+				
+				$messages = [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'buttons',
+							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+							'title' => 'Menu',
+							'text' => 'Please select',
+							'actions' => array(
+								[
+								'type' => 'postback',
+								'label' => '620500-0-2-4-775',
+								'data' => 'action=buy&itemid=123',
+								'text' => 'FARMSEL!620500-0-2-4-6',
+								],[
+								'type' => 'postback',
+								'label' => '620500-0-2-4-775',
+								'data' => 'action=buy&itemid=123',	
+								'text' => 'FARMSEL!620500-0-2-4-775',
+								]
+							)
+						]
+				];		
+				
+				
+			}
+			
+			
+			// END SABPAROD LANDING HERE
 			$mes_line ='';
 			
 			if ($messages_2 =='X') {
