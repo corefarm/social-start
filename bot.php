@@ -360,8 +360,8 @@ if (!is_null($events['events'])) {
 					
 					$arrMessageDs = array(); 
 
-					foreach ($arrcv as $val) {
-						array_push($arrmessageds,[
+					foreach ($arrCv as $val) {
+						array_push($arrMessageDs,[
 							'type' => 'postback',
 							'label' => $val,
 							'data' => 'action=buy&itemid=123',
