@@ -400,10 +400,44 @@ if (!is_null($events['events'])) {
 							'type' => 'text',
 							'text' => $arrCv[0]['name']
 					];
+					// select Farm
+					$arrCv = array([
+						'name' =>  'เล้าเหนือ',
+						'type' => 'L77'
+					],[
+						'name' => 'เล้าใต้',
+						'type' => 'L88'
+					] , [
+						'name' => 'เล้าตะวันออก',
+						'type' => 'L99'
+					]);
+					
+					$arrMessageDs = array(); 
+
+					foreach ($arrCv as $val) {
+						array_push($arrMessageDs,[
+							'type' => 'postback',
+							'label' => $val['name'],
+							'data' => 'action=buy&itemid=123',
+							'text' => '!SelFarmDe '.$val['name'],
+						]);
+					}
+					
+					$messages = [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'buttons',
+							'title' => 'กรุณาเลือกเล้า',
+							'text' => 'Please select pen.',
+							'actions' => $arrMessageDs
+						]
+					];
 				}
 			}
 			if(stristr($text,'!SelCvDe') ) {
 				
+				// select Farm
 				$arrCv = array([
 					'name' =>  'เล้าเหนือ',
 					'type' => 'L77'
