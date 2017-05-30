@@ -333,12 +333,12 @@ if (!is_null($events['events'])) {
 								'type' => 'postback',
 								'label' => $today,
 								'data' => 'action=buy&itemid=123',
-								'text' => 'FARMSEL!620500-0-2-4-6',
+								'text' => 'Date!'.$today,
 								],[
 								'type' => 'postback',
 								'label' => $yesterday,
 								'data' => 'action=buy&itemid=123',	
-								'text' => 'FARMSEL!620500-0-2-4-775',
+								'text' => 'Date!'.$yesterday,
 								]
 							)
 						]
