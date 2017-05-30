@@ -358,16 +358,16 @@ if (!is_null($events['events'])) {
 				
 				if(count($a) > 1) {
 					
-					$arrMessageDs = array(count($arrCv));
+					// $arrMessageDs = array(count($arrCv));
 					
-					foreach ($arrCv as $val) {
-						array_push($arrMessageDs,[
-							'type' => 'postback',
-							'label' => $val,
-							'data' => 'action=buy&itemid=123',
-							'text' => 'FARMSEL!620500-0-2-4-6',
-						]);
-					}
+					// foreach ($arrCv as $val) {
+						// array_push($arrMessageDs,[
+							// 'type' => 'postback',
+							// 'label' => $val,
+							// 'data' => 'action=buy&itemid=123',
+							// 'text' => 'FARMSEL!620500-0-2-4-6',
+						// ]);
+					// }
 					
 					// $messages = [
 						// 'type' => 'template',
