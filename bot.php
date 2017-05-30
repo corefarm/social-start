@@ -358,7 +358,7 @@ if (!is_null($events['events'])) {
 				
 				 if(count($arrCv) > 1) {
 					
-					$arrMessageDs = array(); 
+					//$arrMessageDs = array(); 
 
 					// foreach ($arrCv as $val) {
 						// array_push($arrMessageDs,[
