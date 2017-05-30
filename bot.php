@@ -360,26 +360,32 @@ if (!is_null($events['events'])) {
 					
 					$arrMessageDs = array(count($arrCv));
 					
-					foreach ($arrCv as $val) {
-						array_push($arrMessageDs,[
-							'type' => 'postback',
-							'label' => $val,
-							'data' => 'action=buy&itemid=123',
-							'text' => 'GG!620500-0-2-4-6',
-						]);
-					}
-					
-					$messages = [
-						'type' => 'template',
-						'altText' => 'this is a buttons template',
-						'template' => [
-							'type' => 'buttons',
-							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-							'title' => 'กรุณาเลือกวันที่',
-							'text' => 'Please select date.',
-							'actions' => $arrMessageDs
-						]
+					$messages = 
+					[
+							'type' => 'text',
+							'text' => count($arrMessageDs)
 					];
+					
+					// foreach ($arrCv as $val) {
+						// array_push($arrMessageDs,[
+							// 'type' => 'postback',
+							// 'label' => $val,
+							// 'data' => 'action=buy&itemid=123',
+							// 'text' => 'GG!620500-0-2-4-6',
+						// ]);
+					// }
+					
+					// $messages = [
+						// 'type' => 'template',
+						// 'altText' => 'this is a buttons template',
+						// 'template' => [
+							// 'type' => 'buttons',
+							// 'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+							// 'title' => 'กรุณาเลือกวันที่',
+							// 'text' => 'Please select date.',
+							// 'actions' => $arrMessageDs
+						// ]
+					// ];
 				}
 				else {
 					$messages = 
