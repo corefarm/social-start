@@ -400,6 +400,7 @@ if (!is_null($events['events'])) {
 					[
 							'type' => 'text',
 							'type' => 'postback',
+							'data' => 'action=buy&itemid=123',
 							'text' => $arrCv[0]['name']
 					];
 				}
