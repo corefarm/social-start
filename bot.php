@@ -356,43 +356,44 @@ if (!is_null($events['events'])) {
 				
 				$arrCv = array("นาย จิรศักดิ์", "นาย สุทธินัย", "นาย พงศธร");
 				
-				// if(count($a) > 1) {
+				 if(count($arrCv) > 1) {
 					
-					// // $arrMessageDs = array(count($arrCv));
+					$arrMessageDs = array(count($arrCv));
 					
-					// // foreach ($arrCv as $val) {
-						// // array_push($arrMessageDs,[
-							// // 'type' => 'postback',
-							// // 'label' => $val,
-							// // 'data' => 'action=buy&itemid=123',
-							// // 'text' => 'FARMSEL!620500-0-2-4-6',
-						// // ]);
-					// // }
+					foreach ($arrCv as $val) {
+						array_push($arrMessageDs,[
+							'type' => 'postback',
+							'label' => $val,
+							'data' => 'action=buy&itemid=123',
+							'text' => 'GG!620500-0-2-4-6',
+						]);
+					}
 					
-					// // $messages = [
-						// // 'type' => 'template',
-						// // 'altText' => 'this is a buttons template',
-						// // 'template' => [
-							// // 'type' => 'buttons',
-							// // 'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-							// // 'title' => 'กรุณาเลือกวันที่',
-							// // 'text' => 'Please select date.',
-							// // 'actions' => $arrMessageDs
-						// // ]
-					// // ];
+					$messages = [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'buttons',
+							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+							'title' => 'กรุณาเลือกวันที่',
+							'text' => 'Please select date.',
+							'actions' => $arrMessageDs
+						]
+					];
 					
-					// $messages = 
-					// [
-							// 'type' => 'text',
-							// 'text' => 'กรุณาระบุจำนวนตาย  '
-					// ];
-				// }
-				$messages = 
+					$messages = 
 					[
 							'type' => 'text',
-							'text' => count($a)
+							'text' => 'กรุณาระบุจำนวนตาย  '
 					];
-
+				}
+				else {
+					$messages = 
+					[
+							'type' => 'text',
+							'text' => 'เน่า cv'
+					];
+				}
 			}
 			
 			// END SABPAROD LANDING HERE
