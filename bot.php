@@ -379,7 +379,7 @@ if (!is_null($events['events'])) {
 							'type' => 'postback',
 							'label' => $val['name'],
 							'data' => 'action=buy&itemid=123',
-							'text' => 'gg!620500-0-2-4-6',
+							'text' => 'CV! '.$val['name'],
 						]);
 					}
 					
@@ -399,13 +399,46 @@ if (!is_null($events['events'])) {
 					$messages = 
 					[
 							'type' => 'text',
-							'type' => 'postback',
-							'data' => 'action=buy&itemid=123',
 							'text' => $arrCv[0]['name']
 					];
 				}
 			}
-			
+			if(stristr($text,'CV!') ) {
+				
+				$arrCv = array([
+					'name' =>  'เล้าเหนือ',
+					'type' => 'L77'
+				],[
+					'name' => 'เล้าใต้',
+					'type' => 'L88'
+				] , [
+					'name' => 'เล้าตะวันออก',
+					'type' => 'L99'
+				]);
+				
+				$arrMessageDs = array(); 
+
+				foreach ($arrCv as $val) {
+					array_push($arrMessageDs,[
+						'type' => 'postback',
+						'label' => $val['name'],
+						'data' => 'action=buy&itemid=123',
+						'text' => 'CV! '.$val['name'],
+					]);
+				}
+				
+				$messages = [
+					'type' => 'template',
+					'altText' => 'this is a buttons template',
+					'template' => [
+						'type' => 'buttons',
+						'title' => 'กรุณาเลือกเล้า',
+						'text' => 'Please select pen.',
+						'actions' => $arrMessageDs
+					]
+				];
+					
+			}
 			// END SABPAROD LANDING HERE
 			$mes_line ='';
 			
