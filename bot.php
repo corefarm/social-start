@@ -333,18 +333,18 @@ if (!is_null($events['events'])) {
 								'type' => 'postback',
 								'label' => $today,
 								'data' => 'action=buy&itemid=123',
-								'text' => 'Date! '.$today,
+								'text' => '!SelDateDe '.$today,
 								],[
 								'type' => 'postback',
 								'label' => $yesterday,
 								'data' => 'action=buy&itemid=123',	
-								'text' => 'Date! '.$yesterday,
+								'text' => '!SelDateDe '.$yesterday,
 								]
 							)
 						]
 				];
 			}
-			if(stristr($text,'Date!') ) {
+			if(stristr($text,'!SelDateDe') ) {
 				
 				//$STEP1_VALUE = str_replace('FARMSEL!','',$text);
 				
@@ -354,21 +354,21 @@ if (!is_null($events['events'])) {
                 
 				// writeData($sql); 
 				
-				// $arrCv = array([
-					// 'name' =>  'นาย จิรศักดิ์',
-					// 'type' => 'A77'
-				// ],[
-					// 'name' => 'นาย สุทธินัย',
-					// 'type' => 'A88'
-				// ] , [
-					// 'name' => 'นาย พงศธร',
-					// 'type' => 'A99'
-				// ]);
-				
 				$arrCv = array([
 					'name' =>  'นาย จิรศักดิ์',
 					'type' => 'A77'
+				],[
+					'name' => 'นาย สุทธินัย',
+					'type' => 'A88'
+				] , [
+					'name' => 'นาย พงศธร',
+					'type' => 'A99'
 				]);
+				
+				// $arrCv = array([
+					// 'name' =>  'นาย จิรศักดิ์',
+					// 'type' => 'A77'
+				// ]);
 				
 				 if(count($arrCv) > 1) {
 					
@@ -378,8 +378,8 @@ if (!is_null($events['events'])) {
 						array_push($arrMessageDs,[
 							'type' => 'postback',
 							'label' => $val['name'],
-							'data' => 'action=buy&itemid=123',
-							'text' => 'CV! '.$val['name'],
+							//'data' => 'action=buy&itemid=123',
+							'text' => '!SelCvDe '.$val['name'],
 						]);
 					}
 					
@@ -388,7 +388,6 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a buttons template',
 						'template' => [
 							'type' => 'buttons',
-							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
 							'title' => 'กรุณาเลือก Customer / Vender',
 							'text' => 'Please select Customer / Vender.',
 							'actions' => $arrMessageDs
@@ -403,7 +402,7 @@ if (!is_null($events['events'])) {
 					];
 				}
 			}
-			if(stristr($text,'CV!') ) {
+			if(stristr($text,'!SelCvDe') ) {
 				
 				$arrCv = array([
 					'name' =>  'เล้าเหนือ',
@@ -423,7 +422,7 @@ if (!is_null($events['events'])) {
 						'type' => 'postback',
 						'label' => $val['name'],
 						'data' => 'action=buy&itemid=123',
-						'text' => 'CV! '.$val['name'],
+						'text' => '!SelFarmDe '.$val['name'],
 					]);
 				}
 				
