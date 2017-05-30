@@ -423,7 +423,7 @@ if (!is_null($events['events'])) {
 						]);
 					}
 					
-					$messages = [
+					$messages_2 = [
 						'type' => 'template',
 						'altText' => 'this is a buttons template',
 						'template' => [
