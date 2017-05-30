@@ -317,7 +317,7 @@ if (!is_null($events['events'])) {
 				
 				$today = date("d/m/Y");   
 				
-				echo today
+				echo $today
 				
 				$messages = [
 						'type' => 'template',
