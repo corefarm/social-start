@@ -360,17 +360,17 @@ if (!is_null($events['events'])) {
 					
 					$arrMessageDs = array(); 
 
-					foreach ($arrCv as $val) {
-						array_push($arrMessageDs,[
-							'type' => 'postback',
-							'label' => $val,
-							'data' => 'action=buy&itemid=123',
-							'text' => 'gg!620500-0-2-4-6',
-						]);
-					}
+					// foreach ($arrCv as $val) {
+						// array_push($arrMessageDs,[
+							// 'type' => 'postback',
+							// 'label' => $val,
+							// 'data' => 'action=buy&itemid=123',
+							// 'text' => 'gg!620500-0-2-4-6',
+						// ]);
+					// }
 					
 					$strTest = '';
-					foreach($arrMessageDs as $val) {
+					foreach($arrCv as $val) {
 						$strTest.$val;
 					}
 				
