@@ -358,7 +358,7 @@ if (!is_null($events['events'])) {
                 
 				// writeData($sql); 
 				
-				$msgCv = retrieveMsgCv(['userid' => $userid]);
+				$msgCv = retrieveMsgCv(['userid' => '123456789']);
 				
 				if($msgCv['msgType'] == 'template') {
 					array_push($msg,$msgCv['msgVal']);
