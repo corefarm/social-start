@@ -366,7 +366,7 @@ if (!is_null($events['events'])) {
 				else {
 					array_push($msg,$msgCv['msgVal']);
 					
-					$msgFarmOrg = retrieveMsgFarmOrg(['cvFarm' => '99']);
+					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => $msgCv['msgVal']['val']]);
 					
 					if($msgFarmOrg['msgType'] == 'template') {
 						
@@ -544,7 +544,7 @@ function retrieveMsgCv($obj) {
 				'type' => 'postback',
 				'label' => $val['Farm_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelFarmDe '.$val['Farm_Name'],
+				'text' => '!SelFarmDe '.$val['Farm_Code'],
 			]);
 		}
 		
@@ -567,7 +567,8 @@ function retrieveMsgCv($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[0]['Farm_Name']
+				'text' => $arrData[0]['Farm_Name'],
+				'val' => $arrData[0]['Farm_Code']
 			]
 		];
 	}
@@ -579,14 +580,14 @@ function retrieveMsgFarmOrg($obj) {
 	$arrData = retrieveServiceData([ 'service' => 'farmorg', 'userId' => $obj['userId'],'cvFarm' => $obj['cvFarm']]);
 	
 	if(count($arrData) > 1) {
-		$arrMessageDs = array(); 
+		$arrMessageDs = array();
 
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
-				'label' => $val['name'],
+				'label' => $val['Farm_Org'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelFarmDe '.$val['name'],
+				'text' => '!SelFarmDe '.$val['Farm_Org'],
 			]);
 		}
 		
@@ -609,7 +610,8 @@ function retrieveMsgFarmOrg($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[0]['name']
+				'text' => $arrData[0]['Farm_Org'],
+				'val' => $arrData[0]['Farm_Org']
 			]
 		];
 	}
