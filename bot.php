@@ -733,7 +733,8 @@ if (!is_null($events['events'])) {
 									),); 
 				$content = file_get_contents($url,false, stream_context_create($arrContextOptions));
 				$result = json_decode($content, true);
-    
+				
+				$gg = 'ss';				
 				// if (!is_null($result['GetFarmsResult'])) { 
 					// // Loop through each event 
 					// foreach ($result['GetFarmsResult'] as $event) {
