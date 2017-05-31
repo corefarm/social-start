@@ -390,7 +390,7 @@ if (!is_null($events['events'])) {
 						
 						if($msgSexStock['msgType'] == 'template') {
 							
-							$msg = array();
+							//$msg = array();
 							
 							array_push($msg,$msgSexStock['msgVal']);
 						}
