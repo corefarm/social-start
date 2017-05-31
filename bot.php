@@ -322,9 +322,7 @@ if (!is_null($events['events'])) {
 				$today = date('d/m/Y');   
 				$yesterday = date('d/m/Y', strtotime(' -1 day'));
 				
-				echo $today;
-				
-				$messages = [
+				$msgDate = [
 						'type' => 'template',
 						'altText' => 'this is a buttons template',
 						'template' => [
@@ -347,6 +345,8 @@ if (!is_null($events['events'])) {
 							)
 						]
 				];
+				
+				array_push($msg,$msgDate);
 			}
 			
 			if(stristr($text,'!SelDateDe') ) {
