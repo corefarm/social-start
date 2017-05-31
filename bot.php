@@ -378,6 +378,7 @@ if (!is_null($events['events'])) {
 						
 						array_push($msg,$msgFarmOrg['msgVal']);
 						
+						
 						$msgSexStock = retrieveMsgSexStock();
 						
 						if($msgSexStock['msgType'] == 'template') {
@@ -535,44 +536,35 @@ function retrieveMsgCv($obj) {
 
 	$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => $obj['userId']]);
 	
-	// if(count($arrData) > 1) {
+	if(count($arrData) > 1) {
 		
-		// $arrMessageDs = array(); 
+		$arrMessageDs = array(); 
 		
-		// foreach ($arrData as $val) {
-			// array_push($arrMessageDs,[
-				// 'type' => 'postback',
-				// 'label' => $val['Farm_Name'],
-				// 'data' => 'action=buy&itemid=123',
-				// 'text' => '!SelFarmDe '.$val['Farm_Code'],
-			// ]);
-		// }
+		foreach ($arrData as $val) {
+			array_push($arrMessageDs,[
+				'type' => 'postback',
+				'label' => $val['Farm_Name'],
+				'data' => 'action=buy&itemid=123',
+				'text' => '!SelFarmDe '.$val['Farm_Code'],
+			]);
+		}
 		
-		// $ret = [
-			// 'msgType' => 'template',
-			// 'msgVal' => [
-				// 'type' => 'template',
-				// 'altText' => 'this is a buttons template',
-				// 'template' => [
-					// 'type' => 'buttons',
-					// 'title' => 'กรุณาเลือกเล้า',
-					// 'text' => 'Please select pen.',
-					// 'actions' => $arrMessageDs
-				// ]
-			// ]
-		// ];						
-	// }
-	// else {
-		// $ret = [
-			// 'msgType' => 'message',
-			// 'msgVal' => [
-				// 'type' => 'text',
-				// 'text' => $arrData[0]['Farm_Name'],
-				// 'val' => $arrData[0]['Farm_Code']
-			// ]
-		// ];
-	// }
-	$ret = [
+		$ret = [
+			'msgType' => 'template',
+			'msgVal' => [
+				'type' => 'template',
+				'altText' => 'this is a buttons template',
+				'template' => [
+					'type' => 'buttons',
+					'title' => 'กรุณาเลือกเล้า',
+					'text' => 'Please select pen.',
+					'actions' => $arrMessageDs
+				]
+			]
+		];						
+	}
+	else {
+		$ret = [
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
@@ -580,7 +572,8 @@ function retrieveMsgCv($obj) {
 				'val' => $arrData[0]['Farm_Code']
 			]
 		];
-		
+	}
+	
 	return $ret;
 }
 function retrieveMsgFarmOrg($obj) {
