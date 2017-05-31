@@ -366,7 +366,8 @@ if (!is_null($events['events'])) {
 				else {
 					array_push($msg,$msgCv['msgVal']);
 					
-					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => $msgCv['msgVal']['val']]);
+					//$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => $msgCv['msgVal']['val']]);
+					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => '2000020032']);
 					
 					if($msgFarmOrg['msgType'] == 'template') {
 						
@@ -384,7 +385,7 @@ if (!is_null($events['events'])) {
 							]
 						];
 						
-						array_push($msg,$gg['msgVal']);
+						array_push($msg,$msgFarmOrg['msgVal']);
 						
 						$msgSexStock = retrieveMsgSexStock();
 						
