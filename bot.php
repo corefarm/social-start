@@ -380,10 +380,10 @@ if (!is_null($events['events'])) {
 							'msgVal' => [
 								'type' => 'text',
 								'text' => '5555555555555555555',
-								'val' => 'sud ey'
+								//'val' => 'sud ey'
 							]
 						];
-		
+						
 						array_push($msg,$gg['msgVal']);
 						
 						$msgSexStock = retrieveMsgSexStock();
