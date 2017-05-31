@@ -568,20 +568,8 @@ if (!is_null($events['events'])) {
 							'template' => [
 								'type' => 'buttons',
 								'title' => 'กรุณาเลือกเล้า',
-								'text' => 'Please select date.',
-								'actions' => array(
-									[
-									'type' => 'postback',
-									'label' => '1111',
-									'data' => 'action=buy&itemid=123',
-									'text' => 'asdasdasdas',
-									],[
-									'type' => 'postback',
-									'label' => '2222',
-									'data' => 'action=buy&itemid=123',	
-									'text' => 'asdasdasd ',
-									]
-								)
+								'text' => 'Please select pen.',
+								'actions' => $arrMessageDs
 							]
 						]
 					];
