@@ -59,7 +59,7 @@ if (!is_null($events['events'])) {
 			
 			$userTest = '123456789';
             
-			/*$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
+			$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
 			$result =  writeData($sql);
 			while ($row = pg_fetch_assoc($result)) {
 				
@@ -97,7 +97,7 @@ if (!is_null($events['events'])) {
 							'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
 					];					
 				}
-			}*/
+			}
             
 			if ($text  == '!YesDEADCULL') {
 
