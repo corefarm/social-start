@@ -545,7 +545,7 @@ if (!is_null($events['events'])) {
 			
 			function retrieveMsgCv() {
 
-				$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => $userTest]);
+				$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => '123456789']);
 				
 				if(count($arrData) > 1) {
 					
