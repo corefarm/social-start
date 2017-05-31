@@ -348,6 +348,7 @@ if (!is_null($events['events'])) {
 						]
 				];
 			}
+			
 			if(stristr($text,'!SelDateDe') ) {
 				
 				//$STEP1_VALUE = str_replace('FARMSEL!','',$text);
@@ -462,40 +463,40 @@ if (!is_null($events['events'])) {
 			}
 			
 			//input qty 
-			if (is_numeric($text)) {
-				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-					SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
-						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";		
-				writeData($sql);
-				$messages = [
-						'type' => 'template',
-						'altText' => 'this is a confirm  template',
-						'template' => [
-							'type' => 'confirm',
-							'text' => 'บันทึกตาย เล้า '.$row['STEP1_VALUE'].'  
-									จำนวน  '.$text.' 
-									ยืนยันข้อมูล ? ',
-							'actions' => array(
-								[
-								'type' => 'message',
-								'label' => 'ยืนยัน',
-								'text' => '!YesDEADCULL',
-								],[
-								'type' => 'message',
-								'label' => 'ยกเลิก',
-								'text' => '!NoDEADCULL',									
-								]
-							)
-						]
-				];							
+			// if (is_numeric($text)) {
+				// $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+					// SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
+						// WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";		
+				// writeData($sql);
+				// $messages = [
+						// 'type' => 'template',
+						// 'altText' => 'this is a confirm  template',
+						// 'template' => [
+							// 'type' => 'confirm',
+							// 'text' => 'บันทึกตาย เล้า '.$row['STEP1_VALUE'].'  
+									// จำนวน  '.$text.' 
+									// ยืนยันข้อมูล ? ',
+							// 'actions' => array(
+								// [
+								// 'type' => 'message',
+								// 'label' => 'ยืนยัน',
+								// 'text' => '!YesDEADCULL',
+								// ],[
+								// 'type' => 'message',
+								// 'label' => 'ยกเลิก',
+								// 'text' => '!NoDEADCULL',									
+								// ]
+							// )
+						// ]
+				// ];							
 				
-			} else {
-				$messages = 
-				[
-						'type' => 'text',
-						'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
-				];					
-			}
+			// } else {
+				// $messages = 
+				// [
+						// 'type' => 'text',
+						// 'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
+				// ];					
+			// }
 			
 			
 			function retrieveMsgCv() {
