@@ -362,17 +362,7 @@ if (!is_null($events['events'])) {
 				$msgCv = retrieveMsgCv();
 				
 				if($msgCv['msgType'] == 'template') {
-					//array_push($msg,$msgCv['msgVal']);
-					
-					$retTest = [
-						'msgType' => 'message',
-						'msgVal' => [
-							'type' => 'text',
-							'text' => 'test is coming'
-						]
-					];
-					
-					array_push($msg,$retTest['msgVal']);
+					array_push($msg,$msgCv['msgVal']);
 				}
 				else {
 					array_push($msg,$msgCv['msgVal']);
