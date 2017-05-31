@@ -358,7 +358,7 @@ if (!is_null($events['events'])) {
                 
 				// writeData($sql); 
 				
-				$msgCv = retrieveMsgCv(['userid' => '123456789']);
+				$msgCv = retrieveMsgCv(['userId' => '123456789']);
 				
 				if($msgCv['msgType'] == 'template') {
 					array_push($msg,$msgCv['msgVal']);
@@ -576,7 +576,7 @@ function retrieveMsgCv($obj) {
 }
 function retrieveMsgFarmOrg($obj) {
 	
-	$arrData = retrieveServiceData([ 'service' => 'farmorg', 'userId' => $userId,'cvFarm' => $obj['cvFarm']]);
+	$arrData = retrieveServiceData([ 'service' => 'farmorg', 'userId' => $obj['userId'],'cvFarm' => $obj['cvFarm']]);
 	
 	if(count($arrData) > 1) {
 		$arrMessageDs = array(); 
