@@ -362,7 +362,16 @@ if (!is_null($events['events'])) {
 				$msgCv = retrieveMsgCv();
 				
 				if($msgCv['msgType'] == 'template') {
-					array_push($msg,$msgCv['msgVal']);
+					//array_push($msg,$msgCv['msgVal']);
+					
+					$retTest = [
+						'msgType' => 'message',
+						'msgVal' => [
+							'type' => 'text',
+							'text' => $arrData[0]['Farm_Name']
+						]
+					];
+					array_push($msg,$retTest['msgVal']);
 				}
 				else {
 					array_push($msg,$msgCv['msgVal']);
