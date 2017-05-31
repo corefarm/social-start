@@ -360,7 +360,6 @@ if (!is_null($events['events'])) {
 				// writeData($sql); 
 				
 				$msgCv = retrieveMsgCv();
-					
 				
 				if($msgCv['msgType'] == 'template') {
 					array_push($msg,$msgCv['msgVal']);
