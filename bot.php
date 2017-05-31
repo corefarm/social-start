@@ -366,7 +366,6 @@ if (!is_null($events['events'])) {
 				else {
 					array_push($msg,$msgCv['msgVal']);
 					
-					//$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => $msgCv['msgVal']['val']]);
 					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => '2000059653']);
 					
 					if($msgFarmOrg['msgType'] == 'template') {
@@ -376,14 +375,6 @@ if (!is_null($events['events'])) {
 						array_push($msg,$msgFarmOrg['msgVal']);
 					}
 					else {
-						$gg = [
-							'msgType' => 'message',
-							'msgVal' => [
-								'type' => 'text',
-								'text' => '5555555555555555555',
-								//'val' => 'sud ey'
-							]
-						];
 						
 						array_push($msg,$msgFarmOrg['msgVal']);
 						
@@ -410,7 +401,7 @@ if (!is_null($events['events'])) {
 
 			if(stristr($text,'!SelCvDe') ) {				
 				
-				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => '123456789', 'cvFarm' => '']);
+				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => '123456789', 'cvFarm' => str_replace('!SelCvDe ','',$text);]);
 				
 				if($msgFarmOrg['msgType'] == 'template') {
 					
@@ -553,7 +544,7 @@ function retrieveMsgCv($obj) {
 				'type' => 'postback',
 				'label' => $val['Farm_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelFarmDe '.$val['Farm_Code'],
+				'text' => '!SelCvDe '.$val['Farm_Code'],
 			]);
 		}
 		
@@ -576,7 +567,7 @@ function retrieveMsgCv($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[0]['Farm_Name'],
+				'text' => '!SelCvDe '.$arrData[0]['Farm_Name'],
 				'val' => $arrData[0]['Farm_Code']
 			]
 		];
