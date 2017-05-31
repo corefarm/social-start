@@ -462,41 +462,41 @@ if (!is_null($events['events'])) {
 				
 			}
 			
-			//input qty 
-			// if (is_numeric($text)) {
-				// $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-					// SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
-						// WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";		
-				// writeData($sql);
-				// $messages = [
-						// 'type' => 'template',
-						// 'altText' => 'this is a confirm  template',
-						// 'template' => [
-							// 'type' => 'confirm',
-							// 'text' => 'บันทึกตาย เล้า '.$row['STEP1_VALUE'].'  
-									// จำนวน  '.$text.' 
-									// ยืนยันข้อมูล ? ',
-							// 'actions' => array(
-								// [
-								// 'type' => 'message',
-								// 'label' => 'ยืนยัน',
-								// 'text' => '!YesDEADCULL',
-								// ],[
-								// 'type' => 'message',
-								// 'label' => 'ยกเลิก',
-								// 'text' => '!NoDEADCULL',									
-								// ]
-							// )
-						// ]
-				// ];							
+			/*input qty 
+			if (is_numeric($text)) {
+				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+					SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
+						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";		
+				writeData($sql);
+				$messages = [
+						'type' => 'template',
+						'altText' => 'this is a confirm  template',
+						'template' => [
+							'type' => 'confirm',
+							'text' => 'บันทึกตาย เล้า '.$row['STEP1_VALUE'].'  
+									จำนวน  '.$text.' 
+									ยืนยันข้อมูล ? ',
+							'actions' => array(
+								[
+								'type' => 'message',
+								'label' => 'ยืนยัน',
+								'text' => '!YesDEADCULL',
+								],[
+								'type' => 'message',
+								'label' => 'ยกเลิก',
+								'text' => '!NoDEADCULL',									
+								]
+							)
+						]
+				];							
 				
-			// } else {
-				// $messages = 
-				// [
-						// 'type' => 'text',
-						// 'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
-				// ];					
-			// }
+			} else {
+				$messages = 
+				[
+						'type' => 'text',
+						'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
+				];					
+			}*/
 			
 			
 			function retrieveMsgCv() {
@@ -512,7 +512,7 @@ if (!is_null($events['events'])) {
 					'type' => 'A99'
 				]);
 				*/
-				$arrData = retrieveServiceData([ 'userId' => $userTest]);
+				$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => $userTest]);
 				
 				if(count($arrData) > 1) {
 					$arrMessageDs = array(); 
@@ -735,19 +735,7 @@ if (!is_null($events['events'])) {
 				$content = file_get_contents($url,false, stream_context_create($arrContextOptions));
 				$result = json_decode($content, true);
 				
-				$gg = 'ss';				
-				// if (!is_null($result['GetFarmsResult'])) { 
-					// // Loop through each event 
-					// foreach ($result['GetFarmsResult'] as $event) {
-						
-						// foreach($obj['columns'] as $col) {
-							
-						// }
-						// echo $event['Org_Code'].' = '.$event['Farm_Code'].''; 
-					// }
-				// }
-				
-				return $result;
+				return $result['GetFarmsResult'];
 			}
 
 
