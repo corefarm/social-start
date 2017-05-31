@@ -360,6 +360,7 @@ if (!is_null($events['events'])) {
 				// writeData($sql); 
 				
 				$msgCv = retrieveMsgCv();
+					
 				
 				if($msgCv['msgType'] == 'template') {
 					array_push($msg,$msgCv['msgVal']);
@@ -500,18 +501,7 @@ if (!is_null($events['events'])) {
 			
 			
 			function retrieveMsgCv() {
-				/*
-				$arrData = array([
-					'name' =>  'นาย จิรศักดิ์',
-					'type' => 'A77'
-				],[
-					'name' => 'นาย สุทธินัย',
-					'type' => 'A88'
-				] , [
-					'name' => 'นาย พงศธร',
-					'type' => 'A99'
-				]);
-				*/
+
 				$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => '123456789']);
 				
 				if(count($arrData) > 1) {
@@ -742,19 +732,20 @@ if (!is_null($events['events'])) {
 
 			// END SABPAROD LANDING HERE
 			
-			$mes_line ='';
+			// $mes_line ='';
 			
-			if ($messages_2 =='X') {
-				$mes_line = array (	$messages); 				
-			}else{
-				$mes_line = array (	$messages,$messages_2); 	
-			}
+			// if ($messages_2 =='X') {
+				// $mes_line = array (	$messages); 				
+			// }else{
+				// $mes_line = array (	$messages,$messages_2); 	
+			// }
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
 				'replyToken' => $replyToken,
-				'messages' => $mes_line,
+				//'messages' => $mes_line,
+				'messages' => $msg,
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
