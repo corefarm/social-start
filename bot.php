@@ -401,7 +401,7 @@ if (!is_null($events['events'])) {
 
 			if(stristr($text,'!SelCvDe') ) {				
 				
-				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => '123456789', 'cvFarm' => str_replace('!SelCvDe ','',$text);]);
+				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => '123456789', 'cvFarm' => str_replace('!SelCvDe ','',$text)]);
 				
 				if($msgFarmOrg['msgType'] == 'template') {
 					
