@@ -548,9 +548,9 @@ if (!is_null($events['events'])) {
 
 				$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => '123456789']);
 				
-				$arrMessageDs = array(); 
-				
 				if(count($arrData) > 1) {
+					
+					$arrMessageDs = array(); 
 					
 					foreach ($arrData as $val) {
 						array_push($arrMessageDs,[
@@ -573,20 +573,7 @@ if (!is_null($events['events'])) {
 								'actions' => $arrMessageDs
 							]
 						]
-					];
-					
-					// [
-							// 'type' => 'template',
-							// 'altText' => 'this is a buttons template',
-							// 'template' => [
-								// 'type' => 'buttons',
-								// 'title' => 'กรุณาเลือกเล้า',
-								// 'text' => 'Please select pen.',
-								// 'actions' => $arrMessageDs
-							// ]
-						// ]
-						
-					
+					];						
 				}
 				else {
 					$ret = [
