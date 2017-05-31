@@ -42,6 +42,7 @@ if (!is_null($events['events'])) {
 	foreach ($events['events'] as $event) {
 		
 		$userid = $event['source']['userId'];
+		$userTest = '123456789';
 		
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
@@ -56,8 +57,6 @@ if (!is_null($events['events'])) {
 			$messages_2 = 'X';
 			
 			$msg = array();
-			
-			$userTest = '123456789';
             
 			$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
 			$result =  writeData($sql);
@@ -546,7 +545,7 @@ if (!is_null($events['events'])) {
 			
 			function retrieveMsgCv() {
 
-				$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => '123456789']);
+				$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => $userTest]);
 				
 				if(count($arrData) > 1) {
 					
