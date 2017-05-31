@@ -552,12 +552,12 @@ if (!is_null($events['events'])) {
 					$arrMessageDs = array(); 
 
 					foreach ($arrData as $val) {
-						array_push($arrMessageDs,[
+						array_push($arrMessageDs,array(
 							'type' => 'postback',
 							'label' => $val['Farm_Name'],
 							'data' => 'action=buy&itemid=123',
 							'text' => '!SelFarmDe '.$val['Farm_Name'],
-						]);
+						));
 					}
 					
 					$ret = [
