@@ -730,21 +730,28 @@ function retrieveServiceData($obj) {
 	
 	$url = 'https://mservice-uat.cpf.co.th/Farm/FarmMobileRestService/FarmMobileRestService.svc/json/';
 	
+	$keyValue = '';
+	
 	switch ($obj['service']) {
 		case 'farm':
 			$url = $url.'farm/'.$obj['userId'];
+			$keyValue = 'GetFarmsResult';
 			break;
 		case 'farmorg':
 			$url = $url.'farmorg/'.$obj['userId'].','.$obj['cvFarm'];
+			$keyValue = 'GetFarmOrgsResult';
 			break;
 		case 'getbdstock':
 			$url = $url.'getbdstock/'.$obj['userId'].','.$obj['cvFarm'].','.$obj['orgSel'];
+			$keyValue = 'GetBdStocksResult';
 			break;
 		case 'deadswine':
-			$url = $url.'getbdstock/'.$obj['userId'].','.$obj['orgSel'].','.$obj['deadType'].','.$obj['sex'].','.$obj['qty'];
+			$url = $url.'deadswine/'.$obj['userId'].','.$obj['orgSel'].','.$obj['deadType'].','.$obj['sex'].','.$obj['qty'];
+			$keyValue = 'GenDeadSwineResult';
 			break;
 		case 'reasondead':
 			$url = $url.'reasondead/'.$obj['userId'];
+			$keyValue = 'GetReasonDeadsResult';
 			break;
 		default:
 			break;
@@ -758,7 +765,7 @@ function retrieveServiceData($obj) {
 	$content = file_get_contents($url,false, stream_context_create($arrContextOptions));
 	$result = json_decode($content, true);
 	
-	return $result['GetFarmsResult'];
+	return $result[$keyValue];
 }
 
 			
