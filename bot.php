@@ -512,7 +512,7 @@ if (!is_null($events['events'])) {
 					'type' => 'A99'
 				]);
 				*/
-				$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => $userTest]);
+				$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => '123456789']);
 				
 				if(count($arrData) > 1) {
 					$arrMessageDs = array(); 
