@@ -368,9 +368,10 @@ if (!is_null($events['events'])) {
 						'msgType' => 'message',
 						'msgVal' => [
 							'type' => 'text',
-							'text' => $arrData[0]['Farm_Name']
+							'text' => 'test is coming'
 						]
 					];
+					
 					array_push($msg,$retTest['msgVal']);
 				}
 				else {
@@ -592,7 +593,6 @@ if (!is_null($events['events'])) {
 						]
 					];
 				}
-				
 				
 				return $ret;
 			}
