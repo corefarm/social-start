@@ -36,9 +36,6 @@ writeData($sql);
 // Parse JSON
 $events = json_decode($content, true);
 
-$userid = $event['source']['userId'];
-$userid = '123456789';
-		
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
 	// Loop through each event
@@ -534,9 +531,9 @@ if (!is_null($events['events'])) {
 	}
 }
 
-function retrieveMsgCv() {
+function retrieveMsgCv($obj) {
 
-	$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => $userId]);
+	$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => $obj['userId']);
 	
 	if(count($arrData) > 1) {
 		
