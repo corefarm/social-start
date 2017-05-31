@@ -375,9 +375,16 @@ if (!is_null($events['events'])) {
 						array_push($msg,$msgFarmOrg['msgVal']);
 					}
 					else {
-						
-						array_push($msg,$msgFarmOrg['msgVal']);
-						
+						$gg = [
+							'msgType' => 'message',
+							'msgVal' => [
+								'type' => 'text',
+								'text' => '5555555555555555555',
+								'val' => 'sud ey'
+							]
+						];
+		
+						array_push($msg,$gg['msgVal']);
 						
 						$msgSexStock = retrieveMsgSexStock();
 						
