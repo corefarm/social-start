@@ -368,13 +368,14 @@ if (!is_null($events['events'])) {
 					array_push($msg,$msgCv['msgVal']);
 				}
 				else {
-					array_push($msg,$msgCv['msgVal']);
 					
+					array_push($msg,$msgCv['msgVal']);
+
 					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val']]);
 					
 					if($msgFarmOrg['msgType'] == 'template') {
 						
-						$msg = array();
+						//$msg = array();
 						
 						array_push($msg,$msgFarmOrg['msgVal']);
 					}
