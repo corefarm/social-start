@@ -370,7 +370,7 @@ if (!is_null($events['events'])) {
 				else {
 					array_push($msg,$msgCv['msgVal']);
 					
-					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => str_replace('!SelDateDe ','',$msgCv['msgVal']['text'])]);
+					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val']]);
 					
 					if($msgFarmOrg['msgType'] == 'template') {
 						
