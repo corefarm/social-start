@@ -473,7 +473,7 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'!SelSexDe') ) {
 				
-				$msgDeadType = retrieveMsgDeadType();
+				$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 					
 				array_push($msg,$msgDeadType['msgVal']);
 				
