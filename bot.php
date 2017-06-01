@@ -658,7 +658,7 @@ function updateStep($obj) {
 	}
 	
 	$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-			SET  \"STEP_ACTION\"='$stepAction', \"STEP".$obj['step']."_VALUE\"='$obj['val']'
+			SET  \"STEP_ACTION\"='$stepAction', \"STEP'$obj['step']'_VALUE\"='$obj['val']'
 			WHERE \"USER_ID\" = '$obj['userId'] and \"PROCESS_NAME\" = '$obj['process']' ";
 	error_log($sql);
 	 
