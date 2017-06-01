@@ -354,7 +354,7 @@ if (!is_null($events['events'])) {
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='INPUTDATE', \"STEP1_VALUE\"='$STEP1_VALUE'
-							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
+						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
 				writeData($sql); 
 				
@@ -401,15 +401,15 @@ if (!is_null($events['events'])) {
 
 			if(stristr($text,'!SelCvDe') ) {				
 				
-				$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
-				$result =  writeData($sql);
+				$STEP2_VALUE = str_replace('!SelCvDe ','',$text);
 				
-				$dataRow = array();
-				while ($row = pg_fetch_assoc($result)) {
-					$dataRow = $row;
-				}
+				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+						SET  \"STEP_ACTION\"='INPUTCV', \"STEP2_VALUE\"='$STEP2_VALUE'
+						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
+                 
+				writeData($sql);
 				
-				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => '123456789', 'cvFarm' => str_replace('!SelCvDe ','',$text)]);
+				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => '123456789', 'cvFarm' => $STEP2_VALUE ]);
 				
 				if($msgFarmOrg['msgType'] == 'template') {
 					
@@ -552,7 +552,7 @@ function retrieveMsgCv($obj) {
 				'type' => 'postback',
 				'label' => $val['Farm_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelCvDe '.$val['Farm_Name'],
+				'text' => '!SelCvDe '.$val['Farm_Code'],
 			]);
 		}
 		
