@@ -24,16 +24,12 @@ $content = file_get_contents('php://input');
 
 $content_sql = $content;
 
-//$content_sql   = str_replace('"', '\"', $content_sql);
-
-
 $sql = " INSERT INTO \"Fr_User_Log\"(
 	\"Request\", \"ReplyConfirm\", \"CreateDate\")
 	VALUES ('$content_sql', 'N', now())";
 
-//	echo $sql . '\r\n';
 writeData($sql);
-// Parse JSON
+
 $events = json_decode($content, true);
 
 // Validate parsed JSON data
@@ -57,65 +53,6 @@ if (!is_null($events['events'])) {
 			$messages_2 = 'X';
 			
 			$msg = array();
-            /*
-			$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
-			$result =  writeData($sql);
-			while ($row = pg_fetch_assoc($result)) {
-				
-				if (is_numeric($text)) {
-                    $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
-							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";		
-                    writeData($sql);
-                    $messages = [
-                            'type' => 'template',
-                            'altText' => 'this is a confirm  template',
-                            'template' => [
-                                'type' => 'confirm',
-                                'text' => 'บันทึกตาย เล้า '.$row['STEP1_VALUE'].'  
-										จำนวน  '.$text.' 
-										ยืนยันข้อมูล ? ',
-                                'actions' => array(
-                                    [
-                                    'type' => 'message',
-                                    'label' => 'ยืนยัน',
-                                    'text' => '!YesDEADCULL',
-                                    ],[
-                                    'type' => 'message',
-                                    'label' => 'ยกเลิก',
-                                    'text' => '!NoDEADCULL',									
-                                    ]
-                                )
-                            ]
-                    ];							
-					
-				} else {
-					$messages = 
-					[
-							'type' => 'text',
-							'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
-					];					
-				}
-			}
-            
-			if ($text  == '!YesDEADCULL') {
-
-                $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						SET  \"PROCESS_STATUS\"='COMPLETE'
-							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";	
-                
-                $messages = 
-                [
-                        'type' => 'text',
-                        'text' => 'บันทึกข้อมูลเรียบร้อย'
-                ];
-                
-                $messages_2 =  [
-                    'type' => 'sticker',
-                    'packageId' => '1',
-                    'stickerId' => 138
-            ];				
-			}*/
 			
 			if (strtolower($text)  == 'im') {
 				$messages = [
@@ -154,59 +91,6 @@ if (!is_null($events['events'])) {
 						]
 				];			
 			}			
-			
-			/*if ($text  == '!MaDeadCull') {
-				
-				
-				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
-				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
-				VALUES ('$userId', 'DEADCULL', 'SELECT FARM', now(), 'KEYING') ";
-				
-				writeData($sql);
-				
-				
-				$messages = [
-						'type' => 'template',
-						'altText' => 'this is a buttons template',
-						'template' => [
-							'type' => 'buttons',
-							'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-							'title' => 'Menu',
-							'text' => 'Please select',
-							'actions' => array(
-								[
-								'type' => 'postback',
-								'label' => '620500-0-2-4-775',
-								'data' => 'action=buy&itemid=123',
-								'text' => 'FARMSEL!620500-0-2-4-6',
-								],[
-								'type' => 'postback',
-								'label' => '620500-0-2-4-775',
-								'data' => 'action=buy&itemid=123',	
-								'text' => 'FARMSEL!620500-0-2-4-775',
-								]
-							)
-						]
-				];			
-			}	*/
-			
-			/*if(stristr($text,'FARMSEL!') ) {
-				
-				$STEP1_VALUE = str_replace('FARMSEL!','',$text);
-				
-				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						SET  \"STEP_ACTION\"='KEY QTY', \"STEP1_VALUE\"='$STEP1_VALUE'
-							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
-                
-				writeData($sql); 
-				
-				$messages = 
-					[
-							'type' => 'text',
-							'text' => 'กรุณาระบุจำนวนตาย  '
-					];	
-
-			}*/
             
 			if (strtolower($text)  == 'con') {
 				$messages = [
@@ -287,27 +171,6 @@ if (!is_null($events['events'])) {
 						]
 				];			
 			}			 		
-
-			if ( $messages == 'X') {
-                $messages = 
-                [
-                        'type' => 'text',
-                        'text' => 'ตอบจาก  Bot v4.1.22 pj corefarm : สามารถใช้ Key Word ได้ คือ  
-       im  (Image) ,  
-         cf (Confirm), 
-         tmp (Tempalte), 
-         con (Carousel), 
-         st (sticker)'
-                ];
-                
-                $messages_2 =  [
-                    'type' => 'sticker',
-                    'packageId' => '1',
-                    'stickerId' => rand(100, 118)
-            ];	
-			}
-			
-			
 			
 			// SABPAROD LANDING HERE
 			if($text == '!MaDeadCull') {
@@ -625,20 +488,11 @@ if (!is_null($events['events'])) {
 			}
 
 			// END SABPAROD LANDING HERE
-			
-			// $mes_line ='';
-			
-			// if ($messages_2 =='X') {
-				// $mes_line = array (	$messages); 				
-			// }else{
-				// $mes_line = array (	$messages,$messages_2); 	
-			// }
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
 				'replyToken' => $replyToken,
-				//'messages' => $mes_line,
 				'messages' => $msg,
 			];
 			$post = json_encode($data);
@@ -964,12 +818,6 @@ function retrieveServiceData($obj) {
 	return $result[$keyValue];
 }
 
-			
-
-
-
 echo 'OK';
-
-
 
 ?>
