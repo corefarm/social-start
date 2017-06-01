@@ -369,13 +369,13 @@ if (!is_null($events['events'])) {
 				}
 				else {
 					
+					updateStep(['userId' => $userId, 'step' => 2, 'val' => $msgCv['msgVal']['val']], 'process' => 'DEADCULL');
+					
 					array_push($msg,$msgCv['msgVal']);
-
+					
 					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val']]);
 					
 					if($msgFarmOrg['msgType'] == 'template') {
-						
-						//$msg = array();
 						
 						array_push($msg,$msgFarmOrg['msgVal']);
 					}
@@ -629,6 +629,42 @@ if (!is_null($events['events'])) {
 	}
 }
 
+function updateStep($obj) {
+	
+	$stepAction = '';
+	
+	switch ($obj['step']) {
+		case 1:
+			$stepAction = 'INPUTDATE';
+		break;
+		case 2:
+			$stepAction = 'INPUTCV';
+		break;
+		case 3:
+			$stepAction = 'INPUTFARMORG';
+		break;
+		case 4:
+			$stepAction = 'INPUTSEX';
+		break;
+		case 5:
+			$stepAction = 'INPUTDEADTYPE';
+		break;
+		case 6:
+			$stepAction = 'INPUTQTY';
+		break;
+		case 7:
+			$stepAction = 'COMPLETE';
+		break;
+	}
+	
+	$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+			SET  \"STEP_ACTION\"='$stepAction', \"STEP".$obj['step']."_VALUE\"='$obj['val']'
+			WHERE \"USER_ID\" = '$obj['userId'] and \"PROCESS_NAME\" = '$obj['process']' ";
+	error_log($sql);
+	 
+	writeData($sql);
+}
+
 function retrieveMsgCv($obj) {
 
 	$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => $obj['userId']]);
@@ -675,7 +711,7 @@ function retrieveMsgCv($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => '!SelCvDe '.$arrData[0]['Farm_Name'],
+				'text' => $arrData[0]['Farm_Name'],
 				'val' => $arrData[0]['Farm_Code']
 			]
 		];
@@ -686,34 +722,44 @@ function retrieveMsgFarmOrg($obj) {
 	
 	$arrData = retrieveServiceData([ 'service' => 'farmorg', 'userId' => $obj['userId'],'cvFarm' => $obj['cvFarm']]);
 	
-	if(count($arrData) > 1) {
-		$arrMessageDs = array();
+	// if(count($arrData) > 1) {
+		// $arrMessageDs = array();
 
-		foreach ($arrData as $val) {
-			array_push($arrMessageDs,[
-				'type' => 'postback',
-				'label' => $val['Farm_Org'],
-				'data' => 'action=buy&itemid=123',
-				'text' => '!SelFarmDe '.$val['Farm_Org'],
-			]);
-		}
+		// foreach ($arrData as $val) {
+			// array_push($arrMessageDs,[
+				// 'type' => 'postback',
+				// 'label' => $val['Farm_Org'],
+				// 'data' => 'action=buy&itemid=123',
+				// 'text' => '!SelFarmDe '.$val['Farm_Org'],
+			// ]);
+		// }
 		
-		$ret = [
-			'msgType' => 'template',
-			'msgVal' => [
-				'type' => 'template',
-				'altText' => 'this is a buttons template',
-				'template' => [
-					'type' => 'buttons',
-					'title' => 'กรุณาเลือกเล้า',
-					'text' => 'Please select pen.',
-					'actions' => $arrMessageDs
-				]
-			]
-		];
-	}
-	else {
-		$ret = [
+		// $ret = [
+			// 'msgType' => 'template',
+			// 'msgVal' => [
+				// 'type' => 'template',
+				// 'altText' => 'this is a buttons template',
+				// 'template' => [
+					// 'type' => 'buttons',
+					// 'title' => 'กรุณาเลือกเล้า',
+					// 'text' => 'Please select pen.',
+					// 'actions' => $arrMessageDs
+				// ]
+			// ]
+		// ];
+	// }
+	// else {
+		// $ret = [
+			// 'msgType' => 'message',
+			// 'msgVal' => [
+				// 'type' => 'text',
+				// 'text' => $arrData[0]['Farm_Org'],
+				// 'val' => $arrData[0]['Farm_Org']
+			// ]
+		// ];
+	// }
+	
+	$ret = [
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
@@ -721,8 +767,6 @@ function retrieveMsgFarmOrg($obj) {
 				'val' => $arrData[0]['Farm_Org']
 			]
 		];
-	}
-	
 	
 	return $ret;
 }
