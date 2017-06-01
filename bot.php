@@ -312,11 +312,11 @@ if (!is_null($events['events'])) {
 			// SABPAROD LANDING HERE
 			if($text == '!MaDeadCull') {
 				
-				// $sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
-				// \"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
-				// VALUES ('$userid', 'DEADCULL', 'SELECT FARM', now(), 'KEYING') ";
+				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
+				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
+				VALUES ('$userid', 'DEADCULL', 'MENUSELECT', now(), 'KEYING') ";
 				
-				// writeData($sql);
+				writeData($sql);
 				
 				$today = date('d/m/Y');   
 				$yesterday = date('d/m/Y', strtotime(' -1 day'));
@@ -350,13 +350,13 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'!SelDateDe') ) {
 				
-				//$STEP1_VALUE = str_replace('FARMSEL!','',$text);
+				$STEP1_VALUE = str_replace('!SelDateDe ','',$text);
 				
-				// $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						// SET  \"STEP_ACTION\"='KEY QTY', \"STEP1_VALUE\"='$STEP1_VALUE'
-							// WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
+				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+						SET  \"STEP_ACTION\"='INPUTDATE', \"STEP1_VALUE\"='$STEP1_VALUE'
+							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'MENUSELECT' ";
                 
-				// writeData($sql); 
+				writeData($sql); 
 				
 				$msgCv = retrieveMsgCv(['userId' => $userid]);
 				
@@ -366,7 +366,7 @@ if (!is_null($events['events'])) {
 				else {
 					array_push($msg,$msgCv['msgVal']);
 					
-					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => '2000059653']);
+					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => str_replace('!SelDateDe ','',$msgCv['msgVal']['text'])]);
 					
 					if($msgFarmOrg['msgType'] == 'template') {
 						
@@ -400,6 +400,14 @@ if (!is_null($events['events'])) {
 			}
 
 			if(stristr($text,'!SelCvDe') ) {				
+				
+				$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
+				$result =  writeData($sql);
+				
+				$dataRow = array();
+				while ($row = pg_fetch_assoc($result)) {
+					$dataRow = $row;
+				}
 				
 				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => '123456789', 'cvFarm' => str_replace('!SelCvDe ','',$text)]);
 				
