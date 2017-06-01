@@ -651,9 +651,9 @@ function retrieveMsgSexStock($obj){
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
-				'label' => $val['Sex'].' qty :'$val['Bd_Qty'],
+				'label' => $val['Sex'].' qty :'.$val['Bd_Qty'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelSexDe '.$val['Sex'].' qty :'$val['Bd_Qty'],
+				'text' => '!SelSexDe '.$val['Sex'].' qty :'.$val['Bd_Qty'],
 			]);
 		}
 		
