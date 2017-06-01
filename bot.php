@@ -480,7 +480,7 @@ if (!is_null($events['events'])) {
 				$STEP4_VALUE = $sQty[0].','.$sQty[1];
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						SET  \"STEP_ACTION\"='INPUTSQTY', \"STEP4_VALUE\"='$STEP4_VALUE'
+						SET  \"STEP_ACTION\"='INPUTSEX', \"STEP4_VALUE\"='$STEP4_VALUE'
 						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
 				writeData($sql);
@@ -493,7 +493,7 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'!SelDeadTypeDe')) {
 				
-				$STEP5_VALUE = explode(":", $text);
+				$STEP5_VALUE = explode(" ", $text);
 				$STEP5_VALUE = $STEP5_VALUE[1];
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
@@ -509,21 +509,30 @@ if (!is_null($events['events'])) {
 			}
 			
 			/*input qty */
-			if (is_numeric($text)) {
+			$sql = "select * from \"FR_DATA_COLLECTION\" where 
+			\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' and 
+			\"STEP_ACTION\"='INPUTDEADTYPE' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
+			
+			$result =  writeData($sql);
+			
+			while ($row = pg_fetch_assoc($result)) {
+				if (is_numeric($text)) {
 				
-				// $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-					// SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
-						// WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";		
-				// writeData($sql);
+				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+					SET  \"STEP_ACTION\"='INPUTQTY', \"STEP6_VALUE\"='$text'
+						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";		
+				writeData($sql);
 				
 				array_push($msg,[
 						'type' => 'template',
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'บันทึกตาย เล้า '.'  
-									จำนวน  '.$text.' 
-									ยืนยันข้อมูล ? ',
+							'text' => 'สรุปข้อมูล'.
+									'บันทึกตาย เล้า '.$row['STEP3_VALUE'].
+									'เพศ'.$row['STEP4_VALUE'].
+									'จำนวน  '.$text.
+									'ยืนยันข้อมูล ? ',
 							'actions' => array(
 								[
 								'type' => 'message',
@@ -544,6 +553,8 @@ if (!is_null($events['events'])) {
 						'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
 				]);				
 			}
+		}
+			
 			
 
 			// END SABPAROD LANDING HERE
@@ -730,7 +741,7 @@ function retrieveMsgDeadType($obj) {
 				'type' => 'postback',
 				'label' => $val['Reason_Dead_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelDeadTypeDe '.$val['Reason_Dead_Code'].':'.$val['Reason_Dead_Name'],
+				'text' => '!SelDeadTypeDe '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name'],
 			]);
 		}
 		
@@ -753,7 +764,7 @@ function retrieveMsgDeadType($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => '!SelDeadTypeDe '.$val['Reason_Dead_Code'].':'.$val['Reason_Dead_Name']
+				'text' => '!SelDeadTypeDe '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name']
 			]
 		];
 	}
