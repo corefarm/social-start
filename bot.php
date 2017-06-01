@@ -685,13 +685,11 @@ function retrieveMsgSexStock($obj){
 	
 	return $ret;
 }
-function retrieveMsgDeadType() {
-	$arrData = array([
-		'name' =>  'ยืนตาย',
-		'type' => 'L77'
-	],[
-		'name' => 'นอนตาย',
-		'type' => 'L88'
+function retrieveMsgDeadType($obj) {
+	
+	$arrData = retrieveServiceData([ 
+		'service' => 'reasondead', 
+		'userId' => $obj['userId']
 	]);
 	
 	if(count($arrData) > 1) {
@@ -700,9 +698,9 @@ function retrieveMsgDeadType() {
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
-				'label' => $val['name'],
+				'label' => $val['Reason_Dead_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelFarmDe '.$val['name'],
+				'text' => '!SelFarmDe '.$val['Reason_Dead_Name'],
 			]);
 		}
 		
@@ -713,8 +711,8 @@ function retrieveMsgDeadType() {
 				'altText' => 'this is a buttons template',
 				'template' => [
 					'type' => 'buttons',
-					'title' => 'กรุณาเลือกเล้า',
-					'text' => 'Please select pen.',
+					'title' => 'กรุณาเลือกเหตูผล',
+					'text' => 'Please select reason.',
 					'actions' => $arrMessageDs
 				]
 			]
@@ -725,7 +723,7 @@ function retrieveMsgDeadType() {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[0]['name']
+				'text' => $arrData[0]['Reason_Dead_Name']
 			]
 		];
 	}
