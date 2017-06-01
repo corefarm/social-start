@@ -41,8 +41,8 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		
-		//$userid = $event['source']['userId'];
-		$userid = '123456789';
+		//$userId = $event['source']['userid'];
+		$userId = '123456789';
 		
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
@@ -58,14 +58,14 @@ if (!is_null($events['events'])) {
 			
 			$msg = array();
             
-			$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
+			$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
 			$result =  writeData($sql);
 			while ($row = pg_fetch_assoc($result)) {
 				
 				if (is_numeric($text)) {
                     $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
-							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";		
+							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";		
                     writeData($sql);
                     $messages = [
                             'type' => 'template',
@@ -102,7 +102,7 @@ if (!is_null($events['events'])) {
 
                 $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"PROCESS_STATUS\"='COMPLETE'
-							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";	
+							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";	
                 
                 $messages = 
                 [
@@ -160,7 +160,7 @@ if (!is_null($events['events'])) {
 				
 				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
 				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
-				VALUES ('$userid', 'DEADCULL', 'SELECT FARM', now(), 'KEYING') ";
+				VALUES ('$userId', 'DEADCULL', 'SELECT FARM', now(), 'KEYING') ";
 				
 				writeData($sql);
 				
@@ -196,7 +196,7 @@ if (!is_null($events['events'])) {
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='KEY QTY', \"STEP1_VALUE\"='$STEP1_VALUE'
-							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
+							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
                 
 				writeData($sql); 
 				
@@ -312,13 +312,13 @@ if (!is_null($events['events'])) {
 			// SABPAROD LANDING HERE
 			if($text == '!MaDeadCull') {
 				
-				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userid' ";
+				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
 				
 				writeData($sqlDelete);
 				
 				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
 				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
-				VALUES ('$userid', 'DEADCULL', 'MENUSELECT', now(), 'KEYING') ";
+				VALUES ('$userId', 'DEADCULL', 'MENUSELECT', now(), 'KEYING') ";
 				
 				//writeData($sql);
 				
@@ -358,11 +358,11 @@ if (!is_null($events['events'])) {
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='INPUTDATE', \"STEP1_VALUE\"='$STEP1_VALUE'
-						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
+						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
 				//writeData($sql); 
 				
-				$msgCv = retrieveMsgCv(['userId' => $userid]);
+				$msgCv = retrieveMsgCv(['userId' => $userId]);
 				
 				if($msgCv['msgType'] == 'template') {
 					array_push($msg,$msgCv['msgVal']);
@@ -370,7 +370,7 @@ if (!is_null($events['events'])) {
 				else {
 					array_push($msg,$msgCv['msgVal']);
 					
-					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => str_replace('!SelDateDe ','',$msgCv['msgVal']['text'])]);
+					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => str_replace('!SelDateDe ','',$msgCv['msgVal']['text'])]);
 					
 					if($msgFarmOrg['msgType'] == 'template') {
 						
@@ -409,11 +409,11 @@ if (!is_null($events['events'])) {
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='INPUTCV', \"STEP2_VALUE\"='$STEP2_VALUE'
-						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
+						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
 				//writeData($sql);
 				
-				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => $STEP2_VALUE ]);
+				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $STEP2_VALUE ]);
 				
 				if($msgFarmOrg['msgType'] == 'template') {
 					
@@ -450,7 +450,7 @@ if (!is_null($events['events'])) {
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='INPUTFARMORG', \"STEP3_VALUE\"='$STEP3_VALUE'
-						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
+						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
 				//writeData($sql);
 				
@@ -485,7 +485,7 @@ if (!is_null($events['events'])) {
 			if (is_numeric($text)) {
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 					SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
-						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";		
+						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";		
 				writeData($sql);
 				$messages = [
 						'type' => 'template',
