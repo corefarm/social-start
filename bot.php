@@ -564,7 +564,7 @@ if (!is_null($events['events'])) {
 				
 				$sql = "select * from \"FR_DATA_COLLECTION\" where 
 					\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' and 
-					\"STEP_ACTION\"='INPUTDEADTYPE' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
+					\"STEP_ACTION\"='INPUTQTY' and \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
 					
 				$result =  writeData($sql);
 				
