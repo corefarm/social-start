@@ -479,6 +479,13 @@ if (!is_null($events['events'])) {
 				
 			}
 			
+			if(stristr($text,'!SelDeadTypeDe')) {
+				
+				array_push($msg,[
+						'type' => 'text',
+						'text' => 'ระบุจำนวนตาย'
+				]);
+			}
 			/*input qty 
 			if (is_numeric($text)) {
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
@@ -700,7 +707,7 @@ function retrieveMsgDeadType($obj) {
 				'type' => 'postback',
 				'label' => $val['Reason_Dead_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelFarmDe '.$val['Reason_Dead_Name'],
+				'text' => '!SelDeadTypeDe '.$val['Reason_Dead_Name'],
 			]);
 		}
 		
