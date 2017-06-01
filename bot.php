@@ -585,7 +585,7 @@ if (!is_null($events['events'])) {
 						'qty' => $row['STEP6_VALUE']])) {
 								
 						$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-							SET  \"STEP_ACTION\"='COMPLETE', \"STEP7_VALUE\"='COMPLETE STEP', \"PROCESS_STATUS\"='COMPLETE'
+							SET  \"STEP_ACTION\"='COMPLETE', \"STEP7_VALUE\"='$text', \"PROCESS_STATUS\"='COMPLETE'
 							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
 								
 						writeData($sql);
@@ -672,7 +672,6 @@ function updateStep($obj) {
 	$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 			SET  \"STEP_ACTION\"='$stepAction', \"STEP".$step."_VALUE\"='$val'
 			WHERE \"USER_ID\" = '$id' and \"PROCESS_NAME\" = '$process' ";
-	error_log($sql);
 	 
 	writeData($sql);
 }
@@ -723,7 +722,7 @@ function retrieveMsgCv($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[0]['Farm_Name'],
+				'text' => 'ฟาร์ม '.$arrData[0]['Farm_Name'],
 				'val' => $arrData[0]['Farm_Code']
 			]
 		];
@@ -775,7 +774,7 @@ function retrieveMsgFarmOrg($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[1]['Farm_Org'],
+				'text' => 'เล้า '.$arrData[1]['Farm_Org'],
 				'val' => $arrData[1]['Farm_Org']
 			]
 		];
@@ -831,7 +830,7 @@ function retrieveMsgSexStock($obj){
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => 'เพศ'.$arrData[1]['Sex'],
+				'text' => 'เพศ '.$arrData[1]['Sex'].' จำนวน '.$arrData[1]['Bd_Qty'],
 				'val' => $arrData[1]['Sex']
 			]
 		];
