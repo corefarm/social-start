@@ -574,7 +574,7 @@ if (!is_null($events['events'])) {
 						'userId' => $userId,
 						'orgSel' => $row['STEP3_VALUE'],
 						'deadType' => explode(",", $row['STEP5_VALUE'])[0],
-						'sex' => $row['STEP4_VALUE'],
+						'sex' => explode(",", $row['STEP4_VALUE'])[0],
 						'qty' => $row['STEP6_VALUE']])) {
 							
 						$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
