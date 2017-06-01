@@ -634,31 +634,31 @@ function updateStep($obj) {
 	$stepAction = '';
 	
 	switch ($obj['step']) {
-		case 1:
+		case 'STEP1_VALUE':
 			$stepAction = 'INPUTDATE';
 		break;
-		case 2:
+		case 'STEP2_VALUE':
 			$stepAction = 'INPUTCV';
 		break;
-		case 3:
+		case 'STEP3_VALUE':
 			$stepAction = 'INPUTFARMORG';
 		break;
-		case 4:
+		case 'STEP4_VALUE':
 			$stepAction = 'INPUTSEX';
 		break;
-		case 5:
+		case 'STEP5_VALUE':
 			$stepAction = 'INPUTDEADTYPE';
 		break;
-		case 6:
+		case 'STEP6_VALUE':
 			$stepAction = 'INPUTQTY';
 		break;
-		case 7:
+		case 'STEP7_VALUE':
 			$stepAction = 'COMPLETE';
 		break;
 	}
 	
 	$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-			SET  \"STEP_ACTION\"='$stepAction', \"STEP'$obj['step']'_VALUE\"='$obj['val']'
+			SET  \"STEP_ACTION\"='$stepAction', \"'$obj['step']'\"='$obj['val']'
 			WHERE \"USER_ID\" = '$obj['userId'] and \"PROCESS_NAME\" = '$obj['process']' ";
 	error_log($sql);
 	 
