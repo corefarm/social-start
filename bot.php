@@ -354,8 +354,8 @@ if (!is_null($events['events'])) {
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='INPUTDATE', \"STEP1_VALUE\"='$STEP1_VALUE'
-							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'MENUSELECT' ";
-                
+							WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
+                 
 				writeData($sql); 
 				
 				$msgCv = retrieveMsgCv(['userId' => $userid]);
