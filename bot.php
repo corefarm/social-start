@@ -456,8 +456,6 @@ if (!is_null($events['events'])) {
 						
 				if($msgSexStock['msgType'] == 'template') {
 					
-					$msg = array();
-					
 					array_push($msg,$msgSexStock['msgVal']);
 				}
 				else {
@@ -646,14 +644,14 @@ function retrieveMsgSexStock($obj){
 	]);
 	
 	if(count($arrData) > 1) {
-		$arrMessageDs = array(); 
+		$arrMessageDs = array();
 
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
 				'label' => $val['Sex'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelFarmDe '.$val['Sex'],
+				'text' => '!SelSexDe '.$val['Sex'],
 			]);
 		}
 		
@@ -664,7 +662,7 @@ function retrieveMsgSexStock($obj){
 				'altText' => 'this is a buttons template',
 				'template' => [
 					'type' => 'buttons',
-					'title' => 'กรุณาเลือกเพศ',
+					'title' => 'กรุณาเลือกพศ',
 					'text' => 'Please select gender.',
 					'actions' => $arrMessageDs
 				]
@@ -676,7 +674,8 @@ function retrieveMsgSexStock($obj){
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[0]['Sex']
+				'text' => $arrData[0]['Sex'],
+				'val' => $arrData[0]['Sex']
 			]
 		];
 	}
