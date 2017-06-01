@@ -632,34 +632,38 @@ if (!is_null($events['events'])) {
 function updateStep($obj) {
 	
 	$stepAction = '';
+	$val = $obj['val'];
+	$id = $obj['userId'];
+	$process = $obj['process'];
+	$step = $obj['step'];
 	
-	switch ($obj['step']) {
-		case 'STEP1_VALUE':
+	switch ($step) {
+		case 1:
 			$stepAction = 'INPUTDATE';
 		break;
-		case 'STEP2_VALUE':
+		case 2:
 			$stepAction = 'INPUTCV';
 		break;
-		case 'STEP3_VALUE':
+		case 3:
 			$stepAction = 'INPUTFARMORG';
 		break;
-		case 'STEP4_VALUE':
+		case 4:
 			$stepAction = 'INPUTSEX';
 		break;
-		case 'STEP5_VALUE':
+		case 5:
 			$stepAction = 'INPUTDEADTYPE';
 		break;
-		case 'STEP6_VALUE':
+		case 6:
 			$stepAction = 'INPUTQTY';
 		break;
-		case 'STEP7_VALUE':
+		case 7:
 			$stepAction = 'COMPLETE';
 		break;
 	}
 	
 	$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-			SET  \"STEP_ACTION\"='$stepAction', \"'$obj['step']'\"='$obj['val']'
-			WHERE \"USER_ID\" = '$obj['userId'] and \"PROCESS_NAME\" = '$obj['process']' ";
+			SET  \"STEP_ACTION\"='$stepAction', \"STEP".$step."_VALUE\"='$val'
+			WHERE \"USER_ID\" = '$id' and \"PROCESS_NAME\" = '$process' ";
 	error_log($sql);
 	 
 	writeData($sql);
@@ -874,7 +878,7 @@ function retrieveGenDeadSwineResult($obj){
 		'qty' => $obj['qty']
 	]);
 	
-	if($arrData[0]['Result_Flag'] == 'N'){
+	if($arrData[0]['Result_Flag'] == 'Y'){
 		return true;
 	}
 	return false;
