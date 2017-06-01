@@ -424,7 +424,7 @@ if (!is_null($events['events'])) {
 					
 					array_push($msg,$msgFarmOrg['msgVal']);
 					
-					$msgSexStock = retrieveMsgSexStock();
+					//$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $STEP3_VALUE]);
 						
 					if($msgSexStock['msgType'] == 'template') {
 						
