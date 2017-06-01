@@ -450,7 +450,7 @@ if (!is_null($events['events'])) {
                  
 				writeData($sql);
 
-				$msgSexStock = retrieveMsgSexStock(['userId' => $userId] , 'orgSel' => $STEP3_VALUE);
+				$msgSexStock = retrieveMsgSexStock(['userId' => $userId] , 'orgSel' => $STEP3_VALUE]);
 						
 				if($msgSexStock['msgType'] == 'template') {
 					
