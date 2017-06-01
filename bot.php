@@ -369,7 +369,7 @@ if (!is_null($events['events'])) {
 				}
 				else {
 					
-					updateStep(['userId' => $userId, 'step' => 2, 'val' => $msgCv['msgVal']['val']], 'process' => 'DEADCULL');
+					updateStep(['userId' => $userId, 'step' => 2, 'val' => $msgCv['msgVal']['val'], 'process' => 'DEADCULL']);
 					
 					array_push($msg,$msgCv['msgVal']);
 					
