@@ -820,7 +820,7 @@ function retrieveGenDeadSwineResult($obj){
 		'qty' => $obj['qty']
 	]);
 	
-	if($arrData['Result_Flag'] == 'N'){
+	if($arrData[0]['Result_Flag'] == 'N'){
 		return true;
 	}
 	return false;
