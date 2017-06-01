@@ -381,13 +381,13 @@ if (!is_null($events['events'])) {
 					}
 					else {
 						
+						updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'process' => 'DEADCULL']);
+						
 						array_push($msg,$msgFarmOrg['msgVal']);
 						
-						$msgSexStock = retrieveMsgSexStock();
+						$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $msgFarmOrg['msgVal']['val']]);
 						
 						if($msgSexStock['msgType'] == 'template') {
-							
-							//$msg = array();
 							
 							array_push($msg,$msgSexStock['msgVal']);
 						}
@@ -395,7 +395,7 @@ if (!is_null($events['events'])) {
 							
 							array_push($msg,$msgSexStock['msgVal']);
 							
-							$msgDeadType = retrieveMsgDeadType();
+							$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 							
 							//final
 							array_push($msg,$msgDeadType['msgVal']);
