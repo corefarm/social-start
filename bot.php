@@ -786,42 +786,51 @@ function retrieveMsgSexStock($obj){
 		'orgSel' => $obj['orgSel']
 	]);
 	
-	if(count($arrData) > 1) {
-		$arrMessageDs = array();
+	// if(count($arrData) > 1) {
+		// $arrMessageDs = array();
 
-		foreach ($arrData as $val) {
-			array_push($arrMessageDs,[
-				'type' => 'postback',
-				'label' => $val['Sex'].' qty :'.$val['Bd_Qty'],
-				'data' => 'action=buy&itemid=123',
-				'text' => '!SelSexDe '.$val['Sex'].' qty :'.$val['Bd_Qty'],
-			]);
-		}
+		// foreach ($arrData as $val) {
+			// array_push($arrMessageDs,[
+				// 'type' => 'postback',
+				// 'label' => $val['Sex'].' qty :'.$val['Bd_Qty'],
+				// 'data' => 'action=buy&itemid=123',
+				// 'text' => '!SelSexDe '.$val['Sex'].' qty :'.$val['Bd_Qty'],
+			// ]);
+		// }
 		
-		$ret = [
-			'msgType' => 'template',
-			'msgVal' => [
-				'type' => 'template',
-				'altText' => 'this is a buttons template',
-				'template' => [
-					'type' => 'buttons',
-					'title' => 'กรุณาเลือกพศ',
-					'text' => 'Please select gender.',
-					'actions' => $arrMessageDs
-				]
-			]
-		];
-	}
-	else {
-		$ret = [
+		// $ret = [
+			// 'msgType' => 'template',
+			// 'msgVal' => [
+				// 'type' => 'template',
+				// 'altText' => 'this is a buttons template',
+				// 'template' => [
+					// 'type' => 'buttons',
+					// 'title' => 'กรุณาเลือกพศ',
+					// 'text' => 'Please select gender.',
+					// 'actions' => $arrMessageDs
+				// ]
+			// ]
+		// ];
+	// }
+	// else {
+		// $ret = [
+			// 'msgType' => 'message',
+			// 'msgVal' => [
+				// 'type' => 'text',
+				// 'text' => $arrData[0]['Sex'],
+				// 'val' => $arrData[0]['Sex']
+			// ]
+		// ];
+	// }
+	
+	$ret = [
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[0]['Sex'],
-				'val' => $arrData[0]['Sex']
+				'text' => 'เพศ'.$arrData[1]['Sex'],
+				'val' => $arrData[1]['Sex']
 			]
 		];
-	}
 	
 	
 	return $ret;
