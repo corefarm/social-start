@@ -320,7 +320,7 @@ if (!is_null($events['events'])) {
 				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
 				VALUES ('$userId', 'DEADCULL', 'MENUSELECT', now(), 'KEYING') ";
 				
-				//writeData($sql);
+				writeData($sql);
 				
 				$today = date('d/m/Y');   
 				$yesterday = date('d/m/Y', strtotime(' -1 day'));
@@ -360,7 +360,7 @@ if (!is_null($events['events'])) {
 						SET  \"STEP_ACTION\"='INPUTDATE', \"STEP1_VALUE\"='$STEP1_VALUE'
 						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
-				//writeData($sql); 
+				writeData($sql);
 				
 				$msgCv = retrieveMsgCv(['userId' => $userId]);
 				
@@ -411,7 +411,7 @@ if (!is_null($events['events'])) {
 						SET  \"STEP_ACTION\"='INPUTCV', \"STEP2_VALUE\"='$STEP2_VALUE'
 						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
-				//writeData($sql);
+				writeData($sql);
 				
 				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $STEP2_VALUE ]);
 				
@@ -452,7 +452,7 @@ if (!is_null($events['events'])) {
 						SET  \"STEP_ACTION\"='INPUTFARMORG', \"STEP3_VALUE\"='$STEP3_VALUE'
 						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
-				//writeData($sql);
+				writeData($sql);
 				
 				$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $STEP3_VALUE]);
 				
@@ -473,6 +473,18 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'!SelSexDe') ) {
 				
+				$STEP4_VALUE = str_replace('!SelSexDe ','',$text);
+				
+				$sQty = explode(" qty :", $STEP4_VALUE);
+				
+				$STEP4_VALUE = $sQty[0].','.$sQty[1];
+				
+				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+						SET  \"STEP_ACTION\"='INPUTSQTY', \"STEP4_VALUE\"='$STEP4_VALUE'
+						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
+                 
+				writeData($sql);
+				
 				$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 					
 				array_push($msg,$msgDeadType['msgVal']);
@@ -480,6 +492,15 @@ if (!is_null($events['events'])) {
 			}
 			
 			if(stristr($text,'!SelDeadTypeDe')) {
+				
+				$STEP5_VALUE = explode(":", $text);
+				$STEP5_VALUE = $STEP5_VALUE[1];
+				
+				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+						SET  \"STEP_ACTION\"='INPUTDEADTYPE', \"STEP5_VALUE\"='$STEP5_VALUE'
+						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
+                 
+				writeData($sql);
 				
 				array_push($msg,[
 						'type' => 'text',
@@ -709,7 +730,7 @@ function retrieveMsgDeadType($obj) {
 				'type' => 'postback',
 				'label' => $val['Reason_Dead_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelDeadTypeDe '.$val['Reason_Dead_Name'],
+				'text' => '!SelDeadTypeDe '.$val['Reason_Dead_Code'].':'.$val['Reason_Dead_Name'],
 			]);
 		}
 		
@@ -732,7 +753,7 @@ function retrieveMsgDeadType($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => '!SelDeadTypeDe '.$arrData[0]['Reason_Dead_Name']
+				'text' => '!SelDeadTypeDe '.$val['Reason_Dead_Code'].':'.$val['Reason_Dead_Name']
 			]
 		];
 	}
