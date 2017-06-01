@@ -455,7 +455,9 @@ if (!is_null($events['events'])) {
 				//writeData($sql);
 				
 				$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $STEP3_VALUE]);
-						
+				
+				error_log('$msgSexStock = retrieveMsgSexStock([userId => $userId , orgSel => $STEP3_VALUE]) <<<<<<<<<<<<'.$userId);
+				
 				if($msgSexStock['msgType'] == 'template') {
 					
 					array_push($msg,$msgSexStock['msgVal']);
