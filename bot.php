@@ -434,7 +434,7 @@ if (!is_null($events['events'])) {
 					
 			if(stristr($text,'!SelFarmDe') ) {
 				
-				$msgSexStock = retrieveMsgSexStock();
+				$msgSexStock = retrieveMsgSexStock(['userId' => '123456789']);
 						
 				if($msgSexStock['msgType'] == 'template') {
 					
@@ -544,7 +544,7 @@ function retrieveMsgCv($obj) {
 				'type' => 'postback',
 				'label' => $val['Farm_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelCvDe '.$val['Farm_Code'],
+				'text' => '!SelCvDe '.$val['Farm_Name'],
 			]);
 		}
 		
@@ -619,8 +619,15 @@ function retrieveMsgFarmOrg($obj) {
 	
 	return $ret;
 }
-function retrieveMsgSexStock(){
-
+function retrieveMsgSexStock($obj){
+	
+	$arrData = retrieveServiceData([ 
+		'service' => 'getbdstock', 
+		'userId' => $obj['userId'],
+		'cvFarm' => $obj['cvFarm'] , 
+		'orgSel' => $obj['orgSel']
+	]);
+	
 	$arrData = array([
 		'name' =>  'เพศเมีย',
 		'type' => 'L77'
