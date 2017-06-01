@@ -409,7 +409,7 @@ if (!is_null($events['events'])) {
                  
 				writeData($sql);
 				
-				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => '123456789', 'cvFarm' => $STEP2_VALUE ]);
+				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => $STEP2_VALUE ]);
 				
 				if($msgFarmOrg['msgType'] == 'template') {
 					
@@ -442,7 +442,15 @@ if (!is_null($events['events'])) {
 					
 			if(stristr($text,'!SelFarmDe') ) {
 				
-				$msgSexStock = retrieveMsgSexStock(['userId' => '123456789']);
+				$STEP3_VALUE = str_replace('!SelFarmDe ','',$text);
+				
+				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+						SET  \"STEP_ACTION\"='INPUTFARMORG', \"STEP3_VALUE\"='$STEP3_VALUE'
+						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
+                 
+				writeData($sql);
+
+				$msgSexStock = retrieveMsgSexStock(['userId' => $userId] , 'orgSel' => $STEP3_VALUE);
 						
 				if($msgSexStock['msgType'] == 'template') {
 					
@@ -632,16 +640,7 @@ function retrieveMsgSexStock($obj){
 	$arrData = retrieveServiceData([ 
 		'service' => 'getbdstock', 
 		'userId' => $obj['userId'],
-		'cvFarm' => $obj['cvFarm'] , 
 		'orgSel' => $obj['orgSel']
-	]);
-	
-	$arrData = array([
-		'name' =>  'เพศเมีย',
-		'type' => 'L77'
-	],[
-		'name' => 'เพศผู้',
-		'type' => 'L88'
 	]);
 	
 	if(count($arrData) > 1) {
@@ -650,9 +649,9 @@ function retrieveMsgSexStock($obj){
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
-				'label' => $val['name'],
+				'label' => $val['Sex'].$val['Bd_Qty'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelFarmDe '.$val['name'],
+				'text' => '!SelFarmDe '.$val['Sex'].$val['Bd_Qty'],
 			]);
 		}
 		
@@ -675,7 +674,7 @@ function retrieveMsgSexStock($obj){
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[0]['name']
+				'text' => $arrData[0]['Sex']
 			]
 		];
 	}
@@ -748,7 +747,7 @@ function retrieveServiceData($obj) {
 			$keyValue = 'GetFarmOrgsResult';
 			break;
 		case 'getbdstock':
-			$url = $url.'getbdstock/'.$obj['userId'].','.$obj['cvFarm'].','.$obj['orgSel'];
+			$url = $url.'getbdstock/'.$obj['userId'].','.$obj['orgSel'];
 			$keyValue = 'GetBdStocksResult';
 			break;
 		case 'deadswine':
