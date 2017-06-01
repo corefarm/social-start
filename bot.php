@@ -771,8 +771,8 @@ function retrieveMsgFarmOrg($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[0]['Farm_Org'],
-				'val' => $arrData[0]['Farm_Org']
+				'text' => $arrData[1]['Farm_Org'],
+				'val' => $arrData[1]['Farm_Org']
 			]
 		];
 	
