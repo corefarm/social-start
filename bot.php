@@ -765,7 +765,7 @@ function retrieveServiceData($obj) {
 			break;
 	}
 	
-	error_log('LOG URL SERVICE >>>>>>>>>.'$url.'<<<<<<<< LOG URL SERVICE');
+	error_log('LOG URL SERVICE >>>>>>>>>'.$url.'<<<<<<<< LOG URL SERVICE');
 	
 	$arrContextOptions = array(
 						'ssl' => array(
