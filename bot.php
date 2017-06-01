@@ -320,7 +320,7 @@ if (!is_null($events['events'])) {
 				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
 				VALUES ('$userid', 'DEADCULL', 'MENUSELECT', now(), 'KEYING') ";
 				
-				writeData($sql);
+				//writeData($sql);
 				
 				$today = date('d/m/Y');   
 				$yesterday = date('d/m/Y', strtotime(' -1 day'));
@@ -360,7 +360,7 @@ if (!is_null($events['events'])) {
 						SET  \"STEP_ACTION\"='INPUTDATE', \"STEP1_VALUE\"='$STEP1_VALUE'
 						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
-				writeData($sql); 
+				//writeData($sql); 
 				
 				$msgCv = retrieveMsgCv(['userId' => $userid]);
 				
@@ -411,7 +411,7 @@ if (!is_null($events['events'])) {
 						SET  \"STEP_ACTION\"='INPUTCV', \"STEP2_VALUE\"='$STEP2_VALUE'
 						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
-				writeData($sql);
+				//writeData($sql);
 				
 				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userid, 'cvFarm' => $STEP2_VALUE ]);
 				
@@ -452,9 +452,7 @@ if (!is_null($events['events'])) {
 						SET  \"STEP_ACTION\"='INPUTFARMORG', \"STEP3_VALUE\"='$STEP3_VALUE'
 						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
-				writeData($sql);
-				
-				error_log($sql.'77777777777777777777777777777777777777777777777');
+				//writeData($sql);
 				
 				$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $STEP3_VALUE]);
 						
@@ -766,6 +764,8 @@ function retrieveServiceData($obj) {
 		default:
 			break;
 	}
+	
+	error_log('LOG URL SERVICE >>>>>>>>>.'$url.'<<<<<<<< LOG URL SERVICE');
 	
 	$arrContextOptions = array(
 						'ssl' => array(
