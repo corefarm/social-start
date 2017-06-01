@@ -356,11 +356,13 @@ if (!is_null($events['events'])) {
 				
 				$STEP1_VALUE = str_replace('!SelDateDe ','',$text);
 				
-				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						SET  \"STEP_ACTION\"='INPUTDATE', \"STEP1_VALUE\"='$STEP1_VALUE'
-						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
+				// $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+						// SET  \"STEP_ACTION\"='INPUTDATE', \"STEP1_VALUE\"='$STEP1_VALUE'
+						// WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
-				writeData($sql);
+				// writeData($sql);
+				
+				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'process' => 'DEADCULL']);
 				
 				$msgCv = retrieveMsgCv(['userId' => $userId]);
 				
