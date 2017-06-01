@@ -57,7 +57,7 @@ if (!is_null($events['events'])) {
 			$messages_2 = 'X';
 			
 			$msg = array();
-            
+            /*
 			$sql = "select * from \"FR_DATA_COLLECTION\" where \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' and \"STEP_ACTION\"='KEY QTY' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
 			$result =  writeData($sql);
 			while ($row = pg_fetch_assoc($result)) {
@@ -115,7 +115,7 @@ if (!is_null($events['events'])) {
                     'packageId' => '1',
                     'stickerId' => 138
             ];				
-			}
+			}*/
 			
 			if (strtolower($text)  == 'im') {
 				$messages = [
@@ -486,18 +486,21 @@ if (!is_null($events['events'])) {
 						'text' => 'ระบุจำนวนตาย'
 				]);
 			}
-			/*input qty 
+			
+			/*input qty */
 			if (is_numeric($text)) {
-				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-					SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
-						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";		
-				writeData($sql);
-				$messages = [
+				
+				// $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+					// SET  \"STEP_ACTION\"='Confirm', \"STEP2_VALUE\"='$text'
+						// WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";		
+				// writeData($sql);
+				
+				array_push($msg,[
 						'type' => 'template',
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'บันทึกตาย เล้า '.$row['STEP1_VALUE'].'  
+							'text' => 'บันทึกตาย เล้า '.'  
 									จำนวน  '.$text.' 
 									ยืนยันข้อมูล ? ',
 							'actions' => array(
@@ -512,15 +515,14 @@ if (!is_null($events['events'])) {
 								]
 							)
 						]
-				];							
-				
-			} else {
-				$messages = 
-				[
+				]);
+			}
+			else {
+				array_push($msg,[
 						'type' => 'text',
 						'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
-				];					
-			}*/
+				]);				
+			}
 			
 
 			// END SABPAROD LANDING HERE
@@ -730,7 +732,7 @@ function retrieveMsgDeadType($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => $arrData[0]['Reason_Dead_Name']
+				'text' => '!SelDeadTypeDe '.$arrData[0]['Reason_Dead_Name']
 			]
 		];
 	}
