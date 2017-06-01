@@ -464,7 +464,7 @@ if (!is_null($events['events'])) {
 					
 					array_push($msg,$msgSexStock['msgVal']);
 					
-					$msgDeadType = retrieveMsgDeadType();
+					$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 					
 					//final
 					array_push($msg,$msgDeadType['msgVal']);
