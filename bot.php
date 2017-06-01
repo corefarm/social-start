@@ -389,9 +389,13 @@ if (!is_null($events['events'])) {
 						
 						if($msgSexStock['msgType'] == 'template') {
 							
+							error_log('>>>>>> msgSexStock <<<<<<');
+							
 							array_push($msg,$msgSexStock['msgVal']);
 						}
 						else {
+							
+							updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'process' => 'DEADCULL']);
 							
 							array_push($msg,$msgSexStock['msgVal']);
 							
