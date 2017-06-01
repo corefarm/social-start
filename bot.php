@@ -414,11 +414,7 @@ if (!is_null($events['events'])) {
 				
 				$STEP2_VALUE = str_replace('!SelCvDe ','',$text);
 				
-				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						SET  \"STEP_ACTION\"='INPUTCV', \"STEP2_VALUE\"='$STEP2_VALUE'
-						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
-                 
-				writeData($sql);
+				updateStep(['userId' => $userId, 'step' => 2, 'val' => $STEP2_VALUE, 'process' => 'DEADCULL']);
 				
 				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $STEP2_VALUE ]);
 				
@@ -428,22 +424,24 @@ if (!is_null($events['events'])) {
 					
 				}
 				else {
-					
+				
+					updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'process' => 'DEADCULL']);
+						
 					array_push($msg,$msgFarmOrg['msgVal']);
+						
+					$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $msgFarmOrg['msgVal']['val']]);
 					
-					//$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $STEP3_VALUE]);
-						
 					if($msgSexStock['msgType'] == 'template') {
-						
-						$msg = array();
 						
 						array_push($msg,$msgSexStock['msgVal']);
 					}
 					else {
 						
+						updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'process' => 'DEADCULL']);
+						
 						array_push($msg,$msgSexStock['msgVal']);
 						
-						$msgDeadType = retrieveMsgDeadType();
+						$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 						
 						//final
 						array_push($msg,$msgDeadType['msgVal']);
@@ -469,6 +467,8 @@ if (!is_null($events['events'])) {
 				}
 				else {
 					
+					updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'process' => 'DEADCULL']);
+						
 					array_push($msg,$msgSexStock['msgVal']);
 					
 					$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
@@ -602,6 +602,26 @@ if (!is_null($events['events'])) {
 						]);
 					}
 				}
+			}
+			
+			if ($text  == '!NoDead') {
+				
+				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+					SET  \"STEP_ACTION\"='INCOMPLETE', \"STEP7_VALUE\"='$text', \"PROCESS_STATUS\"='INCOMPLETE'
+					WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
+						
+				writeData($sql);
+				
+				array_push($msg,[
+						'type' => 'text',
+						'text' => 'ยกเลิกเรียบร้อย'
+				]);
+				
+				array_push($msg,[
+					'type' => 'sticker',
+					'packageId' => '1',
+					'stickerId' => 139
+				]);
 			}
 
 			// END SABPAROD LANDING HERE
