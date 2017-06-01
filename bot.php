@@ -453,7 +453,9 @@ if (!is_null($events['events'])) {
 						WHERE \"USER_ID\" = '$userid' and \"PROCESS_NAME\" = 'DEADCULL' ";
                  
 				writeData($sql);
-
+				
+				error_log($sql.'77777777777777777777777777777777777777777777777');
+				
 				$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $STEP3_VALUE]);
 						
 				if($msgSexStock['msgType'] == 'template') {
