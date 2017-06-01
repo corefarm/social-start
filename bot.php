@@ -585,9 +585,11 @@ if (!is_null($events['events'])) {
 						'qty' => $row['STEP6_VALUE']])) {
 							
 						$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-							SET  \"PROCESS_STATUS\"='COMPLETE', \"STEP7_VALUE\"='$text'
-								WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";	
-					
+							SET  \"PROCESS_STATUS\"='COMPLETE', \"STEP7_VALUE\"='$text' ,\"PROCESS_STATUS\" = 'COMPLETE'
+								WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
+								
+						writeData($sql);
+						
 						array_push($msg,[
 								'type' => 'text',
 								'text' => 'บันทึกข้อมูลเรียบร้อย'
