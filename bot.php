@@ -548,10 +548,14 @@ if (!is_null($events['events'])) {
 				]);
 			}
 			else {
+				// array_push($msg,[
+						// 'type' => 'text',
+						// 'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
+				// ]);
 				array_push($msg,[
 						'type' => 'text',
-						'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
-				]);				
+						'text' => $text
+				]);
 			}
 		}
 			
