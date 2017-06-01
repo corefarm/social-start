@@ -456,8 +456,6 @@ if (!is_null($events['events'])) {
 				
 				$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $STEP3_VALUE]);
 				
-				error_log('$msgSexStock = retrieveMsgSexStock([userId => $userId , orgSel => $STEP3_VALUE]) <<<<<<<<<<<<'.$userId);
-				
 				if($msgSexStock['msgType'] == 'template') {
 					
 					array_push($msg,$msgSexStock['msgVal']);
@@ -653,9 +651,9 @@ function retrieveMsgSexStock($obj){
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
-				'label' => $val['Sex'],
+				'label' => $val['Sex'].' qty :'$val['Bd_Qty'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelSexDe '.$val['Sex'],
+				'text' => '!SelSexDe '.$val['Sex'].' qty :'$val['Bd_Qty'],
 			]);
 		}
 		
@@ -755,13 +753,13 @@ function retrieveServiceData($obj) {
 			$url = $url.'getbdstock/'.$obj['userId'].','.$obj['orgSel'];
 			$keyValue = 'GetBdStocksResult';
 			break;
-		case 'deadswine':
-			$url = $url.'deadswine/'.$obj['userId'].','.$obj['orgSel'].','.$obj['deadType'].','.$obj['sex'].','.$obj['qty'];
-			$keyValue = 'GenDeadSwineResult';
-			break;
 		case 'reasondead':
 			$url = $url.'reasondead/'.$obj['userId'];
 			$keyValue = 'GetReasonDeadsResult';
+			break;
+		case 'deadswine':
+			$url = $url.'deadswine/'.$obj['userId'].','.$obj['orgSel'].','.$obj['deadType'].','.$obj['sex'].','.$obj['qty'];
+			$keyValue = 'GenDeadSwineResult';
 			break;
 		default:
 			break;
