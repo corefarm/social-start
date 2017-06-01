@@ -314,6 +314,8 @@ if (!is_null($events['events'])) {
 				
 				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userid' ";
 				
+				writeData($sqlDelete);
+				
 				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
 				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
 				VALUES ('$userid', 'DEADCULL', 'MENUSELECT', now(), 'KEYING') ";
