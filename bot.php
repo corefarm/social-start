@@ -312,6 +312,8 @@ if (!is_null($events['events'])) {
 			// SABPAROD LANDING HERE
 			if($text == '!MaDeadCull') {
 				
+				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userid' ";
+				
 				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
 				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
 				VALUES ('$userid', 'DEADCULL', 'MENUSELECT', now(), 'KEYING') ";
@@ -662,8 +664,8 @@ function retrieveMsgSexStock($obj){
 				'altText' => 'this is a buttons template',
 				'template' => [
 					'type' => 'buttons',
-					'title' => 'กรุณาเลือกเล้า',
-					'text' => 'Please select pen.',
+					'title' => 'กรุณาเลือกเพศ',
+					'text' => 'Please select gender.',
 					'actions' => $arrMessageDs
 				]
 			]
