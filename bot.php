@@ -561,21 +561,38 @@ if (!is_null($events['events'])) {
 			}
 			
 			if ($text  == '!YesDead') {
-
-                $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						SET  \"PROCESS_STATUS\"='COMPLETE', \"STEP7_VALUE\"='$text'
-							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";	
-                
-				array_push($msg,[
-                        'type' => 'text',
-                        'text' => 'บันทึกข้อมูลเรียบร้อย'
-                ]);
-                
-				array_push($msg,[
-                    'type' => 'sticker',
-                    'packageId' => '1',
-                    'stickerId' => 138
-				]);			
+				
+				$sql = "select * from \"FR_DATA_COLLECTION\" where 
+					\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' and 
+					\"STEP_ACTION\"='INPUTDEADTYPE' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
+					
+				$result =  writeData($sql);
+				
+				while ($row = pg_fetch_assoc($result)) {
+					
+					if(retrieveGenDeadSwineResult([ 
+						'userId' => $userId,
+						'orgSel' => $row['STEP3_VALUE'],
+						'deadType' => explode(",", $row['STEP5_VALUE'])[0],
+						'sex' => $row['STEP4_VALUE'],
+						'qty' => $row['STEP6_VALUE']])) {
+							
+						$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+							SET  \"PROCESS_STATUS\"='COMPLETE', \"STEP7_VALUE\"='$text'
+								WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";	
+					
+						array_push($msg,[
+								'type' => 'text',
+								'text' => 'บันทึกข้อมูลเรียบร้อย'
+						]);
+						
+						array_push($msg,[
+							'type' => 'sticker',
+							'packageId' => '1',
+							'stickerId' => 138
+						]);
+					}
+				}
 			}
 
 			// END SABPAROD LANDING HERE
@@ -792,6 +809,21 @@ function retrieveMsgDeadType($obj) {
 	
 	
 	return $ret;
+}
+function retrieveGenDeadSwineResult($obj){
+	$arrData = retrieveServiceData([ 
+		'service' => 'deadswine', 
+		'userId' => $obj['userId'],
+		'orgSel' => $obj['orgSel'],
+		'deadType' => $obj['deadType'],
+		'sex' => $obj['sex'],
+		'qty' => $obj['qty']
+	]);
+	
+	if($arrData['Result_Flag'] == 'N'){
+		return true;
+	}
+	return false;
 }
 
 function retrieveServiceData($obj) {
