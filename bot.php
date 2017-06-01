@@ -583,10 +583,10 @@ if (!is_null($events['events'])) {
 						'deadType' => explode(",", $row['STEP5_VALUE'])[0],
 						'sex' => explode(",", $row['STEP4_VALUE'])[0],
 						'qty' => $row['STEP6_VALUE']])) {
-							
+								
 						$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-							SET  \"PROCESS_STATUS\"='COMPLETE', \"STEP7_VALUE\"='$text' ,\"PROCESS_STATUS\" = 'COMPLETE'
-								WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
+							SET  \"STEP_ACTION\"='COMPLETE', \"STEP7_VALUE\"='COMPLETE STEP', \"PROCESS_STATUS\"='COMPLETE'
+							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
 								
 						writeData($sql);
 						
