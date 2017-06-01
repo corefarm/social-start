@@ -537,30 +537,46 @@ if (!is_null($events['events'])) {
 								[
 								'type' => 'message',
 								'label' => 'ยืนยัน',
-								'text' => '!YesDEADCULL',
+								'text' => '!YesDead',
 								],[
 								'type' => 'message',
 								'label' => 'ยกเลิก',
-								'text' => '!NoDEADCULL',									
+								'text' => '!NoDead',									
 								]
 							)
 						]
-				]);
-			}
-			else {
-				if(stristr($text,'!SelDeadTypeDe')) {
-					
-				}
-				else {
-					array_push($msg,[
-						'type' => 'text',
-						'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
 					]);
 				}
+				else {
+					if(stristr($text,'!SelDeadTypeDe')) {
+						
+					}
+					else {
+						array_push($msg,[
+							'type' => 'text',
+							'text' => 'ระบุตัวเลข เท่านั้น !  กรุณาระบุใหม่อีกครั้ง'
+						]);
+					}
+				}
 			}
-		}
 			
-			
+			if ($text  == '!YesDead') {
+
+                $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+						SET  \"PROCESS_STATUS\"='COMPLETE', \"STEP7_VALUE\"='$text'
+							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";	
+                
+				array_push($msg,[
+                        'type' => 'text',
+                        'text' => 'บันทึกข้อมูลเรียบร้อย'
+                ]);
+                
+				array_push($msg,[
+                    'type' => 'sticker',
+                    'packageId' => '1',
+                    'stickerId' => 138
+				]);			
+			}
 
 			// END SABPAROD LANDING HERE
 			
