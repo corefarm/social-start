@@ -407,7 +407,7 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'สรุปข้อมูล'.
+							'text' => 'สรุปข้อมูล\n'.
 									'บันทึกตาย เล้า '.$row['STEP3_VALUE'].
 									'เพศ'.$row['STEP4_VALUE'].
 									'จำนวน  '.$text.
