@@ -254,8 +254,6 @@ if (!is_null($events['events'])) {
 						
 						if($msgSexStock['msgType'] == 'template') {
 							
-							error_log('>>>>>> msgSexStock <<<<<<');
-							
 							array_push($msg,$msgSexStock['msgVal']);
 						}
 						else {
@@ -264,10 +262,13 @@ if (!is_null($events['events'])) {
 							
 							array_push($msg,$msgSexStock['msgVal']);
 							
-							$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
+							if($msgSexStock['msgVal']['val']) {
+								$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 							
-							//final
-							array_push($msg,$msgDeadType['msgVal']);
+								//final
+								array_push($msg,$msgDeadType['msgVal']);
+								
+							}
 						}
 					}
 				}
@@ -304,10 +305,14 @@ if (!is_null($events['events'])) {
 						
 						array_push($msg,$msgSexStock['msgVal']);
 						
-						$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
+						if($msgSexStock['msgVal']['val']) {
+							
+							$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 						
-						//final
-						array_push($msg,$msgDeadType['msgVal']);
+							//final
+							array_push($msg,$msgDeadType['msgVal']);
+							
+						}
 					}
 				}
 			}
