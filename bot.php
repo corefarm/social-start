@@ -403,62 +403,28 @@ if (!is_null($events['events'])) {
 				writeData($sql);
 				
 				array_push($msg,[
-					'type' => 'text',
-					'text' => 'สรุปข้อมูล'
-				]);
-				array_push($msg,[
-					'type' => 'text',
-					'text' => 'บันทึกตาย เล้า '.$row['STEP3_VALUE']
-				]);
-				array_push($msg,[
-					'type' => 'text',
-					'text' => 'เพศ '.$row['STEP4_VALUE']
-				]);
-				array_push($msg,[
-					'type' => 'text',
-					'text' => 'จำนวน  '.$text
-				]);
-				array_push($msg,[
-					'type' => 'template',
-					'altText' => 'this is a confirm  template',
-					'template' => [
-						'type' => 'confirm',
-						'text' => 'ยืนยันข้อมูล ? ',
-						'actions' => array(
-							[
-							'type' => 'message',
-							'label' => 'ยืนยัน',
-							'text' => '!YesDead',
-							],[
-							'type' => 'message',
-							'label' => 'ยกเลิก',
-							'text' => '!NoDead',									
-							]
-						)
-					]
-				]);
-				// array_push($msg,[
-						// 'type' => 'template',
-						// 'altText' => 'this is a confirm  template',
-						// 'template' => [
-							// 'type' => 'confirm',
-							// 'text' => 'สรุปข้อมูล บันทึกตาย เล้า '.$row['STEP3_VALUE'].
-									// 'เพศ'.$row['STEP4_VALUE'].
-									// 'จำนวน  '.$text.
-									// 'ยืนยันข้อมูล ? ',
-							// 'actions' => array(
-								// [
-								// 'type' => 'message',
-								// 'label' => 'ยืนยัน',
-								// 'text' => '!YesDead',
-								// ],[
-								// 'type' => 'message',
-								// 'label' => 'ยกเลิก',
-								// 'text' => '!NoDead',									
-								// ]
-							// )
-						// ]
-					// ]);
+						'type' => 'template',
+						'altText' => 'this is a confirm  template',
+						'template' => [
+							'type' => 'confirm',
+							'text' => 'สรุปข้อมูล '.
+									' บันทึกตาย เล้า '.$row['STEP3_VALUE'].
+									'เพศ'.$row['STEP4_VALUE'].
+									'จำนวน  '.$text.
+									'ยืนยันข้อมูล ? ',
+							'actions' => array(
+								[
+								'type' => 'message',
+								'label' => 'ยืนยัน',
+								'text' => '!YesDead',
+								],[
+								'type' => 'message',
+								'label' => 'ยกเลิก',
+								'text' => '!NoDead',									
+								]
+							)
+						]
+					]);
 				}
 				else {
 					if(stristr($text,'!SelDeadTypeDe')) {
