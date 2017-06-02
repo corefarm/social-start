@@ -331,13 +331,17 @@ if (!is_null($events['events'])) {
 				else {
 					
 					updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'process' => 'DEADCULL']);
-						
+					
 					array_push($msg,$msgSexStock['msgVal']);
 					
-					$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
+					if($msgSexStock['msgVal']['val']) {
+						
+						$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 					
-					//final
-					array_push($msg,$msgDeadType['msgVal']);
+						//final
+						array_push($msg,$msgDeadType['msgVal']);
+						
+					}
 				}
 			}
 			
@@ -597,7 +601,8 @@ function retrieveMsgCv($obj) {
 				'msgType' => 'message',
 				'msgVal' => [
 					'type' => 'text',
-					'text' => 'ไม่มีฟาร์มที่เลี้ยงอยู่ กรุณาเลือกเมนูอีกครั้ง'
+					'text' => 'ไม่มีฟาร์มที่เลี้ยงอยู่ กรุณาเลือกเมนูอีกครั้ง',
+					'val' => false
 				]
 			];
 		}
@@ -645,7 +650,7 @@ function retrieveMsgFarmOrg($obj) {
 			]
 		];
 	}
-	else {
+	else {		
 		if(count($arrData) == 1) {
 			$ret = [
 				'msgType' => 'message',
@@ -661,7 +666,8 @@ function retrieveMsgFarmOrg($obj) {
 				'msgType' => 'message',
 				'msgVal' => [
 					'type' => 'text',
-					'text' => 'ไม่มีเล้าที่กำลังเลี้ยงอยู่ กรุณาเลือกเมนูอีกครั้ง'
+					'text' => 'ไม่มีเล้าที่กำลังเลี้ยงอยู่ กรุณาเลือกเมนูอีกครั้ง',
+					'val' => false
 				]
 			];	
 		}
@@ -728,7 +734,8 @@ function retrieveMsgSexStock($obj){
 				'msgType' => 'message',
 				'msgVal' => [
 					'type' => 'text',
-					'text' => 'ไม่มีจำนวนคงเหลือ กรุณาเลือกเมนูอีกครั้ง'
+					'text' => 'ไม่มีจำนวนคงเหลือ กรุณาเลือกเมนูอีกครั้ง',
+					'val' => false
 				]
 			];
 		}
