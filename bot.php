@@ -409,7 +409,7 @@ if (!is_null($events['events'])) {
 							'type' => 'confirm',
 							'text' => 'สรุปข้อมูล '.
 									' บันทึกตาย เล้า '.$row['STEP3_VALUE'].
-									'เพศ'.$row['STEP4_VALUE'].
+									'เพศ '.$row['STEP4_VALUE'].
 									'จำนวน  '.$text.
 									'ยืนยันข้อมูล ? ',
 							'actions' => array(
