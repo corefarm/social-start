@@ -201,12 +201,12 @@ if (!is_null($events['events'])) {
 								'type' => 'postback',
 								'label' => $today,
 								'data' => 'action=buy&itemid=123',
-								'text' => '!SelDateDe '.$today,
+								'text' => '<วันที่> '.$today,
 								],[
 								'type' => 'postback',
 								'label' => $yesterday,
 								'data' => 'action=buy&itemid=123',	
-								'text' => '!SelDateDe '.$yesterday,
+								'text' => '<วันที่> '.$yesterday,
 								]
 							)
 						]
@@ -215,9 +215,9 @@ if (!is_null($events['events'])) {
 				array_push($msg,$msgDate);
 			}
 			
-			if(stristr($text,'!SelDateDe') ) {
+			if(stristr($text,'<วันที่>') ) {
 				
-				$STEP1_VALUE = str_replace('!SelDateDe ','',$text);
+				$STEP1_VALUE = str_replace('<วันที่> ','',$text);
 				
 				// $sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						// SET  \"STEP_ACTION\"='INPUTDATE', \"STEP1_VALUE\"='$STEP1_VALUE'
