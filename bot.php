@@ -470,10 +470,12 @@ if (!is_null($events['events'])) {
 								'text' => 'บันทึกข้อมูลเรียบร้อย'
 						]);
 						
+						$completeSticker = array("114","138","125","13","137","407");
+						
 						array_push($msg,[
 							'type' => 'sticker',
 							'packageId' => '1',
-							'stickerId' => 138
+							'stickerId' => $completeSticker[rand(0, 5)]
 						]);
 					}
 				}
@@ -492,10 +494,12 @@ if (!is_null($events['events'])) {
 						'text' => 'ยกเลิกเรียบร้อย'
 				]);
 				
+				$cancelSticker = array("9","16","111","123","135","403");
+				
 				array_push($msg,[
 					'type' => 'sticker',
 					'packageId' => '1',
-					'stickerId' => 139
+					'stickerId' => $cancelSticker[rand(0, 5)]
 				]);
 			}
 
