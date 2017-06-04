@@ -274,9 +274,9 @@ if (!is_null($events['events'])) {
 				}
 			}
 
-			if(stristr($text,'!SelCvDe') ) {				
+			if(stristr($text,'<ฟาร์ม>') ) {				
 				
-				$STEP2_VALUE = str_replace('!SelCvDe ','',$text);
+				$STEP2_VALUE = str_replace('<ฟาร์ม> ','',$text);
 				
 				updateStep(['userId' => $userId, 'step' => 2, 'val' => $STEP2_VALUE, 'process' => 'DEADCULL']);
 				
@@ -317,9 +317,9 @@ if (!is_null($events['events'])) {
 				}
 			}
 					
-			if(stristr($text,'!SelFarmDe') ) {
+			if(stristr($text,'<หลัง>') ) {
 				
-				$STEP3_VALUE = str_replace('!SelFarmDe ','',$text);
+				$STEP3_VALUE = str_replace('<หลัง> ','',$text);
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='INPUTFARMORG', \"STEP3_VALUE\"='$STEP3_VALUE'
@@ -350,9 +350,9 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
-			if(stristr($text,'!SelSexDe') ) {
+			if(stristr($text,'<เพศ>') ) {
 				
-				$STEP4_VALUE = str_replace('!SelSexDe ','',$text);
+				$STEP4_VALUE = str_replace('<เพศ> ','',$text);
 				
 				$sQty = explode(" qty :", $STEP4_VALUE);
 				
@@ -370,7 +370,7 @@ if (!is_null($events['events'])) {
 				
 			}
 			
-			if(stristr($text,'!SelDeadTypeDe')) {
+			if(stristr($text,'<สาเหตุ>')) {
 				
 				$STEP5_VALUE = explode(" ", $text);
 				$STEP5_VALUE = $STEP5_VALUE[1];
@@ -416,18 +416,18 @@ if (!is_null($events['events'])) {
 								[
 								'type' => 'message',
 								'label' => 'ยืนยัน',
-								'text' => '!YesDead',
+								'text' => '<ยืนยัน>',
 								],[
 								'type' => 'message',
 								'label' => 'ยกเลิก',
-								'text' => '!NoDead',									
+								'text' => '<ยกเลิก>',									
 								]
 							)
 						]
 					]);
 				}
 				else {
-					if(stristr($text,'!SelDeadTypeDe')) {
+					if(stristr($text,'<สาเหตุ>')) {
 						
 					}
 					else {
@@ -439,7 +439,7 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
-			if ($text  == '!YesDead') {
+			if ($text  == '<ยืนยัน>') {
 				
 				$sql = "select * from \"FR_DATA_COLLECTION\" where 
 					\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' and 
@@ -476,7 +476,7 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
-			if ($text  == '!NoDead') {
+			if ($text  == '<ยกเลิก>') {
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 					SET  \"STEP_ACTION\"='INCOMPLETE', \"STEP7_VALUE\"='$text', \"PROCESS_STATUS\"='INCOMPLETE'
@@ -572,7 +572,7 @@ function retrieveMsgCv($obj) {
 				'type' => 'postback',
 				'label' => $val['Farm_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelCvDe '.$val['Farm_Code'],
+				'text' => '<ฟาร์ม> '.$val['Farm_Code'],
 			]);
 		}
 		
@@ -637,7 +637,7 @@ function retrieveMsgFarmOrg($obj) {
 				'type' => 'postback',
 				'label' => $val['Farm_Org'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelFarmDe '.$val['Farm_Org'],
+				'text' => '<หลัง> '.$val['Farm_Org'],
 			]);
 		}
 		
@@ -705,7 +705,7 @@ function retrieveMsgSexStock($obj){
 				'type' => 'postback',
 				'label' => $val['Sex'].' qty :'.$val['Bd_Qty'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelSexDe '.$val['Sex'].' qty :'.$val['Bd_Qty'],
+				'text' => '<เพศ> '.$val['Sex'].' qty :'.$val['Bd_Qty'],
 			]);
 		}
 		
@@ -773,7 +773,7 @@ function retrieveMsgDeadType($obj) {
 				'type' => 'postback',
 				'label' => $val['Reason_Dead_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '!SelDeadTypeDe '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name'],
+				'text' => '<สาเหตุ> '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name'],
 			]);
 		}
 		
@@ -796,7 +796,7 @@ function retrieveMsgDeadType($obj) {
 			'msgType' => 'message',
 			'msgVal' => [
 				'type' => 'text',
-				'text' => '!SelDeadTypeDe '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name']
+				'text' => '<สาเหตุ> '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name']
 			]
 		];
 	}
