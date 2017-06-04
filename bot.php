@@ -44,6 +44,9 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'];
+			
+				error_log('$text >>>>>>>>>'.$text.'<<<<<<<< $text');
+	
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
@@ -108,7 +111,7 @@ if (!is_null($events['events'])) {
 											'type' => 'postback',
 											'label' => 'ตาย/คัดทิ้ง',
 											'data' => 'action=buy&itemid=123',
-											'text' => '!MaDeadCull',
+											'text' => '<บันทึกตาย>',
 											],
 											[
 											'type' => 'postback',
@@ -173,7 +176,7 @@ if (!is_null($events['events'])) {
 			}			 		
 			
 			// SABPAROD LANDING HERE
-			if($text == '!MaDeadCull') {
+			if($text == '<บันทึกตาย>') {
 				
 				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
 				
