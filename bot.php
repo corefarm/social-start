@@ -810,7 +810,7 @@ function retrieveMsgCv($obj) {
 				'msgType' => 'message',
 				'msgVal' => [
 					'type' => 'text',
-					'text' => ($obj['menu'] > 'dead' ? '<ฟาร์ม>' : '<ฟาร์มเบิกอาหาร>').$arrData[0]['Farm_Name'],
+					'text' => ($obj['menu'] == 'dead' ? '<ฟาร์ม>' : '<ฟาร์มเบิกอาหาร>').$arrData[0]['Farm_Name'],
 					'val' => $arrData[0]['Farm_Code']
 				]
 			];
@@ -875,7 +875,7 @@ function retrieveMsgFarmOrg($obj) {
 				'msgType' => 'message',
 				'msgVal' => [
 					'type' => 'text',
-					'text' => ($obj['menu'] > 'dead' ? '<หลัง>' : '<เล้าเบิกอาหาร>').$arrData[0]['Farm_Org'],
+					'text' => ($obj['menu'] == 'dead' ? '<หลัง>' : '<เล้าเบิกอาหาร>').$arrData[0]['Farm_Org'],
 					'val' => $arrData[0]['Farm_Org']
 				]
 			];	
