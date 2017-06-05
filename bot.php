@@ -1029,7 +1029,7 @@ function retrieveGenDeadSwineResult($obj){
 
 function retrieveMsgProduct($obj) {
 	
-	$arrData = retrieveServiceData([ 'service' => 'GetFarmsResult', 'userId' => $obj['userId']]);
+	$arrData = retrieveServiceData([ 'service' => 'GetSWFeedStocksResult', 'userId' => $obj['userId'], 'orgSel' => $obj['orgSel']]);
 	
 	if(count($arrData) > 1) {
 		
