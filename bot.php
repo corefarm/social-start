@@ -218,7 +218,7 @@ if (!is_null($events['events'])) {
 				
 				$STEP1_VALUE = str_replace('<วันที่> ','',$text);
 				
-				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'process' => 'DEADCULL']);
+				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'dead']);
 				
 				$msgCv = retrieveMsgCv(['userId' => $userId, 'menu' => 'dead']);
 				
@@ -227,7 +227,7 @@ if (!is_null($events['events'])) {
 				}
 				else {
 					
-					updateStep(['userId' => $userId, 'step' => 2, 'val' => $msgCv['msgVal']['val'], 'process' => 'DEADCULL']);
+					updateStep(['userId' => $userId, 'step' => 2, 'val' => $msgCv['msgVal']['val'], 'menu' => 'dead']);
 					
 					array_push($msg,$msgCv['msgVal']);
 					
@@ -239,7 +239,7 @@ if (!is_null($events['events'])) {
 					}
 					else {
 						
-						updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'process' => 'DEADCULL']);
+						updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'menu' => 'dead']);
 						
 						array_push($msg,$msgFarmOrg['msgVal']);
 						
@@ -251,7 +251,7 @@ if (!is_null($events['events'])) {
 						}
 						else {
 							
-							updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'process' => 'DEADCULL']);
+							updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'menu' => 'dead']);
 							
 							array_push($msg,$msgSexStock['msgVal']);
 							
@@ -271,7 +271,7 @@ if (!is_null($events['events'])) {
 				
 				$STEP2_VALUE = str_replace('<ฟาร์ม> ','',$text);
 				
-				updateStep(['userId' => $userId, 'step' => 2, 'val' => $STEP2_VALUE, 'process' => 'DEADCULL']);
+				updateStep(['userId' => $userId, 'step' => 2, 'val' => $STEP2_VALUE, 'menu' => 'dead']);
 				
 				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $STEP2_VALUE, 'menu' => 'dead' ]);
 				
@@ -282,7 +282,7 @@ if (!is_null($events['events'])) {
 				}
 				else {
 				
-					updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'process' => 'DEADCULL']);
+					updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'menu' => 'dead']);
 						
 					array_push($msg,$msgFarmOrg['msgVal']);
 						
@@ -294,7 +294,7 @@ if (!is_null($events['events'])) {
 					}
 					else {
 						
-						updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'process' => 'DEADCULL']);
+						updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'menu' => 'dead']);
 						
 						array_push($msg,$msgSexStock['msgVal']);
 						
@@ -328,7 +328,7 @@ if (!is_null($events['events'])) {
 				}
 				else {
 					
-					updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'process' => 'DEADCULL']);
+					updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'menu' => 'dead']);
 					
 					array_push($msg,$msgSexStock['msgVal']);
 					
@@ -350,12 +350,8 @@ if (!is_null($events['events'])) {
 				$sQty = explode(" qty :", $STEP4_VALUE);
 				
 				$STEP4_VALUE = $sQty[0].','.$sQty[1];
-				
-				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						SET  \"STEP_ACTION\"='INPUTSEX', \"STEP4_VALUE\"='$STEP4_VALUE'
-						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
-                 
-				writeData($sql);
+                
+				updateStep(['userId' => $userId, 'step' => 4, 'val' => $STEP4_VALUE, 'menu' => 'dead']);
 				
 				$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 					
@@ -368,11 +364,7 @@ if (!is_null($events['events'])) {
 				$STEP5_VALUE = explode(" ", $text);
 				$STEP5_VALUE = $STEP5_VALUE[1];
 				
-				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-						SET  \"STEP_ACTION\"='INPUTDEADTYPE', \"STEP5_VALUE\"='$STEP5_VALUE'
-						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
-                 
-				writeData($sql);
+				updateStep(['userId' => $userId, 'step' => 5, 'val' => $STEP5_VALUE, 'menu' => 'dead']);
 				
 				array_push($msg,[
 						'type' => 'text',
@@ -390,10 +382,7 @@ if (!is_null($events['events'])) {
 			while ($row = pg_fetch_assoc($result)) {
 				if (is_numeric($text)) {
 				
-				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-					SET  \"STEP_ACTION\"='INPUTQTY', \"STEP6_VALUE\"='$text'
-						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";		
-				writeData($sql);
+				updateStep(['userId' => $userId, 'step' => 6, 'val' => $text, 'menu' => 'dead']);
 				
 				array_push($msg,[
 						'type' => 'template',
@@ -448,12 +437,8 @@ if (!is_null($events['events'])) {
 						'deadType' => explode(",", $row['STEP5_VALUE'])[0],
 						'sex' => explode(",", $row['STEP4_VALUE'])[0],
 						'qty' => $row['STEP6_VALUE']])) {
-								
-						$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-							SET  \"STEP_ACTION\"='COMPLETE', \"STEP7_VALUE\"='$text', \"PROCESS_STATUS\"='COMPLETE'
-							WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' ";
-								
-						writeData($sql);
+						
+						updateStep(['userId' => $userId, 'step' => 7, 'val' => $text, 'menu' => 'dead']);
 						
 						array_push($msg,[
 								'type' => 'text',
@@ -539,7 +524,7 @@ if (!is_null($events['events'])) {
 				
 				$STEP1_VALUE = str_replace('<วันที่เบิกอาหาร> ','',$text);
 				
-				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'process' => 'FEEDUSAGE']);
+				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'feed']);
 				
 				$msgCv = retrieveMsgCv(['userId' => $userId, 'menu' => 'feed']);
 				
@@ -548,7 +533,7 @@ if (!is_null($events['events'])) {
 				}
 				else {
 					
-					updateStep(['userId' => $userId, 'step' => 2, 'val' => $msgCv['msgVal']['val'], 'process' => 'FEEDUSAGE']);
+					updateStep(['userId' => $userId, 'step' => 2, 'val' => $msgCv['msgVal']['val'], 'menu' => 'feed']);
 					
 					array_push($msg,$msgCv['msgVal']);
 					
@@ -560,7 +545,7 @@ if (!is_null($events['events'])) {
 					}
 					else {
 						
-						updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'process' => 'FEEDUSAGE']);
+						updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'menu' => 'feed']);
 						
 						array_push($msg,$msgFarmOrg['msgVal']);
 						
@@ -572,7 +557,7 @@ if (!is_null($events['events'])) {
 						}
 						else {
 							
-							updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgProduct['msgVal']['val'], 'process' => 'FEEDUSAGE']);
+							updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgProduct['msgVal']['val'], 'menu' => 'feed']);
 							
 							array_push($msg,$msgProduct['msgVal']);
 							
@@ -592,7 +577,7 @@ if (!is_null($events['events'])) {
 				
 				$STEP2_VALUE = str_replace('<ฟาร์มเบิกอาหาร> ','',$text);
 				
-				updateStep(['userId' => $userId, 'step' => 2, 'val' => $STEP2_VALUE, 'process' => 'FEEDUSAGE']);
+				updateStep(['userId' => $userId, 'step' => 2, 'val' => $STEP2_VALUE, 'menu' => 'feed']);
 				
 				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $STEP2_VALUE, 'menu' => 'feed' ]);
 				
@@ -603,7 +588,7 @@ if (!is_null($events['events'])) {
 				}
 				else {
 				
-					updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'process' => 'FEEDUSAGE']);
+					updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'menu' => 'feed']);
 						
 					array_push($msg,$msgFarmOrg['msgVal']);
 						
@@ -615,7 +600,7 @@ if (!is_null($events['events'])) {
 					}
 					else {
 						
-						updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgProduct['msgVal']['val'], 'process' => 'FEEDUSAGE']);
+						updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgProduct['msgVal']['val'], 'menu' => 'feed']);
 						
 						array_push($msg,$msgProduct['msgVal']);
 						
@@ -634,7 +619,7 @@ if (!is_null($events['events'])) {
 				
 				$STEP3_VALUE = str_replace('<เล้าเบิกอาหาร>','',$text);
 				
-				updateStep(['userId' => $userId, 'step' => 3, 'val' => $STEP3_VALUE, 'process' => 'FEEDUSAGE']);
+				updateStep(['userId' => $userId, 'step' => 3, 'val' => $STEP3_VALUE, 'menu' => 'feed']);
 				
 				$msgProduct = retrieveMsgProduct(['userId' => $userId , 'orgSel' => $STEP3_VALUE]);
 				
@@ -644,7 +629,7 @@ if (!is_null($events['events'])) {
 					}
 				else {
 					
-					updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgProduct['msgVal']['val'], 'process' => 'FEEDUSAGE']);
+					updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgProduct['msgVal']['val'], 'menu' => 'feed']);
 					
 					array_push($msg,$msgProduct['msgVal']);
 					
@@ -661,7 +646,7 @@ if (!is_null($events['events'])) {
 			/*input qty */
 			$sql = "select * from \"FR_DATA_COLLECTION\" where 
 			\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'FEEDUSAGE' and 
-			\"STEP_ACTION\"='INPUTDEADTYPE' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
+			\"STEP_ACTION\"='INPUTPRODUCT' AND \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
 			
 			$result =  writeData($sql);
 			
@@ -739,7 +724,7 @@ function updateStep($obj) {
 	$stepAction = '';
 	$val = $obj['val'];
 	$id = $obj['userId'];
-	$process = $obj['process'];
+	$process = ($obj['menu'] == 'dead' ? 'DEADCULL' : 'FEEDUSAGE');
 	$step = $obj['step'];
 	
 	switch ($step) {
@@ -753,13 +738,13 @@ function updateStep($obj) {
 			$stepAction = 'INPUTFARMORG';
 		break;
 		case 4:
-			$stepAction = 'INPUTSEX';
+			$stepAction = ($obj['menu'] == 'dead' ? 'INPUTSEX' : 'INPUTPRODUCT');
 		break;
 		case 5:
-			$stepAction = 'INPUTDEADTYPE';
+			$stepAction = ($obj['menu'] == 'dead' ? 'INPUTDEADTYPE' : 'INPUTFEEDQTY');
 		break;
 		case 6:
-			$stepAction = 'INPUTQTY';
+			$stepAction = ($obj['menu'] == 'dead' ? 'INPUTQTY' : 'COMPLETE');
 		break;
 		case 7:
 			$stepAction = 'COMPLETE';
