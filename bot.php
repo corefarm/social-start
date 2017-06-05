@@ -45,7 +45,7 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			$text = $event['message']['text'];
 			
-				error_log('$text >>>>>>>>>'.$text.'<<<<<<<< $text');
+			error_log('$text >>>>>>>>>'.$text.'<<<<<<<< $text');
 	
 			// Get replyToken
 			$replyToken = $event['replyToken'];
@@ -108,19 +108,16 @@ if (!is_null($events['events'])) {
 										'text' => 'บันทึกข้อมูล',
 										'actions' => array(
 											[
-											'type' => 'postback',
-											'label' => 'ตาย/คัดทิ้ง',
-											'data' => 'action=buy&itemid=123',
-											'text' => '<บันทึกตาย>',
+												'type' => 'postback',
+												'label' => 'ตาย/คัดทิ้ง',
+												'data' => 'action=buy&itemid=123',
+												'text' => '<บันทึกตาย>',
 											],
 											[
-											'type' => 'postback',
-											'label' => 'ใข้อาหาร',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaFeed',											
-/* 											'type' => 'uri',
-											'label' => 'Information',
-											'uri' => 'https://en.wikipedia.org/wiki/Wiki', */
+												'type' => 'postback',
+												'label' => 'ใข้อาหาร',
+												'data' => 'action=buy&itemid=123',
+												'text' => '<บันทึกใช้อาหาร>',
 											]
 									)],							
 /* 									[
@@ -175,7 +172,6 @@ if (!is_null($events['events'])) {
 				];			
 			}			 		
 			
-			// SABPAROD LANDING HERE
 			if($text == '<บันทึกตาย>') {
 				
 				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
@@ -502,9 +498,145 @@ if (!is_null($events['events'])) {
 					'stickerId' => $cancelSticker[rand(0, 5)]
 				]);
 			}
+			
+			//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= FEED USAGE =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
+			
+			if($text == '<บันทึกใช้อาหาร>') {
+				
+				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
+				
+				//writeData($sqlDelete);
+				
+				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
+				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
+				VALUES ('$userId', 'FEEDUSAGE', 'MENUSELECT', now(), 'KEYING') ";
+				
+				//writeData($sql);
+				
+				$today = date('d/m/Y');   
+				$yesterday = date('d/m/Y', strtotime(' -1 day'));
+				
+				$msgDate = [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'buttons',
+							'title' => 'กรุณาเลือกวันที่',
+							'text' => 'Please select date.',
+							'actions' => 
+								[
+									'type' => 'postback',
+									'label' => $today,
+									'data' => 'action=buy&itemid=123',
+									'text' => '<วันที่เบิกอาหาร> '.$today,
+								],[
+									'type' => 'postback',
+									'label' => $yesterday,
+									'data' => 'action=buy&itemid=123',	
+									'text' => '<วันที่เบิกอาหาร> '.$yesterday,
+								]
+						]
+				];
+				
+				array_push($msg,$msgDate);
+			}
+			
+			if(stristr($text,'<วันที่เบิกอาหาร>') ) {
+				
+				$STEP1_VALUE = str_replace('<วันที่เบิกอาหาร> ','',$text);
+				
+				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'process' => 'FEEDUSAGE']);
+				
+				$msgCv = retrieveMsgCv(['userId' => $userId]);
+				
+				if($msgCv['msgType'] == 'template') {
+					array_push($msg,$msgCv['msgVal']);
+				}
+				else {
+					
+					updateStep(['userId' => $userId, 'step' => 2, 'val' => $msgCv['msgVal']['val'], 'process' => 'FEEDUSAGE']);
+					
+					array_push($msg,$msgCv['msgVal']);
+					
+					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val']]);
+					
+					if($msgFarmOrg['msgType'] == 'template') {
+						
+						array_push($msg,$msgFarmOrg['msgVal']);
+					}
+					else {
+						
+						updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'process' => 'FEEDUSAGE']);
+						
+						array_push($msg,$msgFarmOrg['msgVal']);
+						
+						$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $msgFarmOrg['msgVal']['val']]);
+						
+						if($msgSexStock['msgType'] == 'template') {
+							
+							array_push($msg,$msgSexStock['msgVal']);
+						}
+						else {
+							
+							updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'process' => 'FEEDUSAGE']);
+							
+							array_push($msg,$msgSexStock['msgVal']);
+							
+							if($msgSexStock['msgVal']['val']) {
+								$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
+							
+								//final
+								array_push($msg,$msgDeadType['msgVal']);
+								
+							}
+						}
+					}
+				}
+			}
 
-			// END SABPAROD LANDING HERE
-
+			if(stristr($text,'<ฟาร์ม>') ) {				
+				
+				$STEP2_VALUE = str_replace('<ฟาร์ม> ','',$text);
+				
+				updateStep(['userId' => $userId, 'step' => 2, 'val' => $STEP2_VALUE, 'process' => 'DEADCULL']);
+				
+				$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $STEP2_VALUE ]);
+				
+				if($msgFarmOrg['msgType'] == 'template') {
+					
+					array_push($msg,$msgFarmOrg['msgVal']);
+					
+				}
+				else {
+				
+					updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'process' => 'DEADCULL']);
+						
+					array_push($msg,$msgFarmOrg['msgVal']);
+						
+					$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $msgFarmOrg['msgVal']['val']]);
+					
+					if($msgSexStock['msgType'] == 'template') {
+						
+						array_push($msg,$msgSexStock['msgVal']);
+					}
+					else {
+						
+						updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'process' => 'DEADCULL']);
+						
+						array_push($msg,$msgSexStock['msgVal']);
+						
+						if($msgSexStock['msgVal']['val']) {
+							
+							$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
+						
+							//final
+							array_push($msg,$msgDeadType['msgVal']);
+							
+						}
+					}
+				}
+			}
+			
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
@@ -568,7 +700,7 @@ function updateStep($obj) {
 
 function retrieveMsgCv($obj) {
 
-	$arrData = retrieveServiceData([ 'service' => 'farm', 'userId' => $obj['userId']]);
+	$arrData = retrieveServiceData([ 'service' => 'GetFarmsResult', 'userId' => $obj['userId']]);
 	
 	if(count($arrData) > 1) {
 		
@@ -634,7 +766,7 @@ function retrieveMsgCv($obj) {
 }
 function retrieveMsgFarmOrg($obj) {
 	
-	$arrData = retrieveServiceData([ 'service' => 'farmorg', 'userId' => $obj['userId'],'cvFarm' => $obj['cvFarm']]);
+	$arrData = retrieveServiceData([ 'service' => 'GetFarmOrgsResult', 'userId' => $obj['userId'],'cvFarm' => $obj['cvFarm']]);
 	
 	if(count($arrData) > 1) {
 		$arrMessageDs = array();
@@ -698,11 +830,7 @@ function retrieveMsgFarmOrg($obj) {
 }
 function retrieveMsgSexStock($obj){
 	
-	$arrData = retrieveServiceData([ 
-		'service' => 'getbdstock', 
-		'userId' => $obj['userId'],
-		'orgSel' => $obj['orgSel']
-	]);
+	$arrData = retrieveServiceData([ 'service' => 'GetBdStocksResult', 'userId' => $obj['userId'], 'orgSel' => $obj['orgSel']]);
 	
 	if(count($arrData) > 1) {
 		$arrMessageDs = array();
@@ -767,10 +895,7 @@ function retrieveMsgSexStock($obj){
 }
 function retrieveMsgDeadType($obj) {
 	
-	$arrData = retrieveServiceData([ 
-		'service' => 'reasondead', 
-		'userId' => $obj['userId']
-	]);
+	$arrData = retrieveServiceData([ 'service' => 'GetReasonDeadsResult', 'userId' => $obj['userId']]);
 	
 	if(count($arrData) > 1) {
 		$arrMessageDs = array(); 
@@ -813,7 +938,7 @@ function retrieveMsgDeadType($obj) {
 }
 function retrieveGenDeadSwineResult($obj){
 	$arrData = retrieveServiceData([ 
-		'service' => 'deadswine', 
+		'service' => 'GenDeadSwineResult', 
 		'userId' => $obj['userId'],
 		'orgSel' => $obj['orgSel'],
 		'deadType' => $obj['deadType'],
@@ -827,32 +952,88 @@ function retrieveGenDeadSwineResult($obj){
 	return false;
 }
 
+function retrieveMsgProduct($obj) {
+	
+	$arrData = retrieveServiceData([ 'service' => 'GetFarmsResult', 'userId' => $obj['userId']]);
+	
+	if(count($arrData) > 1) {
+		
+		$arrMessageDs = array(); 
+		
+		foreach ($arrData as $val) {
+			array_push($arrMessageDs,[
+				'type' => 'postback',
+				'label' => $val['Farm_Name'],
+				'data' => 'action=buy&itemid=123',
+				'text' => '<ฟาร์ม> '.$val['Farm_Code'],
+			]);
+		}
+		
+		$ret = [
+			'msgType' => 'template',
+			'msgVal' => [
+				'type' => 'template',
+				'altText' => 'this is a buttons template',
+				'template' => [
+					'type' => 'buttons',
+					'title' => 'กรุณาเลือกเล้า',
+					'text' => 'Please select pen.',
+					'actions' => $arrMessageDs
+				]
+			]
+		];						
+	}
+	else {
+		if(count($arrData) == 1) {
+			$ret = [
+				'msgType' => 'message',
+				'msgVal' => [
+					'type' => 'text',
+					'text' => 'ฟาร์ม '.$arrData[0]['Farm_Name'],
+					'val' => $arrData[0]['Farm_Code']
+				]
+			];
+		}
+		else {
+			$ret = [
+				'msgType' => 'message',
+				'msgVal' => [
+					'type' => 'text',
+					'text' => 'ไม่มีฟาร์มที่เลี้ยงอยู่ กรุณาเลือกเมนูอีกครั้ง',
+					'val' => false
+				]
+			];
+		}
+		
+	}
+	
+}
+
 function retrieveServiceData($obj) {
 	
 	$url = 'https://mservice-uat.cpf.co.th/Farm/FarmMobileRestService/FarmMobileRestService.svc/json/';
 	
-	$keyValue = '';
-	
 	switch ($obj['service']) {
-		case 'farm':
+		case 'GetFarmsResult':
 			$url = $url.'farm/'.$obj['userId'];
-			$keyValue = 'GetFarmsResult';
 			break;
-		case 'farmorg':
+		case 'GetFarmOrgsResult':
 			$url = $url.'farmorg/'.$obj['userId'].','.$obj['cvFarm'];
-			$keyValue = 'GetFarmOrgsResult';
 			break;
-		case 'getbdstock':
+		case 'GetBdStocksResult':
 			$url = $url.'getbdstock/'.$obj['userId'].','.$obj['orgSel'];
-			$keyValue = 'GetBdStocksResult';
 			break;
-		case 'reasondead':
+		case 'GetReasonDeadsResult':
 			$url = $url.'reasondead/'.$obj['userId'];
-			$keyValue = 'GetReasonDeadsResult';
 			break;
-		case 'deadswine':
+		case 'GenDeadSwineResult':
 			$url = $url.'deadswine/'.$obj['userId'].','.$obj['orgSel'].','.$obj['deadType'].','.$obj['sex'].','.$obj['qty'];
-			$keyValue = 'GenDeadSwineResult';
+			break;
+		case 'GetSWFeedStocksResult':
+			$url = $url.'getswfeedstock/'.$obj['userId'].','.$obj['orgSel'];
+			break;
+		case 'GenSWFeedUseResult':
+			$url = $url.'getswfeedstock/'.$obj['userId'].','.$obj['orgSel'].','.$obj['product'].','.$['qty'];
 			break;
 		default:
 			break;
@@ -868,7 +1049,7 @@ function retrieveServiceData($obj) {
 	$content = file_get_contents($url,false, stream_context_create($arrContextOptions));
 	$result = json_decode($content, true);
 	
-	return $result[$keyValue];
+	return $result[$obj['service']];
 }
 
 echo 'OK';
