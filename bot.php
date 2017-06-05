@@ -517,7 +517,7 @@ if (!is_null($events['events'])) {
 							'type' => 'buttons',
 							'title' => 'กรุณาเลือกวันที่',
 							'text' => 'Please select date.',
-							'actions' => 
+							'actions' => array(
 								[
 									'type' => 'postback',
 									'label' => $today,
@@ -528,7 +528,7 @@ if (!is_null($events['events'])) {
 									'label' => $yesterday,
 									'data' => 'action=buy&itemid=123',	
 									'text' => '<วันที่เบิกอาหาร>'.$yesterday,
-								]
+								])
 						]
 				];
 				
