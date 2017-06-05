@@ -1033,7 +1033,7 @@ function retrieveServiceData($obj) {
 			$url = $url.'getswfeedstock/'.$obj['userId'].','.$obj['orgSel'];
 			break;
 		case 'GenSWFeedUseResult':
-			$url = $url.'getswfeedstock/'.$obj['userId'].','.$obj['orgSel'].','.$obj['product'].','.$['qty'];
+			$url = $url.'getswfeedstock/'.$obj['userId'].','.$obj['orgSel'].','.$obj['product'].','.$obj['qty'];
 			break;
 		default:
 			break;
