@@ -632,7 +632,7 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'<เล้าเบิกอาหาร>') ) {
 				
-				$STEP3_VALUE = str_replace('<ฟาร์มเบิกอาหาร> ','',$text);
+				$STEP3_VALUE = str_replace('<เล้าเบิกอาหาร>','',$text);
 				
 				updateStep(['userId' => $userId, 'step' => 3, 'val' => $STEP3_VALUE, 'process' => 'FEEDUSAGE']);
 				
