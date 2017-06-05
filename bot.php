@@ -312,7 +312,7 @@ if (!is_null($events['events'])) {
 					
 			if(stristr($text,'<หลัง>') ) {
 				
-				$STEP3_VALUE = str_replace('<หลัง> ','',$text);
+				$STEP3_VALUE = str_replace('<หลัง>','',$text);
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 						SET  \"STEP_ACTION\"='INPUTFARMORG', \"STEP3_VALUE\"='$STEP3_VALUE'
@@ -786,7 +786,7 @@ function retrieveMsgCv($obj) {
 				'type' => 'postback',
 				'label' => $val['Farm_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => ($obj['menu'] > 'dead' ? '<ฟาร์ม>' : '<ฟาร์มเบิกอาหาร>') .$val['Farm_Code'],
+				'text' => ($obj['menu'] == 'dead' ? '<ฟาร์ม>' : '<ฟาร์มเบิกอาหาร>') .$val['Farm_Code'],
 			]);
 		}
 		
@@ -851,7 +851,7 @@ function retrieveMsgFarmOrg($obj) {
 				'type' => 'postback',
 				'label' => $val['Farm_Org'],
 				'data' => 'action=buy&itemid=123',
-				'text' => ($obj['menu'] > 'dead' ? '<หลัง>' : '<เล้าเบิกอาหาร>').$val['Farm_Org'],
+				'text' => ($obj['menu'] == 'dead' ? '<หลัง>' : '<เล้าเบิกอาหาร>').$val['Farm_Org'],
 			]);
 		}
 		
