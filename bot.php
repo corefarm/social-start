@@ -1025,7 +1025,7 @@ function retrieveMsgProduct($obj) {
 				'type' => 'postback',
 				'label' => $val['Product_Code'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '<เบอร์อาหาร> '.$val['Product_Code'],
+				'text' => '<เบอร์อาหาร>'.$val['Product_Code'],
 			]);
 		}
 		
@@ -1036,7 +1036,7 @@ function retrieveMsgProduct($obj) {
 				'altText' => 'this is a buttons template',
 				'template' => [
 					'type' => 'buttons',
-					'title' => 'กรุณาเลือกเล้า',
+					'title' => 'กรุณาเลือกเบอร์อาหาร',
 					'text' => 'Please select pen.',
 					'actions' => $arrMessageDs
 				]
