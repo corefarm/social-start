@@ -1064,7 +1064,7 @@ function retrieveMsgProduct($obj) {
 				'msgType' => 'message',
 				'msgVal' => [
 					'type' => 'text',
-					'text' => 'เบอร์อาหาร'.$arrData[0]['Product_Name'],
+					'text' => '<เบอร์อาหาร>'.$arrData[0]['Product_Name'],
 					'val' => $arrData[0]['Product_Code']
 				]
 			];
