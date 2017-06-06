@@ -1023,9 +1023,9 @@ function retrieveMsgProduct($obj) {
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
-				'label' => $val['Product_Code'],
+				'label' => $val['Org_Code'],
 				'data' => 'action=buy&itemid=123',
-				'text' => '<เบอร์อาหาร>'.$val['Product_Code'],
+				'text' => '<เบอร์อาหาร>'.$val['Org_Code'],
 			]);
 		}
 		
@@ -1049,8 +1049,8 @@ function retrieveMsgProduct($obj) {
 				'msgType' => 'message',
 				'msgVal' => [
 					'type' => 'text',
-					'text' => '<เบอร์อาหาร>'.$arrData[0]['Product_Name'],
-					'val' => $arrData[0]['Product_Code']
+					'text' => '<เบอร์อาหาร>'.$arrData[0]['Org_Code'],
+					'val' => $arrData[0]['Org_Code']
 				]
 			];
 		}
