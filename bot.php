@@ -733,7 +733,8 @@ if (!is_null($events['events'])) {
 					]);
 					
 					if($msgFeedUse[0]['Result_Flag'] == 'Y') {
-						updateStep(['userId' => $userId, 'step' => 7, 'val' => $text, 'menu' => 'dead']);
+						
+						updateStep(['userId' => $userId, 'step' => 6, 'val' => $text, 'menu' => 'dead']);
 					
 						array_push($msg,[
 								'type' => 'text',
@@ -1082,7 +1083,8 @@ function retrieveGenDeadSwineResult($obj){
 		'orgSel' => $obj['orgSel'],
 		'deadType' => $obj['deadType'],
 		'sex' => $obj['sex'],
-		'qty' => $obj['qty']
+		'qty' => $obj['qty'],
+		'date' => $obj['date']
 	]);
 	
 	return $arrData;
