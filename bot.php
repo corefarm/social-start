@@ -646,6 +646,10 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'<เบอร์อาหาร>') ) {
 				
+				$STEP4_VALUE = str_replace('<เล้าเบิกอาหาร>','',$text);
+				
+				updateStep(['userId' => $userId, 'step' => 4, 'val' => $STEP4_VALUE, 'menu' => 'feed']);
+				
 				array_push($msg,[
 							'type' => 'text',
 							'text' => 'กรุณาระบุจำนวน'
