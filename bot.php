@@ -1036,7 +1036,7 @@ function retrieveMsgProduct($obj) {
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
-				'label' => $val['Product_Name'],
+				'label' => str_replace(' ','',$val['Product_Name']),
 				'data' => 'action=buy&itemid=123',
 				'text' => '<เบอร์อาหาร>'.$val['Product_Code'],
 			]);
