@@ -624,7 +624,6 @@ if (!is_null($events['events'])) {
 				$msgProduct = retrieveMsgProduct(['userId' => $userId , 'orgSel' => $STEP3_VALUE]);
 				
 				if($msgProduct['msgType'] == 'template') {
-					error_log('>>>> PRODUCT WITH TEMPLATE <<<<');
 					
 					array_push($msg,$msgProduct['msgVal']);
 				}
@@ -646,7 +645,7 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'<เบอร์อาหาร>') ) {
 				
-				$STEP4_VALUE = str_replace('<เล้าเบิกอาหาร>','',$text);
+				$STEP4_VALUE = str_replace('<เบอร์อาหาร>','',$text);
 				
 				updateStep(['userId' => $userId, 'step' => 4, 'val' => $STEP4_VALUE, 'menu' => 'feed']);
 				
@@ -654,7 +653,6 @@ if (!is_null($events['events'])) {
 							'type' => 'text',
 							'text' => 'กรุณาระบุจำนวน'
 				]);
-				
 			}
 			
 			/*input qty */
@@ -667,10 +665,7 @@ if (!is_null($events['events'])) {
 			while ($row = pg_fetch_assoc($result)) {
 				if (is_numeric($text)) {
 				
-				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
-					SET  \"STEP_ACTION\"='INPUTQTY', \"STEP6_VALUE\"='$text'
-						WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'FEEDUSAGE' ";		
-				writeData($sql);
+				updateStep(['userId' => $userId, 'step' => 5, 'val' => $text, 'menu' => 'feed']);
 				
 				array_push($msg,[
 						'type' => 'template',
@@ -678,7 +673,7 @@ if (!is_null($events['events'])) {
 						'template' => [
 							'type' => 'confirm',
 							'text' => 'สรุปข้อมูล '.
-									' บันทึกตาย เล้า '.$row['STEP3_VALUE'].
+									' บันทึกเบิก เล้า '.$row['STEP3_VALUE'].
 									'เบอร์อาหาร '.$row['STEP4_VALUE'].
 									'จำนวน  '.$text.
 									'ยืนยันข้อมูล ? ',
@@ -686,18 +681,18 @@ if (!is_null($events['events'])) {
 								[
 								'type' => 'message',
 								'label' => 'ยืนยัน',
-								'text' => '<ยืนยัน>',
+								'text' => '<ยืนยันเบิกอาหาร>',
 								],[
 								'type' => 'message',
 								'label' => 'ยกเลิก',
-								'text' => '<ยกเลิก>',									
+								'text' => '<ยกเลิกเบิกอาหาร>',									
 								]
 							)
 						]
 					]);
 				}
 				else {
-					if(stristr($text,'<สาเหตุ>')) {
+					if(stristr($text,'<เบอร์อาหาร>')) {
 						
 					}
 					else {
@@ -709,7 +704,48 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
+			if(stristr($text,'<ยืนยันเบิกอาหาร>') ) {
+				
+				$sql = "select * from \"FR_DATA_COLLECTION\" where 
+					\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'FEEDUSAGE' and 
+					\"STEP_ACTION\"='INPUTFEEDQTY' and \"PROCESS_STATUS\" <> 'COMPLETE'  " ;
+					
+				$result =  writeData($sql);
+				
+				while ($row = pg_fetch_assoc($result)) {
+					
+					$arrData = retrieveGenSWFeedUseResult([ 
+						'userId' => $userId,
+						'orgSel' => $row['STEP3_VALUE'],
+						'product' => $row['STEP4_VALUE'],
+						'qty' => $row['STEP5_VALUE']]);
+					
+					if($arrData[0]['Release_Flage'] == 'Y') {
+						updateStep(['userId' => $userId, 'step' => 7, 'val' => $text, 'menu' => 'dead']);
+					
+						array_push($msg,[
+								'type' => 'text',
+								'text' => 'บันทึกข้อมูลเรียบร้อย'
+						]);
+						
+						$completeSticker = array("114","138","125","13","137","407");
+						
+						array_push($msg,[
+							'type' => 'sticker',
+							'packageId' => '1',
+							'stickerId' => $completeSticker[rand(0, 5)]
+						]);
+					}
+					else {
+						
+					}	
+				}
+			}
 			
+			if(stristr($text,'<ยกเลิกเบิกอาหาร>') ) {
+				
+				
+			}
 			
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
