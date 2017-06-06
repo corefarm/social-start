@@ -522,7 +522,7 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'<วันที่เบิกอาหาร>') ) {
 				
-				$STEP1_VALUE = str_replace('<วันที่เบิกอาหาร> ','',$text);
+				$STEP1_VALUE = str_replace('<วันที่เบิกอาหาร>','',$text);
 				
 				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'feed']);
 				
@@ -1028,8 +1028,6 @@ function retrieveMsgProduct($obj) {
 				'text' => '<เบอร์อาหาร>'.$val['Product_Code'],
 			]);
 		}
-		
-		error_log(json_encode($arrMessageDs).'<<<<<<<<<<<<<<<<<<<<< MESSAGE ERROR LOG');
 		
 		$ret = [
 			'msgType' => 'template',
