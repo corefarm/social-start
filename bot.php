@@ -619,6 +619,8 @@ if (!is_null($events['events'])) {
 				
 				$STEP3_VALUE = str_replace('<เล้าเบิกอาหาร>','',$text);
 				
+				error_log($STEP3_VALUE.'STEP 3 <<<<<<<<<<<<<<<<<<');
+				
 				updateStep(['userId' => $userId, 'step' => 3, 'val' => $STEP3_VALUE, 'menu' => 'feed']);
 				
 				$msgProduct = retrieveMsgProduct(['userId' => $userId , 'orgSel' => $STEP3_VALUE]);
