@@ -646,13 +646,20 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'<เบอร์อาหาร>') ) {
 				
-				array_push($msg,[
-							'msgType' => 'message',
-							'msgVal' => [
-								'type' => 'text',
-								'text' => 'กรุณากรอกจำนวนอาหาร'
-							]
-				]);
+				$msgGenSw = retrieveGenSWFeedUseResult();
+				
+				if($msgGenSw[0]['Result_Flag'] == 'Y') {
+					array_push($msg,[
+							'type' => 'text',
+							'text' => 'ได้เฉย'
+					]);
+				}
+				else {
+					array_push($msg,[
+							'type' => 'text',
+							'text' => 'กรุณาระบุใหม่อีกครั้ง'
+					]);
+				}
 				
 			}
 			
@@ -1093,10 +1100,7 @@ function retrieveGenSWFeedUseResult($obj) {
 		'qty' => $obj['qty']
 	]);
 	
-	if($arrData[0]['Result_Flag'] == 'Y'){
-		return true;
-	}
-	return false;
+	return $arrData;
 }
 
 function retrieveServiceData($obj) {
