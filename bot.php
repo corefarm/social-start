@@ -724,7 +724,7 @@ if (!is_null($events['events'])) {
 						'date' => $dt[2].$dt[1].$dt[0]
 					]);
 					
-					if($arrData[0]['Release_Flage'] == 'Y') {
+					if($arrData[0]['Result_Flag'] == 'Y') {
 						updateStep(['userId' => $userId, 'step' => 7, 'val' => $text, 'menu' => 'dead']);
 					
 						array_push($msg,[
