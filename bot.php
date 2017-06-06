@@ -644,6 +644,18 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
+			if(stristr($text,'<เบอร์อาหาร>') ) {
+				
+				array_push($msg,[
+							'msgType' => 'message',
+							'msgVal' => [
+								'type' => 'text',
+								'text' => 'กรุณากรอกจำนวนอาหาร'
+							]
+				]);
+				
+			}
+			
 			/*input qty */
 			$sql = "select * from \"FR_DATA_COLLECTION\" where 
 			\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'FEEDUSAGE' and 
@@ -1024,7 +1036,7 @@ function retrieveMsgProduct($obj) {
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
-				'label' => $val['Product_Code'],
+				'label' => $val['Product_Name'],
 				'data' => 'action=buy&itemid=123',
 				'text' => '<เบอร์อาหาร>'.$val['Product_Code'],
 			]);
