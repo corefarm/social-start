@@ -646,20 +646,10 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'<เบอร์อาหาร>') ) {
 				
-				$msgGenSw = retrieveGenSWFeedUseResult();
-				
-				if($msgGenSw[0]['Result_Flag'] == 'Y') {
-					array_push($msg,[
+				array_push($msg,[
 							'type' => 'text',
-							'text' => 'ได้เฉย'
-					]);
-				}
-				else {
-					array_push($msg,[
-							'type' => 'text',
-							'text' => 'กรุณาระบุใหม่อีกครั้ง'
-					]);
-				}
+							'text' => 'กรุณาระบุจำนวน'
+				]);
 				
 			}
 			
