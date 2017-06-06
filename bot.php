@@ -1068,6 +1068,7 @@ function retrieveMsgProduct($obj) {
 		
 	}
 	
+	return $ret;
 }
 
 function retrieveGenSWFeedUseResult($obj) {
