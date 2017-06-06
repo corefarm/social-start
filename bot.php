@@ -714,11 +714,15 @@ if (!is_null($events['events'])) {
 				
 				while ($row = pg_fetch_assoc($result)) {
 					
+					$dt = explode("/", $row['STEP1_VALUE']);
+					
 					$arrData = retrieveGenSWFeedUseResult([ 
 						'userId' => $userId,
 						'orgSel' => $row['STEP3_VALUE'],
 						'product' => $row['STEP4_VALUE'],
-						'qty' => $row['STEP5_VALUE']]);
+						'qty' => $row['STEP5_VALUE'],
+						'date' => $dt[2].$dt[1].$dt[0]
+					]);
 					
 					if($arrData[0]['Release_Flage'] == 'Y') {
 						updateStep(['userId' => $userId, 'step' => 7, 'val' => $text, 'menu' => 'dead']);
@@ -1127,7 +1131,8 @@ function retrieveGenSWFeedUseResult($obj) {
 		'userId' => $obj['userId'],
 		'orgSel' => $obj['orgSel'],
 		'product' => $obj['product'],
-		'qty' => $obj['qty']
+		'qty' => $obj['qty'],
+		'date' => $obj['date']
 	]);
 	
 	return $arrData;
@@ -1151,13 +1156,13 @@ function retrieveServiceData($obj) {
 			$url = $url.'reasondead/'.$obj['userId'];
 			break;
 		case 'GenDeadSwineResult':
-			$url = $url.'deadswine/'.$obj['userId'].','.$obj['orgSel'].','.$obj['deadType'].','.$obj['sex'].','.$obj['qty'];
+			$url = $url.'deadswine/'.$obj['userId'].','.$obj['orgSel'].','.$obj['deadType'].','.$obj['sex'].','.$obj['qty'].','.$obj['date'];
 			break;
 		case 'GetSWFeedStocksResult':
 			$url = $url.'getswfeedstock/'.$obj['userId'].','.$obj['orgSel'];
 			break;
 		case 'GenSWFeedUseResult':
-			$url = $url.'genswfeeduse/'.$obj['userId'].','.$obj['orgSel'].','.$obj['product'].','.$obj['qty'];
+			$url = $url.'genswfeeduse/'.$obj['userId'].','.$obj['orgSel'].','.$obj['product'].','.$obj['qty'].','.$obj['date'];
 			break;
 		default:
 			break;
