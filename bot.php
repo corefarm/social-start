@@ -431,15 +431,20 @@ if (!is_null($events['events'])) {
 				
 				while ($row = pg_fetch_assoc($result)) {
 					
-					if(retrieveGenDeadSwineResult([ 
+					$dt = explode("/", $row['STEP1_VALUE']);
+					
+					$msgDeadSw = retrieveGenDeadSwineResult([ 
 						'userId' => $userId,
 						'orgSel' => $row['STEP3_VALUE'],
 						'deadType' => explode(",", $row['STEP5_VALUE'])[0],
 						'sex' => explode(",", $row['STEP4_VALUE'])[0],
-						'qty' => $row['STEP6_VALUE']])) {
-						
+						'qty' => $row['STEP6_VALUE'],
+						'date' => $dt[2].$dt[1].$dt[0]
+					]);
+					
+					if($msgDeadSw[0]['Result_Flag'] == 'Y') {
 						updateStep(['userId' => $userId, 'step' => 7, 'val' => $text, 'menu' => 'dead']);
-						
+					
 						array_push($msg,[
 								'type' => 'text',
 								'text' => 'บันทึกข้อมูลเรียบร้อย'
@@ -452,6 +457,9 @@ if (!is_null($events['events'])) {
 							'packageId' => '1',
 							'stickerId' => $completeSticker[rand(0, 5)]
 						]);
+					}
+					else {
+						
 					}
 				}
 			}
@@ -674,7 +682,7 @@ if (!is_null($events['events'])) {
 							'type' => 'confirm',
 							'text' => 'สรุปข้อมูล '.
 									' บันทึกเบิก เล้า '.$row['STEP3_VALUE'].
-									'เบอร์อาหาร '.$row['STEP4_VALUE'].
+									'เบอร์อาหาร '.explode(',',$row['STEP4_VALUE'])[0].
 									'จำนวน  '.$text.
 									'ยืนยันข้อมูล ? ',
 							'actions' => array(
@@ -716,15 +724,15 @@ if (!is_null($events['events'])) {
 					
 					$dt = explode("/", $row['STEP1_VALUE']);
 					
-					$arrData = retrieveGenSWFeedUseResult([ 
+					$msgFeedUse = retrieveGenSWFeedUseResult([ 
 						'userId' => $userId,
 						'orgSel' => $row['STEP3_VALUE'],
-						'product' => $row['STEP4_VALUE'],
+						'product' => explode(',',$row['STEP4_VALUE'])[1],
 						'qty' => $row['STEP5_VALUE'],
 						'date' => $dt[2].$dt[1].$dt[0]
 					]);
 					
-					if($arrData[0]['Result_Flag'] == 'Y') {
+					if($msgFeedUse[0]['Result_Flag'] == 'Y') {
 						updateStep(['userId' => $userId, 'step' => 7, 'val' => $text, 'menu' => 'dead']);
 					
 						array_push($msg,[
@@ -747,7 +755,24 @@ if (!is_null($events['events'])) {
 			}
 			
 			if(stristr($text,'<ยกเลิกเบิกอาหาร>') ) {
+				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
+					SET  \"STEP_ACTION\"='INCOMPLETE', \"STEP7_VALUE\"='$text', \"PROCESS_STATUS\"='INCOMPLETE'
+					WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'FEEDUSAGE' ";
+						
+				writeData($sql);
 				
+				array_push($msg,[
+						'type' => 'text',
+						'text' => 'ยกเลิกเรียบร้อย'
+				]);
+				
+				$cancelSticker = array("9","16","111","123","135","403");
+				
+				array_push($msg,[
+					'type' => 'sticker',
+					'packageId' => '1',
+					'stickerId' => $cancelSticker[rand(0, 5)]
+				]);
 				
 			}
 			
@@ -1060,10 +1085,7 @@ function retrieveGenDeadSwineResult($obj){
 		'qty' => $obj['qty']
 	]);
 	
-	if($arrData[0]['Result_Flag'] == 'Y'){
-		return true;
-	}
-	return false;
+	return $arrData;
 }
 
 function retrieveMsgProduct($obj) {
@@ -1079,7 +1101,7 @@ function retrieveMsgProduct($obj) {
 				'type' => 'postback',
 				'label' => str_replace(' ','',$val['Product_Name']),
 				'data' => 'action=buy&itemid=123',
-				'text' => '<เบอร์อาหาร>'.$val['Product_Code'],
+				'text' => '<เบอร์อาหาร>'.str_replace(' ','',$val['Product_Name']).','.$val['Product_Code'],
 			]);
 		}
 		
