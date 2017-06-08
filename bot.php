@@ -653,11 +653,16 @@ if (!is_null($events['events'])) {
 			if(stristr($text,'<เบอร์อาหาร>') ) {
 				
 				$STEP4_VALUE = str_replace('<เบอร์อาหาร>','',$text);
-				$STEP4_VALUE = explode(',',$STEP4_VALUE)[0];
+				$STEP4_VALUE = explode(',',$STEP4_VALUE)[1];
 				
 				error_log('STEP 4 LOG'.$STEP4_VALUE.'<<<<<<<');
 				
 				updateStep(['userId' => $userId, 'step' => 4, 'val' => $STEP4_VALUE, 'menu' => 'feed']);
+				
+				array_push($msg,[
+							'type' => 'text',
+							'text' => $STEP4_VALUE)[1].' จำนวน '.$STEP4_VALUE)[2]
+				]);
 				
 				array_push($msg,[
 							'type' => 'text',
