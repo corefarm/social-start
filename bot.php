@@ -661,7 +661,7 @@ if (!is_null($events['events'])) {
 				
 				array_push($msg,[
 							'type' => 'text',
-							'text' => $STEP4_VALUE)[1].' จำนวน '.$STEP4_VALUE)[2]
+							'text' => explode(',',$STEP4_VALUE)[0].' จำนวน '.explode(',',$STEP4_VALUE)[2]
 				]);
 				
 				array_push($msg,[
