@@ -15,7 +15,6 @@ function writeData($sql) {
     Return $result;
 
 }
-$testing = 'Matext lawka';
 
 $access_token = 'ki/sALGeAGtfPJsCbQY+Ama0bBSByknlDdsU32D1fnAGwt2/L9KqasU/HxA9ojgPHNcSaItAV2cJEasYBZj1qQ+dZOEt7ZKaTz/OG7ZZNISFHh4NWE/P5Mg7hX84D+AZtaYHVjv2VS9oQiObD6Kl+QdB04t89/1O/w1cDnyilFU=';
 
@@ -654,6 +653,9 @@ if (!is_null($events['events'])) {
 			if(stristr($text,'<เบอร์อาหาร>') ) {
 				
 				$STEP4_VALUE = str_replace('<เบอร์อาหาร>','',$text);
+				$STEP4_VALUE = explode(',',$STEP4_VALUE)[0];
+				
+				error_log('STEP 4 LOG'.$STEP4_VALUE.'<<<<<<<');
 				
 				updateStep(['userId' => $userId, 'step' => 4, 'val' => $STEP4_VALUE, 'menu' => 'feed']);
 				
@@ -1103,7 +1105,7 @@ function retrieveMsgProduct($obj) {
 				'type' => 'postback',
 				'label' => str_replace(' ','',$val['Product_Name']),
 				'data' => 'action=buy&itemid=123',
-				'text' => '<เบอร์อาหาร>'.str_replace(' ','',$val['Product_Name']).','.$val['Product_Code'],
+				'text' => '<เบอร์อาหาร>'.str_replace(' ','',$val['Product_Name']).','.$val['Product_Code'].','.$val['Stock_Qty'],
 			]);
 		}
 		
@@ -1127,7 +1129,7 @@ function retrieveMsgProduct($obj) {
 				'msgType' => 'message',
 				'msgVal' => [
 					'type' => 'text',
-					'text' => '<เบอร์อาหาร>'.$arrData[0]['Product_Code'],
+					'text' => '<เบอร์อาหาร>'.$arrData[0]['Product_Code'].' จำนวน '.$arrData[0]['Stock_Qty'],
 					'val' => $arrData[0]['Product_Code']
 				]
 			];
