@@ -653,7 +653,8 @@ if (!is_null($events['events'])) {
 			if(stristr($text,'<เบอร์อาหาร>') ) {
 				
 				$STEP4_VALUE = str_replace('<เบอร์อาหาร>','',$text);
-				$STEP4_VALUE = explode(',',$STEP4_VALUE)[1];
+				$temp = explode(',',$STEP4_VALUE)[0].','.explode(',',$STEP4_VALUE)[1];
+				$STEP4_VALUE = $temp;
 				
 				$qtyText = str_replace('<เบอร์อาหาร>','',$text);
 				
