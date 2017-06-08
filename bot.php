@@ -397,11 +397,11 @@ if (!is_null($events['events'])) {
 								[
 								'type' => 'message',
 								'label' => 'ยืนยัน',
-								'text' => '<ยืนยัน>',
+								'text' => '<กำลังยืนยัน>',
 								],[
 								'type' => 'message',
 								'label' => 'ยกเลิก',
-								'text' => '<ยกเลิก>',									
+								'text' => '<กำลังยกเลิก>',									
 								]
 							)
 						]
@@ -420,7 +420,7 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
-			if ($text  == '<ยืนยัน>') {
+			if ($text  == '<กำลังยืนยัน>') {
 				
 				$sql = "select * from \"FR_DATA_COLLECTION\" where 
 					\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' and 
@@ -463,7 +463,7 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
-			if ($text  == '<ยกเลิก>') {
+			if ($text  == '<กำลังยกเลิก>') {
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 					SET  \"STEP_ACTION\"='INCOMPLETE', \"STEP7_VALUE\"='$text', \"PROCESS_STATUS\"='INCOMPLETE'
@@ -699,11 +699,11 @@ if (!is_null($events['events'])) {
 								[
 								'type' => 'message',
 								'label' => 'ยืนยัน',
-								'text' => '<ยืนยันเบิกอาหาร>',
+								'text' => '<กำลังยืนยันเบิกอาหาร>',
 								],[
 								'type' => 'message',
 								'label' => 'ยกเลิก',
-								'text' => '<ยกเลิกเบิกอาหาร>',									
+								'text' => '<กำลังยกเลิกเบิกอาหาร>',									
 								]
 							)
 						]
@@ -722,7 +722,7 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
-			if(stristr($text,'<ยืนยันเบิกอาหาร>') ) {
+			if(stristr($text,'<กำลังยืนยันเบิกอาหาร>') ) {
 				
 				$sql = "select * from \"FR_DATA_COLLECTION\" where 
 					\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'FEEDUSAGE' and 
@@ -765,7 +765,7 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
-			if(stristr($text,'<ยกเลิกเบิกอาหาร>') ) {
+			if(stristr($text,'<กำลังยกเลิกเบิกอาหาร>') ) {
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
 					SET  \"STEP_ACTION\"='INCOMPLETE', \"STEP7_VALUE\"='$text', \"PROCESS_STATUS\"='INCOMPLETE'
 					WHERE \"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'FEEDUSAGE' ";
