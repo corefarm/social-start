@@ -10,9 +10,9 @@ $url = 'https://mservice-uat.cpf.co.th/Farm/FarmMobileRestService/FarmMobileRest
 
 $arrContextOptions = array(
 					'ssl' => array(
-					'verify_peer' => false,
-					'verify_peer_name' => false
-					),); 
+						'verify_peer' => false,
+						'verify_peer_name' => false
+					)); 
 $content = file_get_contents($url,false, stream_context_create($arrContextOptions));
 $result = json_decode($content, true);
 
