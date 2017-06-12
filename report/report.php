@@ -24,6 +24,7 @@ $myVarValue = json_encode($result['GetReportSWStockResult']);
 
 <script>
   var myvar = <?php echo $myVarValue; ?>;
+  var gg = myvar;
 </script>
 
 </html>
