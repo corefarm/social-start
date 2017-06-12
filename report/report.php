@@ -3,6 +3,12 @@
 
 <h1>My first PHP page</h1>
 
+
+
+</body>
+</html>
+
+
 <?php
 echo "Hello World!";
 
@@ -24,6 +30,3 @@ echo var_dump;
 //echo json_encode($result[$obj['GetReportSWStockResult']]);
 
 ?>
-
-</body>
-</html>
