@@ -17,7 +17,7 @@ $content = file_get_contents($url,false, stream_context_create($arrcontextoption
 $result = json_decode($content, true);
 
 
-echo $result[$obj['GetReportSWStockResult']]
+echo json_encode($result[$obj['GetReportSWStockResult']]);
 
 ?>
 
