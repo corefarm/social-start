@@ -16,10 +16,14 @@ $arrContextOptions = array(
 $content = file_get_contents($url,false, stream_context_create($arrcontextoptions));
 $result = json_decode($content, true);
 
-
 echo json_encode($result['GetReportSWStockResult']);
-
+$myVarValue json_encode($result['GetReportSWStockResult']);
 ?>
 
 </body>
+
+<script>
+  var myvar = <?php echo $myVarValue; ?>;
+</script>
+
 </html>
