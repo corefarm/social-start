@@ -788,11 +788,26 @@ if (!is_null($events['events'])) {
 			}
 			
 			if(stristr($text,'<รายงาน>') ) {
-				array_push($msg,[
-					'type' => 'uri',
-					//'label' => 'อาหารคงเหลือ',
-					'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
-				]);
+				$ret = [
+					'msgType' => 'template',
+					'msgVal' => [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'buttons',
+							'title' => 'กรุณาเลือกเล้า',
+							'text' => 'Please select pen.',
+							'actions' => [
+								'type' => 'uri',
+								'label' => 'รายงาน',
+								'label' => 'สุกรคงเหลือ',
+								'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
+							]
+						]
+					]
+				];	
+				
+				array_push($msg,$ret);
 			}
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
