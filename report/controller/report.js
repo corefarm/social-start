@@ -86,6 +86,7 @@ var swReport = function (obj) {
 }
 
 var mSw = function () {
+    this.transaction_date = ''
     this.BfMaleQty = 0
     this.BfFemaleQty = 0
     this.ReceiveMaleQty = 0
@@ -97,6 +98,7 @@ var mSw = function () {
 }
 
 mSw.prototype.formula = function (obj) {
+    this.transaction_date = obj.transaction_date
     this.BfMaleQty = obj.BfMaleQty
     this.BfFemaleQty = obj.BfFemaleQty
     this.ReceiveMaleQty = obj.ReceiveMaleQty
@@ -121,6 +123,7 @@ mSw.prototype.increase = function (obj) {
 mSw.prototype.display = function (obj) {
     var td = [];
     td.push('<tr class="{0}">'.format(obj.RowProp));
+    td.push('<td class="{0}" >{1}</td>'.format('', this.transaction_date));
     td.push('<td class="{0}" >{1}</td>'.format('', this.BfMaleQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.BfFemaleQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.ReceiveMaleQty.format(0)));
