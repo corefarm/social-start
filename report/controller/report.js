@@ -1,5 +1,4 @@
 ﻿functions.report = function (obj) {
-    debugger
 
     $('#lblHeader').text(obj.programName);
 

@@ -4,9 +4,7 @@
     </head>
 <body>
 
-<h1>My first PHP page</h1>
-
-    <label id="lblHeader"></label>
+    <label id="lblHeader" style="align-content: center"></label>
     <div id="divFilter">
         </div>
     <div class="datagrid" id="datagrid">
@@ -39,7 +37,7 @@
 
     var obj = {};
 
-    obj.programName = 'PROGRAM NAME';
+    obj.programName = 'รายงาน';
     obj.template = 'sw';
     obj.report = 'report';
     obj.program = 'sw';
