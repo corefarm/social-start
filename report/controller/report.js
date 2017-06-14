@@ -1,50 +1,7 @@
 ﻿functions.report = function (obj) {
     debugger
 
-    switch (dateType) {
-        case 'DAILY':
-            $('#dTranDate').datetimepicker({
-                format: 'DD/MM/YYYY'
-                         , pickTime: false,
-            });
-            break;
-        case 'WEEKLY':
-            var dDay = disableDayDatepicker(6);
-            $('#dTranDate').datetimepicker({
-                format: 'DD/MM/YYYY'
-                         , pickTime: false,
-                disabledDates: dDay,
-                minViewMode: "months"
-            });
-            break;
-        case 'MONTHLY':
-            $('#dTranDate').datetimepicker({
-                format: 'DD/MM/YYYY'
-                 , pickTime: false,
-                viewMode: "months",
-                minViewMode: "months"
-            });
-            break;
-        case 'YEARLY':
-            $('#dTranDate').datetimepicker({
-                format: 'DD/MM/YYYY'
-                 , pickTime: false,
-                viewMode: "months",
-                minViewMode: "months"
-            });
-            break;
-    }
-
     $('#lblHeader').text(obj.programName);
-
-    var eggType = [
-        { id: 'NORMALEGG', name: 'Total Egg' },
-        { id: 'FRESHEGG', name: 'Fresh Egg' },
-        { id: 'FUNCEGG', name: 'Functional Egg' }
-    ];
-
-    $('.select2').select2();
-    $('#ddlEggType').selectDataSource(eggType, 'id', 'name');
 
     switch (obj.program) {
         case 'sw':
