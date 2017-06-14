@@ -25,7 +25,7 @@ var swReport = function (obj) {
 
         sum.increase(row);
     }
-    sum.transaction_date = 'รวม'ว
+    sum.transaction_date = 'รวม';
     tbody = tbody.concat(sum.display({ RowProp: 'alt' }));
 
     //var aOperId = obj.dataSource.distinctArrayObject('OPER_ID').sort();
