@@ -10,7 +10,7 @@
         </div>
 
 </body>
-<script src="../report/Lib/report.table.js"></script>
+<script src="../report/lib/report.table.js"></script>
 
 <script>
 
