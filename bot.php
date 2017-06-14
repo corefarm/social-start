@@ -163,7 +163,7 @@ if (!is_null($events['events'])) {
 											[
  											'type' => 'uri',
 											'label' => 'อาหารคงเหลือ',
-											'uri' => 'https://www.google.com/', 
+											'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
 											]
 									)]											
 							)													
