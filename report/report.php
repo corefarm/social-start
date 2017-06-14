@@ -1,4 +1,7 @@
 <html>
+    <head> 
+        <link href="../report/lib/css.css" rel="stylesheet" />
+    </head>
 <body>
 
 <h1>My first PHP page</h1>
@@ -6,7 +9,7 @@
     <label id="lblHeader"></label>
     <div id="divFilter">
         </div>
-    <div class="row" id="containTbData">
+    <div class="row" id="datagrid">
         </div>
 
 </body>
@@ -42,7 +45,7 @@
     obj.program = 'sw';
     obj.tableStyle = '';
 
-    $('#containTbData').createTable({
+    $('#datagrid').createTable({
         programName: obj.programName,
         template: obj.template,
         report: obj.report,
