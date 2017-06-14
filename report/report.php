@@ -9,7 +9,7 @@
     <label id="lblHeader"></label>
     <div id="divFilter">
         </div>
-    <div class="row" id="datagrid">
+    <div class="datagrid" id="datagrid">
         </div>
 
 </body>
