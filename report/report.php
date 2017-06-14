@@ -38,7 +38,7 @@
 
     obj.programName = 'PROGRAM NAME';
     obj.template = 'sw';
-    obj.report = 'sw';
+    obj.report = 'report';
     obj.program = 'sw';
     obj.tableStyle = '';
 
