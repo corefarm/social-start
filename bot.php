@@ -789,22 +789,20 @@ if (!is_null($events['events'])) {
 			
 			if(stristr($text,'<รายงาน>') ) {
 				$ret = [
-					'msgType' => 'template',
-					'msgVal' => [
-						'type' => 'template',
-						'altText' => 'this is a buttons template',
-						'template' => [
-							'type' => 'buttons',
-							'title' => 'กรุณาเลือกเล้า',
-							'text' => 'Please select pen.',
-							'actions' => [
-								'type' => 'uri',
-								'label' => 'รายงาน',
-								'label' => 'สุกรคงเหลือ',
-								'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
-							]
+
+					'type' => 'template',
+					'altText' => 'this is a buttons template',
+					'template' => [
+						'type' => 'buttons',
+						'title' => 'กรุณาเลือกเล้า',
+						'text' => 'Please select pen.',
+						'actions' => [
+							'type' => 'uri',
+							'label' => 'รายงาน',
+							'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
 						]
 					]
+
 				];	
 				
 				array_push($msg,$ret);
