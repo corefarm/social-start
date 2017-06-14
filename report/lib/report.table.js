@@ -4,9 +4,9 @@ var exTableStyle;
 $.fn.extend({
     createTable: function (obj) {
 
-        var strHeader = retrieveText('../GradingReport/Template/TableHeader/{0}.html'.format(obj.template));
-        require('../GradingReport/Controller/{0}.js'.format(obj.report));
-
+        var strHeader = retrieveText('../report/Template/{0}.html'.format(obj.template));
+        require('../report/controller/{0}.js'.format(obj.report));
+        debugger
         var strBody = functions[obj.report](obj);
 
         var html = [];
@@ -20,22 +20,22 @@ $.fn.extend({
 
         document.getElementById($(this)[0].id).innerHTML = html.join('');
 
-        var h = window.innerHeight - 210;
-        var scrollH = h + "px";
+        //var h = window.innerHeight - 210;
+        //var scrollH = h + "px";
 
-        var table = $('#tableID').DataTable({
-            scrollY: scrollH,
-            scrollX: true,
-            scrollCollapse: true,
-            paging: false,
-            searching: false,
-            ordering: false,
-            bInfo: false,
-            fixedColumns: {
-                leftColumns: obj.leftColumns,
-                rightColumns: 0
-            }
-        });
+        //var table = $('#tableID').DataTable({
+        //    scrollY: scrollH,
+        //    scrollX: true,
+        //    scrollCollapse: true,
+        //    paging: false,
+        //    searching: false,
+        //    ordering: false,
+        //    bInfo: false,
+        //    fixedColumns: {
+        //        leftColumns: obj.leftColumns,
+        //        rightColumns: 0
+        //    }
+        //});
 
         exStrHeader = strHeader;
         exTableStyle = obj.tableStyle;

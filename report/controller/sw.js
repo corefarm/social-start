@@ -1,5 +1,5 @@
-﻿functions.Damage = function (obj) {
-    var dateType = $('#dateType').val(); // date type from session
+﻿functions.report = function (obj) {
+    debugger
 
     switch (dateType) {
         case 'DAILY':
@@ -35,7 +35,7 @@
             break;
     }
 
-    $('#lblProgramName').text(obj.programName);
+    $('#lblHeader').text(obj.programName);
 
     var eggType = [
         { id: 'NORMALEGG', name: 'Total Egg' },
@@ -47,7 +47,7 @@
     $('#ddlEggType').selectDataSource(eggType, 'id', 'name');
 
     switch (obj.program) {
-        case 'BIGR0011':
+        case 'sw':
             return swReport(obj);
             break;
     }
@@ -57,64 +57,78 @@ var swReport = function (obj) {
 
     var tbody = [];
 
-    var aOperId = obj.dataSource.distinctArrayObject('OPER_ID').sort();
+    var sum = new mSw();
 
-    var mTotal = new mDamage();
-    mTotal.GRADING = 'TOTAL THAILAND';
+    for (var i = 0; i < obj.dataSource;i++) {
+        var row = new mSw();
 
-    for (var iOperId = 0, lOperId = aOperId.length; iOperId < lOperId; iOperId++) {
+        row.formula(obj.dataSource[i]);
 
-        var aOperData = $.grep(obj.dataSource, function (e) { return e.OPER_ID == aOperId[iOperId]; });
-        var aSubOperId = aOperData.distinctArrayObject('SUB_OPER_ID').sort();
+        tbody = tbody.concat(row.display({ RowProp: '' }));
 
-        var mOper = new mDamage();
-        mOper.GRADING = 'TOTAL {0}'.format(aOperData[0].OPER_NAME);
-
-        for (var iSubOperId = 0, lSubOperId = aSubOperId.length; iSubOperId < lSubOperId; iSubOperId++) {
-
-            var aSubOperData = $.grep(aOperData, function (e) { return e.SUB_OPER_ID == aSubOperId[iSubOperId]; });
-            var aOrgId = aSubOperData.distinctArrayObject('ORG_CODE').sort();
-
-            var mSubOper = new mDamage();
-            mSubOper.GRADING = aSubOperData[0].SUB_OPER_NAME;
-
-            for (var iOrgId = 0, lOrgId = aOrgId.length; iOrgId < lOrgId; iOrgId++) {
-
-                var aOrgData = $.grep(aSubOperData, function (e) { return e.ORG_CODE == aOrgId[iOrgId]; });
-
-                var mOrg = new mDamage();
-                mOrg.GRADING = aOrgData[0].ORG_SHORT_NAME;
-
-                for (var i = aOrgData.length; i--;) {
-
-                    var row = new mDamage();
-
-                    row.formula(aOrgData[i]);
-
-                    mOrg.increase(row);
-                }
-
-                mSubOper.increase(mOrg);
-
-                tbody = tbody.concat(mOrg.display({ RowProp: '' }));
-            }
-
-            mOper.increase(mSubOper);
-
-            tbody = tbody.concat(mSubOper.display({ RowProp: 'trLevel02' }));
-        }
-        mTotal.increase(mOper);
-
-        tbody = tbody.concat(mOper.display({ RowProp: 'trLevel03' }));
+        sum.increase(row);
     }
-    if (aOperId.length > 0) {
-        tbody = tbody.concat(mTotal.display({ RowProp: 'trLevel04' }));
-    }
+
+    tbody = tbody.concat(sum.display({ RowProp: '' }));
+
+    //var aOperId = obj.dataSource.distinctArrayObject('OPER_ID').sort();
+
+    //var mTotal = new mDamage();
+    //mTotal.GRADING = 'TOTAL THAILAND';
+
+    //for (var iOperId = 0, lOperId = aOperId.length; iOperId < lOperId; iOperId++) {
+
+    //    var aOperData = $.grep(obj.dataSource, function (e) { return e.OPER_ID == aOperId[iOperId]; });
+    //    var aSubOperId = aOperData.distinctArrayObject('SUB_OPER_ID').sort();
+
+    //    var mOper = new mDamage();
+    //    mOper.GRADING = 'TOTAL {0}'.format(aOperData[0].OPER_NAME);
+
+    //    for (var iSubOperId = 0, lSubOperId = aSubOperId.length; iSubOperId < lSubOperId; iSubOperId++) {
+
+    //        var aSubOperData = $.grep(aOperData, function (e) { return e.SUB_OPER_ID == aSubOperId[iSubOperId]; });
+    //        var aOrgId = aSubOperData.distinctArrayObject('ORG_CODE').sort();
+
+    //        var mSubOper = new mDamage();
+    //        mSubOper.GRADING = aSubOperData[0].SUB_OPER_NAME;
+
+    //        for (var iOrgId = 0, lOrgId = aOrgId.length; iOrgId < lOrgId; iOrgId++) {
+
+    //            var aOrgData = $.grep(aSubOperData, function (e) { return e.ORG_CODE == aOrgId[iOrgId]; });
+
+    //            var mOrg = new mDamage();
+    //            mOrg.GRADING = aOrgData[0].ORG_SHORT_NAME;
+
+    //            for (var i = aOrgData.length; i--;) {
+
+    //                var row = new mDamage();
+
+    //                row.formula(aOrgData[i]);
+
+    //                mOrg.increase(row);
+    //            }
+
+    //            mSubOper.increase(mOrg);
+
+    //            tbody = tbody.concat(mOrg.display({ RowProp: '' }));
+    //        }
+
+    //        mOper.increase(mSubOper);
+
+    //        tbody = tbody.concat(mSubOper.display({ RowProp: 'trLevel02' }));
+    //    }
+    //    mTotal.increase(mOper);
+
+    //    tbody = tbody.concat(mOper.display({ RowProp: 'trLevel03' }));
+    //}
+    //if (aOperId.length > 0) {
+    //    tbody = tbody.concat(mTotal.display({ RowProp: 'trLevel04' }));
+    //}
 
     return tbody;
 }
 
-var mDamage = function () {
+var mSw = function () {
     this.BfMaleQty = 0
     this.BfFemaleQty = 0
     this.ReceiveMaleQty = 0
@@ -125,7 +139,7 @@ var mDamage = function () {
     this.DeadFemaleQty = 0
 }
 
-mDamage.prototype.formula = function (obj) {
+mSw.prototype.formula = function (obj) {
     this.BfMaleQty = obj.BfMaleQty
     this.BfFemaleQty = obj.BfFemaleQty
     this.ReceiveMaleQty = obj.ReceiveMaleQty
@@ -136,7 +150,7 @@ mDamage.prototype.formula = function (obj) {
     this.DeadFemaleQty = obj.DeadFemaleQty
 }
 
-mDamage.prototype.increase = function (obj) {
+mSw.prototype.increase = function (obj) {
     this.BfMaleQty += obj.BfMaleQty
     this.BfFemaleQty += obj.BfFemaleQty
     this.ReceiveMaleQty += obj.ReceiveMaleQty
@@ -147,11 +161,9 @@ mDamage.prototype.increase = function (obj) {
     this.DeadFemaleQty += obj.DeadFemaleQty
 }
 
-mDamage.prototype.display = function (obj) {
+mSw.prototype.display = function (obj) {
     var td = [];
     td.push('<tr class="{0}">'.format(obj.RowProp));
-    //td.push('<td class="{0}" >{1}</td>'.format('text-left border-right', this.GRADING));
-    //td.push('<td class="{0}" >{1}</td>'.format('border-right', this.EGG_PRODUCTION.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.BfMaleQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.BfFemaleQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.ReceiveMaleQty.format(0)));
@@ -163,7 +175,12 @@ mDamage.prototype.display = function (obj) {
     var totalMale = this.BfMaleQty + this.ReceiveMaleQty + this.CatchMaleQty + this.DeadMaleQty;
     var totalFemale = this.BfMaleQty + this.ReceiveMaleQty + this.CatchMaleQty + this.DeadMaleQty;
     td.push('<td class="{0}" >{1}</td>'.format('', totalMale.format(0)));
-    td.push('<td class="{0}" >{1}</td>'.format('', this.DeadFemaleQty.format(0)));
-    td.push('<td class="{0}" >{1}</td>'.format('', this.DeadFemaleQty.format(0)));
+    td.push('<td class="{0}" >{1}</td>'.format('', totalFemale.format(0)));
+    td.push('<td class="{0}" >{1}</td>'.format('', (totalMale + totalFemale).format(0)));
+    td.push('<tr class="{0}">');
     return td;
+}
+
+var mFd = function () {
+
 }
