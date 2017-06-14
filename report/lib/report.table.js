@@ -4,7 +4,7 @@ var exTableStyle;
 $.fn.extend({
     createTable: function (obj) {
 
-        var strHeader = retrieveText('../report/Template/{0}.html'.format(obj.template));
+        var strHeader = retrieveText('../report/template/{0}.html'.format(obj.template));
         require('../report/controller/{0}.js'.format(obj.report));
         debugger
         var strBody = functions[obj.report](obj);
