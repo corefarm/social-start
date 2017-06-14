@@ -16,6 +16,8 @@
 
     .datagrid table td, .datagrid table th {
         padding: 3px 10px;
+        text-align: center;
+
     }
 
     .datagrid table thead th {
