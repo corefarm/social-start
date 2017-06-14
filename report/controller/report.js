@@ -16,7 +16,7 @@ var swReport = function (obj) {
 
     var sum = new mSw();
 
-    for (var i = 0; i < obj.dataSource;i++) {
+    for (var i = 0; i < obj.dataSource.length;i++) {
         var row = new mSw();
 
         row.formula(obj.dataSource[i]);
