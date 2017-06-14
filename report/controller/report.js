@@ -122,6 +122,7 @@ mSw.prototype.increase = function (obj) {
 
 mSw.prototype.display = function (obj) {
     var td = [];
+    //com
     td.push('<tr class="{0}">'.format(obj.RowProp));
     td.push('<td class="{0}" >{1}</td>'.format('', this.transaction_date));
     td.push('<td class="{0}" >{1}</td>'.format('', this.BfMaleQty.format(0)));
