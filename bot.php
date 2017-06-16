@@ -883,24 +883,25 @@ function retrieveMsgCv($obj) {
 
 	$arrData = retrieveServiceData([ 'service' => 'GetFarmsResult', 'userId' => $obj['userId']]);
 	
+	$textRep = '';
+			
+	if($obj['menu'] == 'dead') {
+		$textRep = '<ฟาร์ม>';
+	}
+	elseif($obj['menu'] == 'report') {
+		$textRep = '<รายงานฟาร์ม>';
+	}
+	else {
+		$textRep = '<ฟาร์มเบิกอาหาร>';
+	}
+			
 	if(count($arrData) > 1) {
 		
 		$arrMessageDs = array(); 
 		
 		foreach ($arrData as $val) {
 			
-			$textRep = '';
 			
-			error_log('MENU >>>>>>>>>>>>>'.$obj['menu']);
-			if($obj['menu'] == 'dead') {
-				$textRep = '<ฟาร์ม>';
-			}
-			elseif($obj['menu'] == 'report') {
-				$textRep = '<รายงานฟาร์ม>';
-			}
-			else {
-				$textRep = '<ฟาร์มเบิกอาหาร>';
-			}
 			
 			array_push($arrMessageDs,[
 				'type' => 'postback',
@@ -930,7 +931,7 @@ function retrieveMsgCv($obj) {
 				'msgType' => 'message',
 				'msgVal' => [
 					'type' => 'text',
-					'text' => ($obj['menu'] == 'dead' ? '<ฟาร์ม>' : '<ฟาร์มเบิกอาหาร>').$arrData[0]['Farm_Name'],
+					'text' => $textRep.$arrData[0]['Farm_Name'],
 					'val' => $arrData[0]['Farm_Code']
 				]
 			];
