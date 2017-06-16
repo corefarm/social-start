@@ -77,6 +77,14 @@
 
 	?>
 
+	
+	$('#dTranDate').datetimepicker({
+		format: 'DD/MM/YYYY'
+		 , pickTime: false,
+		viewMode: "months",
+		minViewMode: "months"
+	});
+			
     var myvar = <?php echo $dataPhp; ?>;
     var data = myvar;
 
