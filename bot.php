@@ -787,27 +787,35 @@ if (!is_null($events['events'])) {
 				
 			}
 			
-			if(stristr($text,'<รายงาน>') ) {
+			if($text == '<รายงาน>' ) {
 				
-				$msgReport = [
-						'type' => 'template',
-						'altText' => 'this is a buttons template',
-						'template' => [
-							'type' => 'buttons',
-							'title' => 'report',
-							'text' => 'Please select date.',
-							'actions' => array(
-								[
-									'type' => 'uri',
-									'label' => 'รายงาน',
-									'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
-								]
-							)
-						]
-				];
+				$today = date('Ymd');  
 				
-				array_push($msg,$msgReport);
+				$msgCv = retrieveMsgCv(['userId' => $userId, 'menu' => 'report']);
+				
+				if($msgCv['msgType'] == 'template') {
+					array_push($msg,$msgCv['msgVal']);
+				}
+				else {
+					array_push($msg,$msgCv['msgVal']);
+					
+					$msgReport = retrieveMsgReport(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val'], 'date' => $today]);
+					
+					array_push($msg,$msgReport['msgVal']);
+				}
 			}
+			if(stristr($text,'<รายงานฟาร์ม>') ) {
+				
+				$today = date('Ymd');  
+				
+				$val = str_replace('<รายงานฟาร์ม>','',$text);
+				
+				$msgReport = retrieveMsgReport(['userId' => $userId, 'cvFarm' => $val, 'date' => $today]);
+					
+				array_push($msg,$msgReport['msgVal']);
+				
+			}
+			
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
@@ -878,11 +886,24 @@ function retrieveMsgCv($obj) {
 		$arrMessageDs = array(); 
 		
 		foreach ($arrData as $val) {
+			
+			$textRep = '';
+			
+			if($obj['menu'] == 'dead') {
+				$textRep = '<ฟาร์ม>';
+			}
+			elseif($obj['menu'] == 'report') {
+				$textRep = '<รายงานฟาร์ม>';
+			}
+			else {
+				$textRep = '<ฟาร์มเบิกอาหาร>';
+			}
+			
 			array_push($arrMessageDs,[
 				'type' => 'postback',
 				'label' => $val['Farm_Name'],
 				'data' => 'action=buy&itemid=123',
-				'text' => ($obj['menu'] == 'dead' ? '<ฟาร์ม>' : '<ฟาร์มเบิกอาหาร>') .$val['Farm_Code'],
+				'text' => $textRep.$val['Farm_Code'],
 			]);
 		}
 		
@@ -1179,6 +1200,36 @@ function retrieveMsgProduct($obj) {
 	return $ret;
 }
 
+function retrieveMsgReport($obj) {
+
+	$ret = [
+			'msgType' => 'template',
+			'msgVal' => [
+				'type' => 'template',
+				'altText' => 'this is a buttons template',
+				'template' => [
+					'type' => 'buttons',
+					'title' => 'report',
+					'text' => 'Please select date.',
+					'actions' => array(
+						[
+							'type' => 'uri',
+							'label' => 'รายงานสุกรคงเหลือ',
+							'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php?id='.$obj['userId'].'&cv='.$obj['cvFarm'].'&date='.$obj['date']
+						],
+						[
+							'type' => 'uri',
+							'label' => 'รายงานอาหาร',
+							'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php?id='.$obj['userId'].'&cv='.$obj['cvFarm'].'&date='.$obj['date']
+						]
+					)
+				]
+			]
+		];
+	
+	return $ret;
+	
+}
 function retrieveGenSWFeedUseResult($obj) {
 	
 	$arrData = retrieveServiceData([ 
