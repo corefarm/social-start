@@ -891,13 +891,14 @@ function retrieveMsgCv($obj) {
 			
 			$textRep = '';
 			
+			error_log('MENU >>>>>>>>>>>>>'.$obj['menu']);
 			if($obj['menu'] == 'dead') {
 				$textRep = '<ฟาร์ม>';
 			}
 			elseif($obj['menu'] == 'report') {
 				$textRep = '<รายงานฟาร์ม>';
 			}
-			elseif($obj['menu'] == 'feed') {
+			else {
 				$textRep = '<ฟาร์มเบิกอาหาร>';
 			}
 			
