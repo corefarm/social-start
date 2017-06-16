@@ -22,7 +22,7 @@
 		// $cv = $_GET['cvFarm'];
 		// $date = $_GET['date'];
 		
-		var $dataPhp = retrieveReportData($_GET['id'], $_GET['cvFarm'], $_GET['date']);
+		
 				
 		function retrieveReportData ($id, $cv, $date) {
 			
@@ -45,6 +45,7 @@
 			return $ret;
 		}
         
+		$dataPhp = retrieveReportData($_GET['id'], $_GET['cvFarm'], $_GET['date']);
 
 	?>
 
