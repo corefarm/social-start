@@ -16,7 +16,7 @@
             <div class='input-group date' id='dTranDate'>
                 <input type='text' id="txtTranDate" class="form-control" />
                 <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
+                    <span id="glyp-icon" class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
@@ -87,7 +87,7 @@
 	
 	$('#txtTranDate').click(function(event){
 		event.preventDefault();
-		$('.glyphicon-calendar').click();
+		$('#glyp-icon').click();
 	});
 			
     var myvar = <?php echo $dataPhp; ?>;
