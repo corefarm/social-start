@@ -93,7 +93,7 @@
 	function retrievePhpfunc() {
 		var dateJs = $('#txtTranDate').val();
 		var url = window.location.href;
-		url = url.slice(0,-6);
+		url = url.slice(0,-8);
 		console.log(url);
 		
 		//window.location.replace('https://shielded-dawn-30361.herokuapp.com/report/report.php?id=123456789&cv=2000020032-0-1-4-36&date='+dateJs);
