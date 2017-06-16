@@ -1,10 +1,33 @@
 <html>
     <head> 
         <link href="../report/lib/css.css" rel="stylesheet" />
+		<link href="../report/lib/bootstrap.min.css" rel="stylesheet" />
+		<link href="../report/lib/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     </head>
 <body>
 
     <label id="lblHeader" style="align-content: center"></label>
+	
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="dTranDate" data-lang="lblTranDate" class="col-md-4 col-sm-2 control-label text-right">Date</label>
+            <div class='input-group date' id='dTranDate'>
+                <input type='text' id="txtTranDate" class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-1">
+        <input type="button" class="btn btn-info" value="Search" onclick="getData()" />
+    </div>
+    <div class="col-md-8"></div>
+</div>
+
+
     <div id="divFilter">
         </div>
     <div class="datagrid" id="datagrid">
@@ -19,7 +42,7 @@
 	<?php
 		
 		// $id = $_GET['id'];
-		// $cv = $_GET['cvFarm'];
+		// $cv = $_GET['cv'];
 		// $date = $_GET['date'];
 		
 		
@@ -45,7 +68,7 @@
 			return $ret;
 		}
         
-		$dataPhp = retrieveReportData($_GET['id'], $_GET['cvFarm'], $_GET['date']);
+		$dataPhp = retrieveReportData($_GET['id'], $_GET['cv'], $_GET['date']);
 
 	?>
 
