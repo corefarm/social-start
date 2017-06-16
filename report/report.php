@@ -93,23 +93,15 @@
 	function retrievePhpfunc() {
 		var dateJs = $('#txtTranDate').val();
 		
-		var uri = 'https://shielded-dawn-30361.herokuapp.com/report/report.php?id='+<?php $_GET['id'] ?>+'&cv='+<?php $_GET['cv'] ?>+'&date='+dateJs;
+		<?php
+			$abc = "<script>document.write(dateJs)</script>"
+		?>
+		var phpadd= <?php echo retrieveReportData($_GET['id'], $_GET['cv'],$abc);?>
 		
-		console.log(uri);
-		$.ajax({
-			url:uri,
-			complete: function (response) {
-				debugger
-			},
-			error: function () {
-			  
-			}
-		});
+		var gg = phpadd;
 		
-		return false;
+		debugger;
 	}
-	
-	
     var myvar = <?php echo $dataPhp; ?>;
     var data = myvar;
 
