@@ -18,6 +18,14 @@
 
 	<?php
 		
+		$id = $_GET['userId'];
+		$cv = $_GET['cvFarm'];
+		$date = $_GET['date'];
+		
+		echo $id;
+		echo $cv;
+		echo $date;
+		
 		function retrieveReportData () {
 			
 			$url = 'https://mservice-uat.cpf.co.th/Farm/FarmMobileRestService/FarmMobileRestService.svc/json/getreportswstock/123456789,2000020032-0-1-4-36,20170601';
@@ -31,9 +39,9 @@
 			$result = json_decode($content, true);
 
 			echo json_encode($result['GetReportSWStockResult']);
-			$myVarValue = json_encode($result['GetReportSWStockResult']);
+			$ret = json_encode($result['GetReportSWStockResult']);
 			
-			return $myVarValue;
+			return $ret;
 		}
         
 	?>
