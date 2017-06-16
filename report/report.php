@@ -50,7 +50,7 @@
         
 	?>
 
-    var myvar = <?php echo $myVarValue; ?>;
+    //var myvar = <?php echo $myVarValue; ?>;
     var data = myvar;
 
     var obj = {};
