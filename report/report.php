@@ -9,6 +9,16 @@
         </div>
     <div class="datagrid" id="datagrid">
         </div>
+		
+		<?php 
+		$id = $_GET['userId'];
+		$cv = $_GET['cvFarm'];
+		$date = $_GET['date'];
+		
+		echo $id;
+		echo $cv;
+		echo $date;
+		?>
 
 </body>
 <script src="../report/lib/jquery-2.1.0.min.js"></script>
@@ -18,13 +28,7 @@
 
 	<?php
 		
-		$id = $_GET['userId'];
-		$cv = $_GET['cvFarm'];
-		$date = $_GET['date'];
 		
-		echo $id;
-		echo $cv;
-		echo $date;
 		
 		function retrieveReportData () {
 			
