@@ -92,15 +92,12 @@
 	
 	function retrievePhpfunc() {
 		var dateJs = $('#txtTranDate').val();
+		var url = window.location.href;
+		url = url.slice(0,-6);
+		console.log(url);
 		
-		<?php
-			$abc = "<script>document.write(dateJs)</script>"
-		?>
-		var phpadd= <?php echo retrieveReportData($_GET['id'], $_GET['cv'],$abc);?>
+		//window.location.replace('https://shielded-dawn-30361.herokuapp.com/report/report.php?id=123456789&cv=2000020032-0-1-4-36&date='+dateJs);
 		
-		var gg = phpadd;
-		
-		debugger;
 	}
     var myvar = <?php echo $dataPhp; ?>;
     var data = myvar;
