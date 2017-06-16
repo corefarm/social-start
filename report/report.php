@@ -22,6 +22,8 @@
 		// $cv = $_GET['cvFarm'];
 		// $date = $_GET['date'];
 		
+		var $dataPhp = retrieveReportData($_GET['id'], $_GET['cvFarm'], $_GET['date']);
+				
 		function retrieveReportData ($id, $cv, $date) {
 			
 			//$url = 'https://mservice-uat.cpf.co.th/Farm/FarmMobileRestService/FarmMobileRestService.svc/json/getreportswstock/123456789,2000020032-0-1-4-36,20170601';
@@ -43,10 +45,10 @@
 			return $ret;
 		}
         
-		var $data = retrieveReportData($_GET['id'], $_GET['cvFarm'], $_GET['date']);
+
 	?>
 
-    var myvar = <?php echo $data; ?>;
+    var myvar = <?php echo $dataPhp; ?>;
     var data = myvar;
 
     var obj = {};
