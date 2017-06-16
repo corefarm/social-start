@@ -51,24 +51,24 @@
 	?>
 
     //var myvar = <?php echo $myVarValue; ?>;
-    var data = myvar;
+    // var data = myvar;
 
-    var obj = {};
+    // var obj = {};
 
-    obj.programName = 'รายงาน';
-    obj.template = 'sw';
-    obj.report = 'report';
-    obj.program = 'sw';
-    obj.tableStyle = '';
+    // obj.programName = 'รายงาน';
+    // obj.template = 'sw';
+    // obj.report = 'report';
+    // obj.program = 'sw';
+    // obj.tableStyle = '';
 
-    $('#datagrid').createTable({
-        programName: obj.programName,
-        template: obj.template,
-        report: obj.report,
-        program: obj.program,
-        tableStyle: obj.tableStyle,
-        dataSource: data
-    });
+    // $('#datagrid').createTable({
+        // programName: obj.programName,
+        // template: obj.template,
+        // report: obj.report,
+        // program: obj.program,
+        // tableStyle: obj.tableStyle,
+        // dataSource: data
+    // });
 
 </script>
 
