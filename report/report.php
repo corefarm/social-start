@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-3">
         <div class="form-group">
-            <label for="dTranDate" data-lang="lblTranDate" class="col-md-4 col-sm-2 control-label text-right">Date</label>
+            <label for="dTranDate" class="col-md-4 control-label text-right">Date</label>
             <div class='input-group date' id='dTranDate'>
                 <input type='text' id="txtTranDate" class="form-control" />
                 <span class="input-group-addon">
@@ -83,6 +83,11 @@
 		 , pickTime: false,
 		viewMode: "months",
 		minViewMode: "months"
+	});
+	
+	$('#txtTranDate').click(function(event){
+		event.preventDefault();
+		$('#dTranDate').click();
 	});
 			
     var myvar = <?php echo $dataPhp; ?>;
