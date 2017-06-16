@@ -1,8 +1,8 @@
 <html>
     <head> 
         <link href="../report/lib/css.css" rel="stylesheet" />
-		<link href="../report/lib/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 		<link href="../report/lib/bootstrap.min.css" rel="stylesheet" />
+		<link href="../report/lib/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 		
     </head>
 <body>
