@@ -87,7 +87,7 @@
 	
 	$('#txtTranDate').click(function(event){
 		event.preventDefault();
-		$('#dTranDate').click();
+		$('.glyphicon-calendar').click();
 	});
 			
     var myvar = <?php echo $dataPhp; ?>;
