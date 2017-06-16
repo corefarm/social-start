@@ -43,9 +43,10 @@
 			return $ret;
 		}
         
+		var $data = retrieveReportData($_GET['id'], $_GET['cvFarm'], $_GET['date']);
 	?>
 
-    var myvar = <?php echo retrieveReportData($_GET['id'], $_GET['cvFarm'], $_GET['date']); ?>;
+    var myvar = <?php echo $data; ?>;
     var data = myvar;
 
     var obj = {};
