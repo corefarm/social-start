@@ -799,6 +799,8 @@ if (!is_null($events['events'])) {
 				else {
 					array_push($msg,$msgCv['msgVal']);
 					
+					error_log('CV FARM VAL <<<<<<'.$msgCv['msgVal']['val'])
+					
 					$msgReport = retrieveMsgReport(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val'], 'date' => $today]);
 					
 					array_push($msg,$msgReport['msgVal']);
@@ -1210,7 +1212,7 @@ function retrieveMsgReport($obj) {
 				'template' => [
 					'type' => 'buttons',
 					'title' => 'report',
-					'text' => 'Please select date.',
+					'text' => 'Please select',
 					'actions' => array(
 						[
 							'type' => 'uri',
