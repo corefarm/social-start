@@ -799,7 +799,7 @@ if (!is_null($events['events'])) {
 				else {
 					array_push($msg,$msgCv['msgVal']);
 					
-					error_log('CV FARM VAL <<<<<<'.$msgCv['msgVal']['val'])
+					error_log('CV FARM VAL <<<<<<'.$msgCv['msgVal']['val']);
 					
 					$msgReport = retrieveMsgReport(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val'], 'date' => $today]);
 					
