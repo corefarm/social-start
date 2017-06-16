@@ -897,7 +897,7 @@ function retrieveMsgCv($obj) {
 			elseif($obj['menu'] == 'report') {
 				$textRep = '<รายงานฟาร์ม>';
 			}
-			else {
+			elseif($obj['menu'] == 'feed') {
 				$textRep = '<ฟาร์มเบิกอาหาร>';
 			}
 			
