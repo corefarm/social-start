@@ -23,7 +23,7 @@
     </div>
 
     <div class="col-md-1">
-        <input type="button" class="btn btn-info" value="Search" onclick="getData()" />
+        <input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
     </div>
     <div class="col-md-8"></div>
 </div>
@@ -89,7 +89,27 @@
 		event.preventDefault();
 		$('#glyp-icon').click();
 	});
-			
+	
+	function retrievePhpfunc() {
+		var dateJs = $('#txtTranDate').val();
+		
+		var uri = 'https://shielded-dawn-30361.herokuapp.com/report/report.php?id='+<?php $_GET['id'] ?>+'&cv='+<?php $_GET['cv'] ?>+'&date='+dateJs;
+		
+		console.log(uri);
+		$.ajax({
+			url:uri,
+			complete: function (response) {
+				debugger
+			},
+			error: function () {
+			  
+			}
+		});
+		
+		return false;
+	}
+	
+	
     var myvar = <?php echo $dataPhp; ?>;
     var data = myvar;
 
