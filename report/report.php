@@ -18,6 +18,8 @@
 		echo $id;
 		echo $cv;
 		echo $date;
+		
+		echo "Hello World!";
 		?>
 
 </body>
