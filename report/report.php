@@ -36,9 +36,9 @@
 </body>
 <script src="../report/lib/jquery-2.1.0.min.js"></script>
 <script src="../report/lib/report.table.js"></script>
-<script src="../report/lib/moment-with-langs.min.js"></script>
 <script src="../report/lib/bootstrap.min.js"></script>
 <script src="../report/lib/bootstrap-datetimepicker.min.js"></script>
+<script src="../report/lib/moment-with-langs.min.js"></script>
 
 <script>
 
