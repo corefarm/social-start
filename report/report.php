@@ -11,7 +11,7 @@
         </div>
 		
 		<?php 
-		$id = $_GET['userId'];
+		$id = $_GET['id'];
 		$cv = $_GET['cvFarm'];
 		$date = $_GET['date'];
 		
