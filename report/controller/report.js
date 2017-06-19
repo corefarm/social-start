@@ -10,7 +10,7 @@
 	
 debugger
 	if(obj.program == 'sw') {
-		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl.slice(0,4) + ' ' + dateStrUrl.slice(0,-2));
+		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl.slice(4,6) + ' ' + dateStrUrl.slice(0,-2));
 		$('#lblHeaderDetail').text('โรงเรือน ' + url.searchParams.get('cv'));
 	}
 	//
