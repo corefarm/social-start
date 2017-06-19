@@ -1,7 +1,7 @@
 ﻿functions.report = function (obj) {
 
     $('#lblHeader').text(obj.programName);
-	$('#lblHeaderDetail').text('ทดสอบภาษาไทย')ว
+	$('#lblHeaderDetail').text('ทดสอบภาษาไทย');
 
     switch (obj.program) {
         case 'sw':
