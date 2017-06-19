@@ -1,5 +1,7 @@
 ﻿functions.report = function (obj) {
-
+	
+	alert(obj.programName);
+	
     $('#lblHeader').text(obj.programName);
 	$('#lblHeaderDetail').text('ทดสอบภาษาไทย');
 
