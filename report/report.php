@@ -16,8 +16,8 @@
 	</div>
 
 	
-		<div class="container">
-		<center>
+		<div class="rows">
+
         <div class="col-md-6 col-sm-6">
             <div class="form-group">
                 <div class='input-group date col-md-4' id='dTranDate'>
@@ -32,7 +32,7 @@
 		<div class="col-md-6 col-sm-6">
 			<input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
 		</div>
-		</center>
+
     </div>
 
 
