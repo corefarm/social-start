@@ -16,20 +16,22 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-3 col-sm-3">
-			<div class="form-group">
-				<label for="dTranDate" class="col-md-4 control-label text-right">Date</label>
-				<div class='input-group date' id='dTranDate'>
-					<input type='text' id="txtTranDate" class="form-control" />
-					<span class="input-group-addon">
-						<span id="glyp-icon" class="glyphicon glyphicon-calendar"></span>
-					</span>
+		<div class="col-md-12 col-sm-12">
+			<div class="col-md-3 col-sm-3">
+				<div class="form-group">
+					<label for="dTranDate" class="col-md-4 control-label text-right">Date</label>
+					<div class='input-group date' id='dTranDate'>
+						<input type='text' id="txtTranDate" class="form-control" />
+						<span class="input-group-addon">
+							<span id="glyp-icon" class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="col-md-9 col-sm-9">
-			<input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
+			<div class="col-md-9 col-sm-9">
+				<input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
+			</div>
 		</div>
 	</div>
 
