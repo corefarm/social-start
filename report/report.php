@@ -15,21 +15,22 @@
 		<center><label id="lblHeaderDetail" class="col-md-12" style="padding: 10px;"></label></center>
 	</div>
 
-	<div class="row">
-		<div class="col-sm-3">
+	<div class="row col-sm-12">
+		<div class="col-sm-6">
 			<div class="form-group">
-				<label for="dTranDate" class="col-md-4 control-label text-right">Date</label>
+				<label for="dTranDate" class="control-label text-right">Date</label>
 				<div class='input-group date' id='dTranDate'>
 					<input type='text' id="txtTranDate" class="form-control" />
 					<span class="input-group-addon">
 						<span id="glyp-icon" class="glyphicon glyphicon-calendar"></span>
 					</span>
 				</div>
+				<input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
 			</div>
 		</div>
 
 		<div class="col-sm-3">
-			<input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
+			
 		</div>
 	</div>
 
