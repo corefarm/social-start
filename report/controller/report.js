@@ -7,7 +7,6 @@
 	if(obj.report == 'sw') {
 		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl);
 	}
-    $('#lblHeader').text(obj.programName);
 	$('#lblHeaderDetail').text('ทดสอบภาษาไทย');
 
     switch (obj.program) {

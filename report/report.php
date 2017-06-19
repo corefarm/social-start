@@ -104,7 +104,6 @@
 		url = url.slice(0,-8) + (spliteDate[2] + spliteDate[1] + spliteDate[0]);
 		
 		window.location.replace(url);
-		
 	}
     var myvar = <?php echo $dataPhp; ?>;
     var data = myvar;
