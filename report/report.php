@@ -15,7 +15,7 @@
 		<center><label id="lblHeaderDetail" class="col-md-12" style="padding: 10px;"></label></center>
 	</div>
 
-	<div class="row col-sm-12">
+	<div class="rows">
 		<div class="col-sm-6">
 			<div class="form-group">
 				<label for="dTranDate" class="control-label text-right">Date</label>
