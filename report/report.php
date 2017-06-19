@@ -8,11 +8,11 @@
 <body>
 
 	<div class="row">
-		<label id="lblHeader" class="col-md-12"></label>
+		<center><label id="lblHeader" class="col-md-12" style="padding: 50px;"></label></center>
 		
 	</div>
 	<div class="row">
-		<label id="lblHeaderDetail" class="col-md-12"></label>
+		<center><label id="lblHeaderDetail" class="col-md-12" style="padding: 50px;"></label></center>
 	</div>
 
 	<div class="row">
