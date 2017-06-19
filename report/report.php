@@ -16,7 +16,7 @@
 	</div>
 
 	
-		<div class="rows">
+	<div class="container">
 
         <div class="col-md-6 col-sm-6">
             <div class="form-group">
