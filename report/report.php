@@ -9,6 +9,9 @@
 
 	<div class="row">
 		<label id="lblHeader" class="col-md-12"></label>
+		
+	</div>
+	<div class="row">
 		<label id="lblHeaderDetail" class="col-md-12"></label>
 	</div>
 
@@ -108,7 +111,7 @@
 
     var obj = {};
 
-    obj.programName = 'รายงาน';
+    obj.programName = 'รายงานภาษาไทย';
     obj.template = 'sw';
     obj.report = 'report';
     obj.program = 'sw';
