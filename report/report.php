@@ -19,7 +19,6 @@
 		<div class="container">
         <div class="col-md-6 col-sm-6">
             <div class="form-group">
-                <label for="dTranDate" class="col-md-4 control-label text-right">Date</label>
                 <div class='input-group date col-md-4' id='dTranDate'>
                     <input type='text' id="txtTranDate" class="form-control" />
                     <span class="input-group-addon">
