@@ -4,10 +4,11 @@
 	var url = new URL(url_string);
 	var dateStrUrl = url.searchParams.get("date");
 debugger
-	if(obj.report == 'sw') {
-		$('#lblHeaderDetail').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl);
+	if(obj.program == 'sw') {
+		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + url.searchParams.get('date'));
+		$('#lblHeaderDetail').text('โรงเรือน ' + url.searchParams.get('cv'));
 	}
-	//$('#lblHeaderDetail').text('ทดสอบภาษาไทย');
+	//
 
     switch (obj.program) {
         case 'sw':
