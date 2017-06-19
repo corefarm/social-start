@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="rows">
-		<div class="col-sm-12">
+		<div class="col-sm-9">
 			<div class="form-group">
 				<label for="dTranDate" class="control-label text-right">Date</label>
 				<div class='input-group date' id='dTranDate'>
@@ -25,12 +25,12 @@
 						<span id="glyp-icon" class="glyphicon glyphicon-calendar"></span>
 					</span>
 				</div>
-				<input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
+				
 			</div>
 		</div>
 
 		<div class="col-sm-3">
-			
+			<input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
 		</div>
 	</div>
 
