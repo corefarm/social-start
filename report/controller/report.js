@@ -5,9 +5,9 @@
 	var dateStrUrl = url.searchParams.get("date");
 
 	if(obj.report == 'sw') {
-		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl);
+		$('#lblHeaderDetail').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl);
 	}
-	$('#lblHeaderDetail').text('ทดสอบภาษาไทย');
+	//$('#lblHeaderDetail').text('ทดสอบภาษาไทย');
 
     switch (obj.program) {
         case 'sw':
