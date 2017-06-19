@@ -35,9 +35,9 @@
 	</div>
 
 
-    <div id="divFilter">
+    <div id="divFilter rows">
         </div>
-    <div class="datagrid" id="datagrid">
+    <div class="datagrid rows" id="datagrid">
         </div>
 
 </body>
