@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-sm-3">
 			<div class="form-group">
 				<label for="dTranDate" class="col-md-4 control-label text-right">Date</label>
 				<div class='input-group date' id='dTranDate'>
@@ -28,7 +28,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-1">
+		<div class="col-sm-3">
 			<input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
 		</div>
 	</div>
