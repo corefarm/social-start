@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="rows">
-		<div class="col-sm-6">
+		<div class="col-sm-12">
 			<div class="form-group">
 				<label for="dTranDate" class="control-label text-right">Date</label>
 				<div class='input-group date' id='dTranDate'>
