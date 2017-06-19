@@ -3,7 +3,7 @@
 	var url_string = window.location.href;
 	var url = new URL(url_string);
 	var dateStrUrl = url.searchParams.get("date");
-
+debugger
 	if(obj.report == 'sw') {
 		$('#lblHeaderDetail').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl);
 	}
