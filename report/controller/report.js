@@ -1,7 +1,5 @@
 ﻿functions.report = function (obj) {
 	
-	alert(obj.programName);
-	
 	var url_string = window.location.href;
 	var url = new URL(url_string);
 	var dateStrUrl = url.searchParams.get("date");
