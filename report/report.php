@@ -26,11 +26,12 @@
                         <span id="glyp-icon" class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
-                <div class="col-md-4 col-sm-4">
+            </div>
+			<div class="col-md-4 col-sm-4">
                     <input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
                 </div>
-            </div>
         </div>
+		
     </div>
 
 
