@@ -3,9 +3,14 @@
 	var url_string = window.location.href;
 	var url = new URL(url_string);
 	var dateStrUrl = url.searchParams.get("date");
+	
+	dateStrUrl = dateStrUrl.slice(0,-2);
+	
+	
+	
 debugger
 	if(obj.program == 'sw') {
-		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + url.searchParams.get('date'));
+		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl.slice(0,4) + ' ' + dateStrUrl.slice(0,-2));
 		$('#lblHeaderDetail').text('โรงเรือน ' + url.searchParams.get('cv'));
 	}
 	//

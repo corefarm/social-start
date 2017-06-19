@@ -8,7 +8,7 @@
 <body>
 
 	<div class="row">
-		<center><label id="lblHeader" class="col-md-12" style="padding: 10px;"></label></center>
+		<center><label id="lblHeader" class="col-md-12" style="padding-top: 25px;"></label></center>
 		
 	</div>
 	<div class="row">
