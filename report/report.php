@@ -27,10 +27,11 @@
                     </span>
                 </div>
             </div>
-			<div class="col-md-4 col-sm-4">
-                    <input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
-                </div>
+			
         </div>
+		<div class="col-md-6 col-sm-6">
+			<input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
+		</div>
 		
     </div>
 
