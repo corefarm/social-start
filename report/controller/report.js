@@ -10,10 +10,13 @@
 	
 debugger
 	if(obj.program == 'sw') {
-		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl.slice(4,6) + ' ' + dateStrUrl.slice(0,-2));
+		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl.slice(4,6) + ' / ' + dateStrUrl.slice(0,-2));
 		$('#lblHeaderDetail').text('โรงเรือน ' + url.searchParams.get('cv'));
 	}
-	//
+	else {
+		$('#lblHeader').text('รายงานอาหารเหลือ เดือน ' + dateStrUrl.slice(4,6) + ' / ' + dateStrUrl.slice(0,-2));
+		$('#lblHeaderDetail').text('โรงเรือน ' + url.searchParams.get('cv'));
+	}
 
     switch (obj.program) {
         case 'sw':
