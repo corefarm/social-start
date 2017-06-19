@@ -32,14 +32,19 @@
 		<div class="col-sm-3">
 			<input type="button" class="btn btn-info" value="Search" onclick="retrievePhpfunc()" />
 		</div>
+		
 	</div>
 
-
-    <div id="divFilter rows">
-        </div>
-    <div class="datagrid rows" id="datagrid">
-        </div>
-
+	
+	<div class="rows">
+		<div id="divFilter">
+			</div>
+	</div>
+	
+    <div class="rows">
+		<div class="datagrid" id="datagrid">
+			</div>
+	</div>
 </body>
 <script src="../report/lib/jquery-2.1.0.min.js"></script>
 <script src="../report/lib/report.table.js"></script>
