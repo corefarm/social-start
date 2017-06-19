@@ -806,6 +806,7 @@ if (!is_null($events['events'])) {
 					array_push($msg,$msgReport['msgVal']);
 				}
 			}
+			
 			if(stristr($text,'<รายงานฟาร์ม>') ) {
 				
 				$today = date('Ymd');  

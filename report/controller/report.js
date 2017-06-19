@@ -1,6 +1,7 @@
 ﻿functions.report = function (obj) {
 
     $('#lblHeader').text(obj.programName);
+	$('#lblHeaderDetail').text('ทดสอบภาษาไทย')ว
 
     switch (obj.program) {
         case 'sw':
