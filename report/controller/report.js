@@ -2,6 +2,13 @@
 	
 	alert(obj.programName);
 	
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var dateStrUrl = url.searchParams.get("date");
+
+	if(obj.report == 'sw') {
+		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl);
+	}
     $('#lblHeader').text(obj.programName);
 	$('#lblHeaderDetail').text('ทดสอบภาษาไทย');
 
