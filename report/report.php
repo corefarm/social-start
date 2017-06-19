@@ -97,9 +97,8 @@
 		
 		var url = window.location.href;
 		url = url.slice(0,-8) + (spliteDate[2] + spliteDate[1] + spliteDate[0]);
-		alert(url);
 		
-		//window.location.replace('https://shielded-dawn-30361.herokuapp.com/report/report.php?id=123456789&cv=2000020032-0-1-4-36&date='+dateJs);
+		window.location.replace(url);
 		
 	}
     var myvar = <?php echo $dataPhp; ?>;
