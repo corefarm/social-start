@@ -820,7 +820,7 @@ if (!is_null($events['events'])) {
 				
 				$today = date('Ymd');  
 				
-				$val = str_replace('<รายงานฟาร์ม>','',$text);
+				$val = str_replace('<รายงานเล้า>','',$text);
 				
 				$msgReport = retrieveMsgReport(['userId' => $userId, 'cvFarm' => $val, 'date' => $today]);
 					
