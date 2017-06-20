@@ -801,9 +801,18 @@ if (!is_null($events['events'])) {
 					
 					error_log('CV FARM VAL <<<<<<'.$msgCv['msgVal']['val']);
 					
-					$msgReport = retrieveMsgReport(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val'], 'date' => $today]);
+					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val'], 'menu' => 'report' ]);
 					
-					array_push($msg,$msgReport['msgVal']);
+					if($msgFarmOrg['msgType'] == 'template') {
+						array_push($msg,$msgFarmOrg['msgVal']);
+					}
+					else {
+						array_push($msg,$msgFarmOrg['msgVal']);
+						
+						$msgReport = retrieveMsgReport(['userId' => $userId, 'cvFarm' => $msgFarmOrg['msgVal']['val'], 'date' => $today]);
+					
+						array_push($msg,$msgReport['msgVal']);
+					}
 				}
 			}
 			
