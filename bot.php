@@ -910,9 +910,6 @@ function retrieveMsgCv($obj) {
 		$arrMessageDs = array(); 
 		
 		foreach ($arrData as $val) {
-			
-			
-			
 			array_push($arrMessageDs,[
 				'type' => 'postback',
 				'label' => $val['Farm_Name'],
@@ -974,6 +971,18 @@ function retrieveMsgFarmOrg($obj) {
 	
 	$arrData = retrieveServiceData([ 'service' => 'GetFarmOrgsResult', 'userId' => $obj['userId'],'cvFarm' => $obj['cvFarm']]);
 	
+	$textRep = '';
+			
+	if($obj['menu'] == 'dead') {
+		$textRep = '<หลัง>';
+	}
+	elseif($obj['menu'] == 'report') {
+		$textRep = '<รายงานเล้า>';
+	}
+	else {
+		$textRep = '<เล้าเบิกอาหาร>';
+	}
+	
 	if(count($arrData) > 1) {
 		$arrMessageDs = array();
 
@@ -982,7 +991,7 @@ function retrieveMsgFarmOrg($obj) {
 				'type' => 'postback',
 				'label' => $val['Farm_Org'],
 				'data' => 'action=buy&itemid=123',
-				'text' => ($obj['menu'] == 'dead' ? '<หลัง>' : '<เล้าเบิกอาหาร>').$val['Farm_Org'],
+				'text' => $textRep.$val['Farm_Org'],
 			]);
 		}
 		
@@ -1006,7 +1015,7 @@ function retrieveMsgFarmOrg($obj) {
 				'msgType' => 'message',
 				'msgVal' => [
 					'type' => 'text',
-					'text' => ($obj['menu'] == 'dead' ? '<หลัง>' : '<เล้าเบิกอาหาร>').$arrData[0]['Farm_Org'],
+					'text' => $textRep.$arrData[0]['Farm_Org'],
 					'val' => $arrData[0]['Farm_Org']
 				]
 			];	
