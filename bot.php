@@ -816,7 +816,7 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
-			if(stristr($text,'<รายงานฟาร์ม>') ) {
+			if(stristr($text,'<รายงานเล้า>') ) {
 				
 				$today = date('Ymd');  
 				
