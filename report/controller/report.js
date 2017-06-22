@@ -175,7 +175,7 @@ var mFd = function () {
 }
 
 mFd.prototype.formula = function(obj) {
-	this.transaction_date = obj.transaction_date
+	this.transaction_date = strDate(obj.transaction_date)
 	this.BfQty = obj.BfQty
 	this.BfWgh = obj.BfWgh
 	this.IssueQty = obj.IssueQty
