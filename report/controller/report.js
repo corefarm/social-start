@@ -98,10 +98,13 @@ var mSw = function () {
     this.CatchFemaleQty = 0
     this.DeadMaleQty = 0
     this.DeadFemaleQty = 0
+	this.CfMaleQty = 0
+	this.CfFemaleQty = 0
+	this.CfQty = 0
 }
 
 mSw.prototype.formula = function (obj) {
-    this.transaction_date = obj.transaction_date
+    this.transaction_date = strDate(obj.transaction_date)
     this.BfMaleQty = obj.BfMaleQty
     this.BfFemaleQty = obj.BfFemaleQty
     this.ReceiveMaleQty = obj.ReceiveMaleQty
@@ -110,6 +113,9 @@ mSw.prototype.formula = function (obj) {
     this.CatchFemaleQty = obj.CatchFemaleQty
     this.DeadMaleQty = obj.DeadMaleQty
     this.DeadFemaleQty = obj.DeadFemaleQty
+	this.CfMaleQty = obj.CfMaleQty
+	this.CfFemaleQty = obj.CfFemaleQty
+	this.CfQty = obj.CfQty
 }
 
 mSw.prototype.increase = function (obj) {
@@ -136,11 +142,19 @@ mSw.prototype.display = function (obj) {
     td.push('<td class="{0}" >{1}</td>'.format('', this.CatchFemaleQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.DeadMaleQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.DeadFemaleQty.format(0)));
-    var totalMale = (this.BfMaleQty + this.ReceiveMaleQty) - (this.CatchMaleQty + this.DeadMaleQty);
-    var totalFemale = (this.BfFemaleQty + this.ReceiveFemaleQty) - (this.CatchFemaleQty + this.DeadFemaleQty);
-    td.push('<td class="{0}" >{1}</td>'.format('', totalMale.format(0)));
-    td.push('<td class="{0}" >{1}</td>'.format('', totalFemale.format(0)));
-    td.push('<td class="{0}" >{1}</td>'.format('', (totalMale + totalFemale).format(0)));
+	if(obj.RowProp == 'alt') {
+		var totalMale = (this.BfMaleQty + this.ReceiveMaleQty) - (this.CatchMaleQty + this.DeadMaleQty);
+		var totalFemale = (this.BfFemaleQty + this.ReceiveFemaleQty) - (this.CatchFemaleQty + this.DeadFemaleQty);
+		td.push('<td class="{0}" >{1}</td>'.format('', totalMale.format(0)));
+		td.push('<td class="{0}" >{1}</td>'.format('', totalFemale.format(0)));
+		td.push('<td class="{0}" >{1}</td>'.format('', (totalMale + totalFemale).format(0)));
+	}
+	else {
+		td.push('<td class="{0}" >{1}</td>'.format('', this.CfMaleQty.format(0)));
+		td.push('<td class="{0}" >{1}</td>'.format('', this.CfFemaleQty.format(0)));
+		td.push('<td class="{0}" >{1}</td>'.format('', this.CfQty.format(0)));
+	}
+    
     td.push('</tr>');
     return td;
 }
@@ -204,4 +218,13 @@ mFd.prototype.display = function(obj) {
     td.push('</tr>');
     return td;
 	
+}
+
+function strDate(val) {
+	//20171212
+	var day = val.charAt(6) + val.charAt(7);
+	var month = val.charAt(4) + val.charAt(5);
+	var year = val.slice(0,-4);
+	
+	return day+'/'+month+'/'+year;
 }
