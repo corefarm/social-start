@@ -1173,8 +1173,6 @@ function retrieveMsgProduct($obj) {
 		
 		$arrMessageDs = array(); 
 		
-		$val['Product_Name']
-		
 		$unit = ($val['Cal_Method'] == 'Q' ? 'ถุง' : 'กก.');
 		
 		foreach ($arrData as $val) {
