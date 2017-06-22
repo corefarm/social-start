@@ -221,8 +221,8 @@ mFd.prototype.display = function(obj) {
 		td.push('<td class="{0}" >{1}</td>'.format('', totalWgh.format(0)));
 	}
 	else {
-		td.push('<td class="{0}" >{1}</td>'.format('', CfQty.format(0)));
-		td.push('<td class="{0}" >{1}</td>'.format('', CfWgh.format(0)));
+		td.push('<td class="{0}" >{1}</td>'.format('', this.CfQty.format(0)));
+		td.push('<td class="{0}" >{1}</td>'.format('', this.CfWgh.format(0)));
 	}
     
     td.push('</tr>');
