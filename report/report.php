@@ -65,7 +65,7 @@
 			
 			$url = 'https://mservice-uat.cpf.co.th/Farm/FarmMobileRestService/FarmMobileRestService.svc/json/'.$type.'/'.$id.','.$cv.','.$date;
 			
-			error_log($url);
+			error_log($url.' <<<<<<<<<<<<<<<<<<<<<< LOG PHP PAGE');
 			
 			$arrContextOptions = array(
 								'ssl' => array(
@@ -81,7 +81,7 @@
 			return $ret;
 		}
         
-		$dataPhp = retrieveReportData($_GET['type'],$_GET['id'], $_GET['cv'], $_GET['date']);
+		$dataPhp = retrieveReportData($_GET['type'], $_GET['id'], $_GET['cv'], $_GET['date']);
 
 	?>
 
