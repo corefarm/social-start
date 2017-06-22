@@ -388,11 +388,11 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'สรุปข้อมูล   '.
-									'   บันทึกตาย เล้า '.$row['STEP3_VALUE'].
-									'   เพศ '.$row['STEP4_VALUE'].
-									'   จำนวน  '.$text.
-									'   ยืนยันข้อมูล ? ',
+							'text' => 'สรุปข้อมูล  '.
+									'  บันทึกตาย เล้า '.$row['STEP3_VALUE'].
+									'  เพศ '.$row['STEP4_VALUE'].
+									'  จำนวน  '.$text.
+									'  ยืนยันข้อมูล ? ',
 							'actions' => array(
 								[
 								'type' => 'message',
@@ -690,11 +690,11 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'สรุปข้อมูล   '.
-									'   บันทึกเบิก เล้า '.$row['STEP3_VALUE'].
-									'   เบอร์อาหาร '.explode(',',$row['STEP4_VALUE'])[0].
-									'   จำนวน  '.$text.
-									'   ยืนยันข้อมูล ? ',
+							'text' => 'สรุปข้อมูล  '.
+									'  บันทึกเบิก เล้า '.$row['STEP3_VALUE'].
+									'  '.explode(',',$row['STEP4_VALUE'])[0].
+									'  จำนวน  '.$text.
+									'  ยืนยันข้อมูล ? ',
 							'actions' => array(
 								[
 								'type' => 'message',
