@@ -397,7 +397,7 @@ if (!is_null($events['events'])) {
 								[
 								'type' => 'message',
 								'label' => 'ยืนยัน',
-								'text' => '<กำลังยืนยัน>',
+								'text' => '<กำลังบันทึก>',
 								],[
 								'type' => 'message',
 								'label' => 'ยกเลิก',
@@ -420,7 +420,7 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
-			if ($text  == '<กำลังยืนยัน>') {
+			if ($text  == '<กำลังบันทึก>') {
 				
 				$sql = "select * from \"FR_DATA_COLLECTION\" where 
 					\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'DEADCULL' and 
@@ -699,7 +699,7 @@ if (!is_null($events['events'])) {
 								[
 								'type' => 'message',
 								'label' => 'ยืนยัน',
-								'text' => '<กำลังยืนยันเบิกอาหาร>',
+								'text' => '<กำลังบันทึกเบิกอาหาร>',
 								],[
 								'type' => 'message',
 								'label' => 'ยกเลิก',
@@ -722,7 +722,7 @@ if (!is_null($events['events'])) {
 				}
 			}
 			
-			if(stristr($text,'<กำลังยืนยันเบิกอาหาร>') ) {
+			if(stristr($text,'<กำลังบันทึกเบิกอาหาร>') ) {
 				
 				$sql = "select * from \"FR_DATA_COLLECTION\" where 
 					\"USER_ID\" = '$userId' and \"PROCESS_NAME\" = 'FEEDUSAGE' and 
