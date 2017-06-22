@@ -178,6 +178,8 @@ mFd.prototype.formula = function(obj) {
 	this.transaction_date = strDate(obj.transaction_date)
 	this.BfQty = obj.BfQty
 	this.BfWgh = obj.BfWgh
+	this.CfQty = obj.CfQty
+	this.CfWgh = obj.CfWgh
 	this.IssueQty = obj.IssueQty
 	this.IssueWgh = obj.IssueWgh
 	this.ReceiveQty = obj.ReceiveQty
@@ -211,10 +213,18 @@ mFd.prototype.display = function(obj) {
     td.push('<td class="{0}" >{1}</td>'.format('', this.UseWgh.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.IssueQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.IssueWgh.format(0)));
-    var totalQty = (this.BfQty + this.ReceiveQty) - (this.UseQty + this.IssueQty);
-    var totalWgh = (this.BfWgh + this.ReceiveWgh) - (this.UseWgh + this.IssueWgh);
-    td.push('<td class="{0}" >{1}</td>'.format('', totalQty.format(0)));
-    td.push('<td class="{0}" >{1}</td>'.format('', totalWgh.format(0)));
+	
+	if(obj.RowProp == 'alt') {
+		var totalQty = (this.BfQty + this.ReceiveQty) - (this.UseQty + this.IssueQty);
+		var totalWgh = (this.BfWgh + this.ReceiveWgh) - (this.UseWgh + this.IssueWgh);
+		td.push('<td class="{0}" >{1}</td>'.format('', totalQty.format(0)));
+		td.push('<td class="{0}" >{1}</td>'.format('', totalWgh.format(0)));
+	}
+	else {
+		td.push('<td class="{0}" >{1}</td>'.format('', CfQty.format(0)));
+		td.push('<td class="{0}" >{1}</td>'.format('', CfWgh.format(0)));
+	}
+    
     td.push('</tr>');
     return td;
 	
