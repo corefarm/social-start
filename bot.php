@@ -1173,9 +1173,12 @@ function retrieveMsgProduct($obj) {
 		
 		$arrMessageDs = array(); 
 		
-		$unit = ($val['Cal_Method'] == 'Q' ? 'ถุง' : 'กก.');
+		
 		
 		foreach ($arrData as $val) {
+			
+			$unit = ($val['Cal_Method'] == 'Q' ? 'ถุง' : 'กก.');
+			
 			array_push($arrMessageDs,[
 				'type' => 'postback',
 				'label' => str_replace('อาหารหมู', '',str_replace(' ','',$val['Product_Name'])).'('.$val['Stock_Qty'].' '.unit.')',
