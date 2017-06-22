@@ -27,6 +27,28 @@
     }
 }
 
+
+var swReport = function (obj) {
+
+    var tbody = [];
+
+    var sum = new mSw();
+
+    for (var i = 0; i < obj.dataSource.length;i++) {
+        var row = new mSw();
+
+        row.formula(obj.dataSource[i]);
+
+        tbody = tbody.concat(row.display({ RowProp: '' }));
+
+        sum.increase(row);
+    }
+    sum.transaction_date = 'รวม';
+    tbody = tbody.concat(sum.display({ RowProp: 'alt' }));
+
+    return tbody;
+}
+
 var fdReport = function (obj) {
 
     var tbody = [];
@@ -37,9 +59,10 @@ var fdReport = function (obj) {
 	
 	for(var ip = 0, lp = product.length; ip < lp; ip++) {
 		
-		var mProduct = new mFd();
-		
 		var aData = $.grep(obj.dataSource, function (e) { return e.product_code == product[ip]; });
+		
+		var mProduct = new mFd();
+		mProduct.transaction_date = aData[0].product_code;
 		
 		for(var i = 0; i < aData.length;i++) {
 			var row = new mFd();
@@ -63,26 +86,7 @@ var fdReport = function (obj) {
     return tbody;
 }
 
-var swReport = function (obj) {
 
-    var tbody = [];
-
-    var sum = new mSw();
-
-    for (var i = 0; i < obj.dataSource.length;i++) {
-        var row = new mSw();
-
-        row.formula(obj.dataSource[i]);
-
-        tbody = tbody.concat(row.display({ RowProp: '' }));
-
-        sum.increase(row);
-    }
-    sum.transaction_date = 'รวม';
-    tbody = tbody.concat(sum.display({ RowProp: 'alt' }));
-
-    return tbody;
-}
 
 var mSw = function () {
     this.transaction_date = ''
@@ -133,7 +137,7 @@ mSw.prototype.display = function (obj) {
     td.push('<td class="{0}" >{1}</td>'.format('', this.DeadMaleQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.DeadFemaleQty.format(0)));
     var totalMale = (this.BfMaleQty + this.ReceiveMaleQty) - (this.CatchMaleQty + this.DeadMaleQty);
-    var totalFemale = (this.BfMaleQty + this.ReceiveMaleQty) - (this.CatchMaleQty + this.DeadMaleQty);
+    var totalFemale = (this.BfFemaleQty + this.ReceiveFemaleQty) - (this.CatchFemaleQty + this.DeadFemaleQty);
     td.push('<td class="{0}" >{1}</td>'.format('', totalMale.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', totalFemale.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', (totalMale + totalFemale).format(0)));
@@ -193,8 +197,8 @@ mFd.prototype.display = function(obj) {
     td.push('<td class="{0}" >{1}</td>'.format('', this.UseWgh.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.IssueQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.IssueWgh.format(0)));
-    var totalQty = this.BfQty + this.ReceiveQty + this.UseQty + this.IssueQty;
-    var totalWgh = this.BfWgh + this.ReceiveWgh + this.UseWgh + this.IssueWgh;
+    var totalQty = (this.BfQty + this.ReceiveQty) - (this.UseQty + this.IssueQty);
+    var totalWgh = (this.BfWgh + this.ReceiveWgh) - (this.UseWgh + this.IssueWgh);
     td.push('<td class="{0}" >{1}</td>'.format('', totalQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', totalWgh.format(0)));
     td.push('</tr>');
