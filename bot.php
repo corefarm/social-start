@@ -388,11 +388,11 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'สรุปข้อมูล '.
-									' บันทึกตาย เล้า '.$row['STEP3_VALUE'].
-									'เพศ '.$row['STEP4_VALUE'].
-									'จำนวน  '.$text.
-									'ยืนยันข้อมูล ? ',
+							'text' => 'สรุปข้อมูล   '.
+									'   บันทึกตาย เล้า '.$row['STEP3_VALUE'].
+									'   เพศ '.$row['STEP4_VALUE'].
+									'   จำนวน  '.$text.
+									'   ยืนยันข้อมูล ? ',
 							'actions' => array(
 								[
 								'type' => 'message',
@@ -690,11 +690,11 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'สรุปข้อมูล '.
-									' บันทึกเบิก เล้า '.$row['STEP3_VALUE'].
-									'เบอร์อาหาร '.explode(',',$row['STEP4_VALUE'])[0].
-									'จำนวน  '.$text.
-									'ยืนยันข้อมูล ? ',
+							'text' => 'สรุปข้อมูล   '.
+									'   บันทึกเบิก เล้า '.$row['STEP3_VALUE'].
+									'   เบอร์อาหาร '.explode(',',$row['STEP4_VALUE'])[0].
+									'   จำนวน  '.$text.
+									'   ยืนยันข้อมูล ? ',
 							'actions' => array(
 								[
 								'type' => 'message',
@@ -1184,7 +1184,7 @@ function retrieveMsgProduct($obj) {
 				'label' => str_replace('อาหารหมู', '',str_replace(' ','',$val['Product_Name'])).'('.$val['Stock_Qty'].' '.$unit.')',
 				//'label' => str_replace(' ','',$val['Product_Name']),
 				'data' => 'action=buy&itemid=123',
-				'text' => '<เบอร์อาหาร>'.str_replace(' ','',$val['Product_Name']).','.$val['Product_Code'].','.$val['Stock_Qty'],
+				'text' => '<เบอร์อาหาร>'.str_replace(' ','',$val['Product_Name']).','.$val['Product_Code']
 			]);
 		}
 		
