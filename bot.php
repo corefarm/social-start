@@ -458,7 +458,10 @@ if (!is_null($events['events'])) {
 						]);
 					}
 					else {
-						
+						array_push($msg,[
+								'type' => 'text',
+								'text' => $msgDeadSw[0]['Result_Message']
+						]);
 					}
 				}
 			}
@@ -760,7 +763,10 @@ if (!is_null($events['events'])) {
 						]);
 					}
 					else {
-						
+						array_push($msg,[
+								'type' => 'text',
+								'text' => $msgFeedUse[0]['Result_Message']
+						]);
 					}	
 				}
 			}
