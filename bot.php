@@ -1176,7 +1176,8 @@ function retrieveMsgProduct($obj) {
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
-				'label' => str_replace('อาหารหมู', '',str_replace(' ','',$val['Product_Name'])).'('.$val['Stock_Qty'].')',
+				//'label' => str_replace('อาหารหมู', '',str_replace(' ','',$val['Product_Name'])).'('.$val['Stock_Qty'].')',
+				'label' => str_replace(' ','',$val['Product_Name']),
 				'data' => 'action=buy&itemid=123',
 				'text' => '<เบอร์อาหาร>'.str_replace(' ','',$val['Product_Name']).','.$val['Product_Code'].','.$val['Stock_Qty'],
 			]);
