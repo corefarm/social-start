@@ -108,15 +108,20 @@
 		
 		window.location.replace(url);
 	}
+	
     var myvar = <?php echo $dataPhp; ?>;
     var data = myvar;
 
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var typeStrUrl = url.searchParams.get("type");
+	
     var obj = {};
 
     obj.programName = 'รายงานภาษาไทย';
-    obj.template = 'sw';
+    obj.template = (typeStrUrl == 'getreportswstock' ? 'sw' : 'fd');
     obj.report = 'report';
-    obj.program = 'sw';
+    obj.program = (typeStrUrl == 'getreportswstock' ? 'sw' : 'fd');
     obj.tableStyle = '';
 
     $('#datagrid').createTable({

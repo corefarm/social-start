@@ -6,9 +6,8 @@
 	
 	dateStrUrl = dateStrUrl.slice(0,-2);
 	
+	debugger
 	
-	
-debugger
 	if(obj.program == 'sw') {
 		$('#lblHeader').text('รายงานสุกรคงเหลือ เดือน ' + dateStrUrl.slice(4,6) + ' / ' + dateStrUrl.slice(0,-2));
 		$('#lblHeaderDetail').text('โรงเรือน ' + url.searchParams.get('cv'));
@@ -22,6 +21,9 @@ debugger
         case 'sw':
             return swReport(obj);
             break;
+		case 'fd':
+			return fdReport(obj);
+			break;
     }
 }
 
