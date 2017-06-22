@@ -1238,12 +1238,12 @@ function retrieveMsgReport($obj) {
 						[
 							'type' => 'uri',
 							'label' => 'รายงานสุกรคงเหลือ',
-							'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php?id='.$obj['userId'].'&cv='.$obj['cvFarm'].'&date='.$obj['date']
+							'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php?type=getreportswstock&id='.$obj['userId'].'&cv='.$obj['cvFarm'].'&date='.$obj['date']
 						],
 						[
 							'type' => 'uri',
 							'label' => 'รายงานอาหาร',
-							'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php?id='.$obj['userId'].'&cv='.$obj['cvFarm'].'&date='.$obj['date']
+							'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php?type=getreportfeedstock&id='.$obj['userId'].'&cv='.$obj['cvFarm'].'&date='.$obj['date']
 						]
 					)
 				]

@@ -59,12 +59,13 @@
 		
 		
 				
-		function retrieveReportData ($id, $cv, $date) {
+		function retrieveReportData ($type, $id, $cv, $date) {
 			
 			//$url = 'https://mservice-uat.cpf.co.th/Farm/FarmMobileRestService/FarmMobileRestService.svc/json/getreportswstock/123456789,2000020032-0-1-4-36,20170601';
-
-			$url = 'https://mservice-uat.cpf.co.th/Farm/FarmMobileRestService/FarmMobileRestService.svc/json/getreportswstock/'.$id.','.$cv.','.$date;
-
+			
+			$url = 'https://mservice-uat.cpf.co.th/Farm/FarmMobileRestService/FarmMobileRestService.svc/json/'.$type.'/'.$id.','.$cv.','.$date;
+			
+			error_log($url);
 			
 			$arrContextOptions = array(
 								'ssl' => array(
@@ -80,7 +81,7 @@
 			return $ret;
 		}
         
-		$dataPhp = retrieveReportData($_GET['id'], $_GET['cv'], $_GET['date']);
+		$dataPhp = retrieveReportData($_GET['type'],$_GET['id'], $_GET['cv'], $_GET['date']);
 
 	?>
 

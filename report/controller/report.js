@@ -25,6 +25,42 @@ debugger
     }
 }
 
+var fdReport = function (obj) {
+
+    var tbody = [];
+
+    var sum = new mFd();
+
+	var product = obj.dataSource.distinctArrayObject('product_code');
+	
+	for(var ip = 0, lp = product.length; ip < lp; ip++) {
+		
+		var mProduct = new mFd();
+		
+		var aData = $.grep(obj.dataSource, function (e) { return e.product_code == product[ip]; });
+		
+		for(var i = 0; i < aData.length;i++) {
+			var row = new mFd();
+			
+			row.formula(aData[i]);
+			
+			tbody = tbody.concat(row.display({ RowProp: '' }));
+			
+			mProduct.increase(row);
+		}
+		
+		tbody = tbody.concat(mProduct.display({ RowProp: 'alt' }));
+		
+		sum.increase(mProduct);
+
+	}
+	
+    sum.transaction_date = 'รวม';
+    tbody = tbody.concat(sum.display({ RowProp: 'alt' }));
+
+    return tbody;
+}
+
 var swReport = function (obj) {
 
     var tbody = [];
@@ -94,15 +130,72 @@ mSw.prototype.display = function (obj) {
     td.push('<td class="{0}" >{1}</td>'.format('', this.CatchFemaleQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.DeadMaleQty.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', this.DeadFemaleQty.format(0)));
-    var totalMale = this.BfMaleQty + this.ReceiveMaleQty + this.CatchMaleQty + this.DeadMaleQty;
-    var totalFemale = this.BfMaleQty + this.ReceiveMaleQty + this.CatchMaleQty + this.DeadMaleQty;
+    var totalMale = (this.BfMaleQty + this.ReceiveMaleQty) - (this.CatchMaleQty + this.DeadMaleQty);
+    var totalFemale = (this.BfMaleQty + this.ReceiveMaleQty) - (this.CatchMaleQty + this.DeadMaleQty);
     td.push('<td class="{0}" >{1}</td>'.format('', totalMale.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', totalFemale.format(0)));
     td.push('<td class="{0}" >{1}</td>'.format('', (totalMale + totalFemale).format(0)));
-    td.push('<tr class="{0}">');
+    td.push('</tr>');
     return td;
 }
 
 var mFd = function () {
+	this.transaction_date = ''
+	this.BfQty = 0
+	this.BfWgh = 0
+	this.CfQty = 0
+	this.CfWgh = 0
+	this.IssueQty = 0
+	this.IssueWgh = 0
+	this.ReceiveQty = 0
+	this.ReceiveWgh = 0
+	this.UseQty = 0
+	this.UseWgh = 0
+	this.product_code = 0
+}
 
+mFd.prototype.formula = function(obj) {
+	this.transaction_date = obj.transaction_date
+	this.BfQty = obj.BfQty
+	this.BfWgh = obj.BfWgh
+	this.IssueQty = obj.IssueQty
+	this.IssueWgh = obj.IssueWgh
+	this.ReceiveQty = obj.ReceiveQty
+	this.ReceiveWgh = obj.ReceiveWgh
+	this.UseQty = obj.UseQty
+	this.UseWgh = obj.UseWgh
+	this.product_code = obj.product_code
+}
+
+mFd.prototype.increase = function(obj) {
+	this.BfQty += obj.BfQty
+	this.BfWgh += obj.BfWgh
+	this.IssueQty += obj.IssueQty
+	this.IssueWgh += obj.IssueWgh
+	this.ReceiveQty += obj.ReceiveQty
+	this.ReceiveWgh += obj.ReceiveWgh
+	this.UseQty += obj.UseQty
+	this.UseWgh += obj.UseWgh
+	this.product_code += obj.product_code
+}
+
+mFd.prototype.display = function(obj) {
+	var td = [];
+    td.push('<tr class="{0}">'.format(obj.RowProp));
+    td.push('<td class="{0}" >{1}</td>'.format('', this.transaction_date));
+    td.push('<td class="{0}" >{1}</td>'.format('', this.BfQty.format(0)));
+    td.push('<td class="{0}" >{1}</td>'.format('', this.BfWgh.format(0)));
+    td.push('<td class="{0}" >{1}</td>'.format('', this.ReceiveQty.format(0)));
+    td.push('<td class="{0}" >{1}</td>'.format('', this.ReceiveWgh.format(0)));
+    td.push('<td class="{0}" >{1}</td>'.format('', this.UseQty.format(0)));
+    td.push('<td class="{0}" >{1}</td>'.format('', this.UseWgh.format(0)));
+    td.push('<td class="{0}" >{1}</td>'.format('', this.IssueQty.format(0)));
+    td.push('<td class="{0}" >{1}</td>'.format('', this.IssueWgh.format(0)));
+    var totalQty = this.BfQty + this.ReceiveQty + this.UseQty + this.IssueQty;
+    var totalWgh = this.BfWgh + this.ReceiveWgh + this.UseWgh + this.IssueWgh;
+    td.push('<td class="{0}" >{1}</td>'.format('', totalQty.format(0)));
+    td.push('<td class="{0}" >{1}</td>'.format('', totalWgh.format(0)));
+    td.push('</tr>');
+    return td;
+	
 }
