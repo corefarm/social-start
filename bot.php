@@ -656,16 +656,16 @@ if (!is_null($events['events'])) {
 				$temp = explode(',',$STEP4_VALUE)[0].','.explode(',',$STEP4_VALUE)[1];
 				$STEP4_VALUE = $temp;
 				
-				$qtyText = str_replace('<เบอร์อาหาร>','',$text);
+				//$qtyText = str_replace('<เบอร์อาหาร>','',$text);
 				
 				error_log('STEP 4 LOG'.$STEP4_VALUE.'<<<<<<<');
 				
 				updateStep(['userId' => $userId, 'step' => 4, 'val' => $STEP4_VALUE, 'menu' => 'feed']);
 				
-				array_push($msg,[
-							'type' => 'text',
-							'text' => explode(',',$qtyText)[0].' จำนวน '.explode(',',$qtyText)[2]
-				]);
+				// array_push($msg,[
+							// 'type' => 'text',
+							// 'text' => explode(',',$qtyText)[0].' จำนวน '.explode(',',$qtyText)[2]
+				// ]);
 				
 				array_push($msg,[
 							'type' => 'text',
@@ -1173,11 +1173,15 @@ function retrieveMsgProduct($obj) {
 		
 		$arrMessageDs = array(); 
 		
+		$val['Product_Name']
+		
+		$unit = ($val['Cal_Method'] == 'Q' ? 'ถุง' : 'กก.');
+		
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
-				//'label' => str_replace('อาหารหมู', '',str_replace(' ','',$val['Product_Name'])).'('.$val['Stock_Qty'].')',
-				'label' => str_replace(' ','',$val['Product_Name']),
+				'label' => str_replace('อาหารหมู', '',str_replace(' ','',$val['Product_Name'])).'('.$val['Stock_Qty'].' '.unit.')',
+				//'label' => str_replace(' ','',$val['Product_Name']),
 				'data' => 'action=buy&itemid=123',
 				'text' => '<เบอร์อาหาร>'.str_replace(' ','',$val['Product_Name']).','.$val['Product_Code'].','.$val['Stock_Qty'],
 			]);
