@@ -116,7 +116,7 @@ if (!is_null($events['events'])) {
 												'type' => 'postback',
 												'label' => 'ใข้อาหาร',
 												'data' => 'action=buy&itemid=123',
-												'text' => '<บันทึกใช้อาหาร>',
+												'text' => '<กำลังบันทึกใช้อาหาร>',
 											]
 									)],							
 /* 									[
@@ -171,6 +171,7 @@ if (!is_null($events['events'])) {
 				];			
 			}			 		
 			
+			/*
 			if($text == '<บันทึกตาย>') {
 				
 				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
@@ -183,7 +184,7 @@ if (!is_null($events['events'])) {
 				
 				writeData($sql);
 				
-				$today = date('d/m/Y');   
+				$today = date('d/m/Y');
 				$yesterday = date('d/m/Y', strtotime(' -1 day'));
 				
 				$msgDate = [
@@ -265,7 +266,76 @@ if (!is_null($events['events'])) {
 					}
 				}
 			}
-
+			*/
+			
+			if(stristr($text,'<บันทึกตาย>') ) {
+				
+				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
+				
+				writeData($sqlDelete);
+				
+				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
+				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
+				VALUES ('$userId', 'DEADCULL', 'MENUSELECT', now(), 'KEYING') ";
+				
+				writeData($sql);
+				
+				$STEP1_VALUE = date('d/m/Y');
+				
+				array_push($msg,[
+						'type' => 'text',
+						'text' => $STEP1_VALUE
+				]);
+				
+				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'dead']);
+				
+				$msgCv = retrieveMsgCv(['userId' => $userId, 'menu' => 'dead']);
+				
+				if($msgCv['msgType'] == 'template') {
+					array_push($msg,$msgCv['msgVal']);
+				}
+				else {
+					
+					updateStep(['userId' => $userId, 'step' => 2, 'val' => $msgCv['msgVal']['val'], 'menu' => 'dead']);
+					
+					array_push($msg,$msgCv['msgVal']);
+					
+					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val'], 'menu' => 'dead']);
+					
+					if($msgFarmOrg['msgType'] == 'template') {
+						
+						array_push($msg,$msgFarmOrg['msgVal']);
+					}
+					else {
+						
+						updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'menu' => 'dead']);
+						
+						array_push($msg,$msgFarmOrg['msgVal']);
+						
+						$msgSexStock = retrieveMsgSexStock(['userId' => $userId , 'orgSel' => $msgFarmOrg['msgVal']['val']]);
+						
+						if($msgSexStock['msgType'] == 'template') {
+							
+							array_push($msg,$msgSexStock['msgVal']);
+						}
+						else {
+							
+							updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgSexStock['msgVal']['val'], 'menu' => 'dead']);
+							
+							array_push($msg,$msgSexStock['msgVal']);
+							
+							if($msgSexStock['msgVal']['val']) {
+								$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
+							
+								//final
+								array_push($msg,$msgDeadType['msgVal']);
+								
+							}
+						}
+					}
+				}
+			}
+			
 			if(stristr($text,'<ฟาร์ม>') ) {				
 				
 				$STEP2_VALUE = str_replace('<ฟาร์ม> ','',$text);
@@ -490,7 +560,7 @@ if (!is_null($events['events'])) {
 			
 			//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= FEED USAGE =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 			
-			if($text == '<บันทึกใช้อาหาร>') {
+			if($text == '<กำลังบันทึกใช้อาหาร>') {
 				
 				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
 				
@@ -936,7 +1006,7 @@ function retrieveMsgCv($obj) {
 					'actions' => $arrMessageDs
 				]
 			]
-		];						
+		];
 	}
 	else {
 		if(count($arrData) == 1) {
