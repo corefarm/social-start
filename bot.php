@@ -1223,7 +1223,27 @@ function retrieveMsgDeadType($obj) {
 							'type' => 'carousel',
 							'columns' => array (
 									[
-										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+										//'title' => 'Record Data',
+										//'text' => 'บันทึกข้อมูล',
+										'actions' => array(
+											[
+											'type' => 'postback',
+											'label' => 'ตาย/คัดทิ้ง',
+											'data' => 'action=buy&itemid=123',
+											'text' => '!MaDeadCull',
+											],
+											[
+											'type' => 'postback',
+											'label' => 'ใข้อาหาร',
+											'data' => 'action=buy&itemid=123',
+											'text' => '!MaFeed',											
+/* 											'type' => 'uri',
+											'label' => 'Information',
+											'uri' => 'https://en.wikipedia.org/wiki/Wiki', */
+											]
+										)
+									],
+									[
 										'title' => 'Record Data',
 										'text' => 'บันทึกข้อมูล',
 										'actions' => array(
@@ -1245,29 +1265,6 @@ function retrieveMsgDeadType($obj) {
 										)
 									],
 									[
-										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-										'title' => 'Record Data',
-										'text' => 'บันทึกข้อมูล',
-										'actions' => array(
-											[
-											'type' => 'postback',
-											'label' => 'ตาย/คัดทิ้ง',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaDeadCull',
-											],
-											[
-											'type' => 'postback',
-											'label' => 'ใข้อาหาร',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaFeed',											
-/* 											'type' => 'uri',
-											'label' => 'Information',
-											'uri' => 'https://en.wikipedia.org/wiki/Wiki', */
-											]
-										)
-									],
-									[
-										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
 										'title' => 'Record Data',
 										'text' => 'บันทึกข้อมูล',
 										'actions' => array(
