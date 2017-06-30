@@ -1242,23 +1242,8 @@ function retrieveMsgDeadType($obj) {
 											'label' => 'Information',
 											'uri' => 'https://en.wikipedia.org/wiki/Wiki', */
 											]
-									)],							
-									[
-										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/StatusReport.png',
-										'title' => 'Report',
-										'text' => 'Daily Farm',
-										'actions' => array(
-											[
- 											'type' => 'uri',
-											'label' => 'สุกรคงเหลือ',
-											'uri' => 'https://en.wikipedia.org/wiki/Wiki', 
-											],
-											[
- 											'type' => 'uri',
-											'label' => 'อาหารคงเหลือ',
-											'uri' => 'https://www.google.com/', 
-											]
-									)]											
+										)
+									]
 							)													
 						]
 				]
