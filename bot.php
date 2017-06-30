@@ -1224,7 +1224,7 @@ function retrieveMsgDeadType($obj) {
 							'columns' => array (
 									[
 										'title' => 'Record Data',
-										//'text' => 'บันทึกข้อมูล',
+										'text' => 'บันทึกข้อมูล',
 										'actions' => array(
 											[
 											'type' => 'postback',
