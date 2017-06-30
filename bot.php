@@ -1223,7 +1223,7 @@ function retrieveMsgDeadType($obj) {
 							'type' => 'carousel',
 							'columns' => array (
 									[
-										//'title' => 'Record Data',
+										'title' => 'Record Data',
 										//'text' => 'บันทึกข้อมูล',
 										'actions' => array(
 											[
