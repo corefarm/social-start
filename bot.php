@@ -1266,12 +1266,6 @@ function retrieveMsgDeadType($obj) {
 							'label' => 'ใข้อาหาร',
 							'data' => 'action=buy&itemid=123',
 							'text' => '!MaFeed',											
-						],
-						[
-							'type' => 'postback',
-							'label' => 'ใข้อาหาร',
-							'data' => 'action=buy&itemid=123',
-							'text' => '!MaFeed',											
 						]
 						)
 					]);
