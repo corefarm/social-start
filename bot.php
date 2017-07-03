@@ -1233,34 +1233,25 @@ function retrieveMsgDeadType($obj) {
 
 					error_log('THIS COL INDEX >> '.$i);
 				
-					// $crsCol = [
-						// 'title' => 'สาเหตุ',
-						// 'text' => ' ',
-						// 'actions' => $crsDet
-					// ];
+					$crscol = [
+						'title' => 'สาเหตุ',
+						'text' => ' ',
+						'actions' => $crsdet
+					];
 					
 					$crsDet = [];
 					
-					$lstIndex = 0;
-					
-					for($j = $i; $j < count($arrMessageDs) && $j < 4; $j++) {
+					for($j = $i; $j < count($arrMessageDs) && $j < i + 4; $j++) {
 						
 						error_log('CAROUSEL DETAIL INDEX >> '.$j);
 						
-						// array_push($crsDet, [
-							// 'type' => 'postback',
-							// 'label' => $iMes[$j]['Reason_Dead_Name'],
-							// 'data' => 'action=buy&itemid=123',
-							// 'text' => '<สาเหตุ> '.$iMes[$j]['Reason_Dead_Code'].','.$iMes[$j]['Reason_Dead_Name']
-						// ]);
-						
-						$lstIndex = $j;
-						
+						array_push($crsDet, [
+							'type' => 'postback',
+							'label' => $arrMessageDs[$j]['Reason_Dead_Name'],
+							'data' => 'action=buy&itemid=123',
+							'text' => '<สาเหตุ> '.$arrMessageDs[$j]['Reason_Dead_Code'].','.$arrMessageDs[$j]['Reason_Dead_Name']
+						]);
 					}
-					
-					//$i = $lstIndex;
-					
-					
 				}
 			}
 			
