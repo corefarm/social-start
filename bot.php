@@ -1192,7 +1192,7 @@ function retrieveMsgDeadType($obj) {
 	
 	$arrData = retrieveServiceData([ 'service' => 'GetReasonDeadsResult', 'userId' => $obj['userId']]);
 	
-	$ret = array(); 
+	//$ret = array(); 
 	
 	if(count($arrData) > 1) {
 		$arrMessageDs = array(); 
@@ -1238,8 +1238,7 @@ function retrieveMsgDeadType($obj) {
 							'type' => 'postback',
 							'label' => $arrData[$j]['Reason_Dead_Name'],
 							'data' => 'action=buy&itemid=123',
-							'text' => 'AAA'
-							// 'text' => '<สาเหตุ> '.$arrData[$j]['Reason_Dead_Code'].','.$arrData[$j]['Reason_Dead_Name'],
+							'text' => '<สาเหตุ> '.$arrData[$j]['Reason_Dead_Code'].','.$arrData[$j]['Reason_Dead_Name'],
 						]);
 					}
 					
