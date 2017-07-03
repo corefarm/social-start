@@ -1248,29 +1248,29 @@ function retrieveMsgDeadType($obj) {
 				}
 			}
 			
-			$ret = [
-				'msgType' => 'template',
-				'msgVal' => [
-							'type' => 'template',
-							'altText' => 'this is a buttons template',
-							'template' => [
-								'type' => 'carousel',
-								'columns' => $crsDs
-							]
-					]
-			];
+			// $ret = [
+				// 'msgType' => 'template',
+				// 'msgVal' => [
+							// 'type' => 'template',
+							// 'altText' => 'this is a buttons template',
+							// 'template' => [
+								// 'type' => 'carousel',
+								// 'columns' => $crsDs
+							// ]
+					// ]
+			// ];
 			
-		}
-		
-		
-		$ret = [
+			$ret = [
 			'msgType' => 'template',
 			'msgVal' => [
 						'type' => 'template',
 						'altText' => 'this is a buttons template',
 						'template' => [
 							'type' => 'carousel',
-							'columns' => array (
+							'columns' => $crsDs
+							
+							/*
+							array (
 									[
 										'title' => 'สาเหตุ',
 										'text' => ' ',
@@ -1290,10 +1290,16 @@ function retrieveMsgDeadType($obj) {
 											]
 										)
 									]
+							*/
 							)													
 						]
 				]
 		];
+			
+		}
+		
+		
+		
 		
 
 		
