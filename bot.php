@@ -1221,17 +1221,17 @@ function retrieveMsgDeadType($obj) {
 		
 		$arrData = array_merge($arrData, $arrData);
 		
-		if(count($arrData) > 4) {
+		if(count($arrData) > 3) {
 			
 			$crsDs = array();
 			
 			for ($i = 0; $i < count($arrData); $i++) {
 				
-				if($i % 4 == 0) {
+				if($i % 3 == 0) {
 					
 					$crsDet = array(); 
 					
-					for($j = $i; $j < count($arrData) && $j < $i + 4; $j++) {
+					for($j = $i; $j < count($arrData) && $j < $i + 3; $j++) {
 						array_push($crsDet,[
 							'type' => 'postback',
 							'label' => $arrData[$j]['Reason_Dead_Name'],
@@ -1240,41 +1240,35 @@ function retrieveMsgDeadType($obj) {
 						]);
 					}
 					
-					// array_push($crsDs,[
-						// 'title' => 'สาเหตุ',
-						// 'text' => '.',
-						// 'actions' => $crsDet
-					// ]);
-					
 					array_push($crsDs,[
 						'title' => 'สาเหตุ',
 						'text' => '.',
-						'actions' => array([
-							'type' => 'postback',
-							'label' => 'ตาย/คัดทิ้ง',
-							'data' => 'action=buy&itemid=123',
-							'text' => '!MaDeadCull',
-						],
-						[
-							'type' => 'postback',
-							'label' => 'ใข้อาหาร',
-							'data' => 'action=buy&itemid=123',
-							'text' => '!MaFeed',											
-						],
-						[
-							'type' => 'postback',
-							'label' => 'ใข้อาหาร',
-							'data' => 'action=buy&itemid=123',
-							'text' => '!MaFeed',											
-						],
-						[
-							'type' => 'postback',
-							'label' => 'ใข้อาหาร',
-							'data' => 'action=buy&itemid=123',
-							'text' => '!MaFeed',											
-						]
-						)
+						'actions' => $crsDet
 					]);
+					
+					// array_push($crsDs,[
+						// 'title' => 'สาเหตุ',
+						// 'text' => '.',
+						// 'actions' => array([
+							// 'type' => 'postback',
+							// 'label' => 'ตาย/คัดทิ้ง',
+							// 'data' => 'action=buy&itemid=123',
+							// 'text' => '!MaDeadCull',
+						// ],
+						// [
+							// 'type' => 'postback',
+							// 'label' => 'ใข้อาหาร',
+							// 'data' => 'action=buy&itemid=123',
+							// 'text' => '!MaFeed',											
+						// ],
+						// [
+							// 'type' => 'postback',
+							// 'label' => 'ใข้อาหาร',
+							// 'data' => 'action=buy&itemid=123',
+							// 'text' => '!MaFeed',											
+						// ]
+						// )
+					// ]);
 				}
 			}
 			
