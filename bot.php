@@ -1243,18 +1243,17 @@ function retrieveMsgDeadType($obj) {
 						]);
 					}
 					
-					error_log('CRS DETAIL >>>>>>>>>>>>>>>>>'.json_encode($crsDet));
+					//error_log('CRS DETAIL >>>>>>>>>>>>>>>>>'.json_encode($crsDet));
 					
 					array_push($crsDs,[
 						'title' => 'สาเหตุ',
 						'text' => '.',
 						'actions' => $crsdet
 					]);
+					
+					error_log('CRS DATASOURCE DETAIL >>>>>>>>>>>>>>>>>'.json_encode($crsDs));
 				}
 			}
-			
-			error_log('CRS DETAIL >>>>>>>>>>>>>>>>>'.json_encode($crsDs));
-			
 			
 			$ret = [
 				'msgType' => 'template',
