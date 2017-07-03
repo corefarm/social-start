@@ -1245,9 +1245,12 @@ function retrieveMsgDeadType($obj) {
 						]);
 					}
 					
+					error_log('CRS DETAIL >>>>>>>>>>>>>>>>>'json_encode($crsDet));
+					
+					
 					$crscol = [
 						'title' => 'สาเหตุ',
-						'text' => ' ',
+						'text' => '.',
 						'actions' => $crsdet
 					];
 					
@@ -1259,7 +1262,7 @@ function retrieveMsgDeadType($obj) {
 				'msgType' => 'template',
 				'msgVal' => [
 							'type' => 'template',
-							'altText' => 'this is a buttons template',
+							'altText' => '.',
 							'template' => [
 								'type' => 'carousel',
 								'columns' => $crsDs
