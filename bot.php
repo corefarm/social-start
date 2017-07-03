@@ -1258,7 +1258,7 @@ function retrieveMsgDeadType($obj) {
 						
 					}
 					
-					$i = $lstIndex;
+					//$i = $lstIndex;
 					
 					
 				}
