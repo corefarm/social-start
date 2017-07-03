@@ -1263,20 +1263,20 @@ function retrieveMsgDeadType($obj) {
 				}
 			}
 			
-			$ret = [
-				'msgtype' => 'template',
-				'msgval' => [
-							'type' => 'template',
-							'alttext' => 'this is a buttons template',
-							'template' => [
-								'type' => 'carousel',
-								'columns' => $crsDs
-							]
-					]
-			];
+			// $ret = [
+				// 'msgtype' => 'template',
+				// 'msgval' => [
+							// 'type' => 'template',
+							// 'alttext' => 'this is a buttons template',
+							// 'template' => [
+								// 'type' => 'carousel',
+								// 'columns' => $crsDs
+							// ]
+					// ]
+			// ];
 			
-			/*
-			$ret = [
+			
+		$ret = [
 			'msgType' => 'template',
 			'msgVal' => [
 						'type' => 'template',
@@ -1308,8 +1308,7 @@ function retrieveMsgDeadType($obj) {
 													
 						]
 				]
-		];
-			*/
+			];
 		}
 		
 	}
