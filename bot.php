@@ -405,7 +405,7 @@ if (!is_null($events['events'])) {
 						
 						$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 						
-						//error_log('///////////////////////////////////////////////// FROM Stock >>'.json_encode($msgDeadType['msgVal']));
+						error_log('///////////////////////////////////////////////// FROM Stock >>'.json_encode($msgDeadType['msgVal']));
 						//final
 						array_push($msg,$msgDeadType['msgVal']);
 						
@@ -1190,6 +1190,8 @@ function retrieveMsgSexStock($obj){
 function retrieveMsgDeadType($obj) {
 	
 	$arrData = retrieveServiceData([ 'service' => 'GetReasonDeadsResult', 'userId' => $obj['userId']]);
+	
+	$ret = array();
 	
 	if(count($arrData) > 1) {
 		$arrMessageDs = array(); 
