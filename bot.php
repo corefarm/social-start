@@ -1234,12 +1234,6 @@ function retrieveMsgDeadType($obj) {
 				if($i % 4 == 0) {
 
 					error_log('THIS COL INDEX >> '.$i);
-				
-					$crscol = [
-						'title' => 'สาเหตุ',
-						'text' => ' ',
-						'actions' => $crsdet
-					];
 					
 					$crsDet = [];
 					
@@ -1254,6 +1248,12 @@ function retrieveMsgDeadType($obj) {
 							'text' => '<สาเหตุ> '.$arrMessageDs[$j]['Reason_Dead_Code'].','.$arrMessageDs[$j]['Reason_Dead_Name']
 						]);
 					}
+					
+					$crscol = [
+						'title' => 'สาเหตุ',
+						'text' => ' ',
+						'actions' => $crsdet
+					];
 				}
 			}
 			
