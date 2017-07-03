@@ -1236,7 +1236,8 @@ function retrieveMsgDeadType($obj) {
 							'type' => 'postback',
 							'label' => $arrData[$j]['Reason_Dead_Name'],
 							'data' => 'action=buy&itemid=123',
-							'text' => '<สาเหตุ> '.$arrData[$j]['Reason_Dead_Code'].','.$arrData[$j]['Reason_Dead_Name'],
+							'text' => '99'
+							//'text' => '<สาเหตุ> '.$arrData[$j]['Reason_Dead_Code'].','.$arrData[$j]['Reason_Dead_Name'],
 						]);
 					}
 					
