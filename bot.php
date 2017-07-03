@@ -1214,6 +1214,61 @@ function retrieveMsgDeadType($obj) {
 			// ]
 		// ];
 		
+		
+		$arrMessageDs = array_merge($arrMessageDs, $arrMessageDs);
+		
+		if(count($arrMessageDs) > 4) {
+			
+			$carousColumn = intval($arrMessageDs / 4);
+			
+			error_log('[[[[[data >>>>>>>>>'.$arrMessageDs.' <<<<<< col >>>>>>>'.$carousColumn);
+			
+			$crsCol = [];
+			
+			for ($i = 0; $i < $carousColumn; $i++) {
+				
+				$iMes = 0;
+				
+				if($i % 4 == 0) {
+
+					$crsDet = [];
+					
+					for($j = $iMes; $j < $iMes + 4; $j++) {
+						
+						array_push($crsDet, [
+							'type' => 'postback',
+							'label' => $iMes[$j]['Reason_Dead_Name'],
+							'data' => 'action=buy&itemid=123',
+							'text' => '<สาเหตุ> '.$iMes[$j]['Reason_Dead_Code'].','.$iMes[$j]['Reason_Dead_Name']
+						]
+					}
+					
+					$crsCol = [
+						'title' => 'สาเหตุ',
+						'text' => ' ',
+						'actions' => $crsDet
+					]
+				}
+			}
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+							'type' => 'template',
+							'altText' => 'this is a buttons template',
+							'template' => [
+								'type' => 'carousel',
+								'columns' => $crsCol
+							]
+					]
+			];
+			
+		}
+		
+		
+		
+		
+		/*
 		$ret = [
 			'msgType' => 'template',
 			'msgVal' => [
@@ -1224,6 +1279,7 @@ function retrieveMsgDeadType($obj) {
 							'columns' => array (
 									[
 										'title' => 'สาเหตุ',
+										'text' => ' ',
 										'actions' => array(
 											[
 											'type' => 'postback',
@@ -1236,51 +1292,7 @@ function retrieveMsgDeadType($obj) {
 											'label' => 'ใข้อาหาร',
 											'data' => 'action=buy&itemid=123',
 											'text' => '!MaFeed',											
-/* 											'type' => 'uri',
-											'label' => 'Information',
-											'uri' => 'https://en.wikipedia.org/wiki/Wiki', */
-											]
-										)
-									],
-									[
-										'title' => 'Record Data',
-										'text' => 'บันทึกข้อมูล',
-										'actions' => array(
-											[
-											'type' => 'postback',
-											'label' => 'ตาย/คัดทิ้ง',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaDeadCull',
-											],
-											[
-											'type' => 'postback',
-											'label' => 'ใข้อาหาร',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaFeed',											
-/* 											'type' => 'uri',
-											'label' => 'Information',
-											'uri' => 'https://en.wikipedia.org/wiki/Wiki', */
-											]
-										)
-									],
-									[
-										'title' => 'Record Data',
-										'text' => 'บันทึกข้อมูล',
-										'actions' => array(
-											[
-											'type' => 'postback',
-											'label' => 'ตาย/คัดทิ้ง',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaDeadCull',
-											],
-											[
-											'type' => 'postback',
-											'label' => 'ใข้อาหาร',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaFeed',											
-/* 											'type' => 'uri',
-											'label' => 'Information',
-											'uri' => 'https://en.wikipedia.org/wiki/Wiki', */
+
 											]
 										)
 									]
@@ -1288,6 +1300,8 @@ function retrieveMsgDeadType($obj) {
 						]
 				]
 		];
+		
+		*/
 	}
 	else {
 		$ret = [
