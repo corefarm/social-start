@@ -1244,71 +1244,71 @@ function retrieveMsgDeadType($obj) {
 						'title' => 'สาเหตุ',
 						'text' => '.',
 						//'actions' => $crsDet
-						'actions' => array(
-											[
-											'type' => 'postback',
-											'label' => 'ตาย/คัดทิ้ง',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaDeadCull',
-											],
-											[
-											'type' => 'postback',
-											'label' => 'ใข้อาหาร',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaFeed',											
-
-											]
-										)
-					]);
+						'actions' => array([
+										'type' => 'postback',
+										'label' => 'ตาย/คัดทิ้ง',
+										'data' => 'action=buy&itemid=123',
+										'text' => '!MaDeadCull',
+										],
+										[
+										'type' => 'postback',
+										'label' => 'ใข้อาหาร',
+										'data' => 'action=buy&itemid=123',
+										'text' => '!MaFeed',											
+										]
+									)
+						]);
 				}
 			}
 			
-			// $ret = [
-				// 'msgtype' => 'template',
-				// 'msgval' => [
-							// 'type' => 'template',
-							// 'alttext' => 'this is a buttons template',
-							// 'template' => [
-								// 'type' => 'carousel',
-								// 'columns' => $crsDs
-							// ]
-					// ]
+			$ret = [
+				'msgtype' => 'template',
+				'msgval' => [
+						'type' => 'template',
+						'alttext' => 'this is a buttons template',
+						'template' => [
+							'type' => 'carousel',
+							'columns' => $crsDs
+					]
+				]
+			];
+			
+			
+		// $ret = [
+			// 'msgType' => 'template',
+			// 'msgVal' => [
+						// 'type' => 'template',
+						// 'altText' => 'this is a buttons template',
+						// 'template' => [
+							// 'type' => 'carousel',
+							// 'columns' => array (
+									// [
+										// 'title' => 'สาเหตุ',
+										// 'text' => ' ',
+										// 'actions' => array(
+											// [
+											// 'type' => 'postback',
+											// 'label' => 'ตาย/คัดทิ้ง',
+											// 'data' => 'action=buy&itemid=123',
+											// 'text' => '!MaDeadCull',
+											// ],
+											// [
+											// 'type' => 'postback',
+											// 'label' => 'ใข้อาหาร',
+											// 'data' => 'action=buy&itemid=123',
+											// 'text' => '!MaFeed',											
+
+											// ]
+										// )
+									// ]
+							
+							// )	
+													
+						// ]
+				// ]
 			// ];
 			
 			
-		$ret = [
-			'msgType' => 'template',
-			'msgVal' => [
-						'type' => 'template',
-						'altText' => 'this is a buttons template',
-						'template' => [
-							'type' => 'carousel',
-							'columns' => array (
-									[
-										'title' => 'สาเหตุ',
-										'text' => ' ',
-										'actions' => array(
-											[
-											'type' => 'postback',
-											'label' => 'ตาย/คัดทิ้ง',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaDeadCull',
-											],
-											[
-											'type' => 'postback',
-											'label' => 'ใข้อาหาร',
-											'data' => 'action=buy&itemid=123',
-											'text' => '!MaFeed',											
-
-											]
-										)
-									]
-							
-							)	
-													
-						]
-				]
-			];
 		}
 		
 	}
