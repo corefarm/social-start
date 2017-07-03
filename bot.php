@@ -1235,8 +1235,6 @@ function retrieveMsgDeadType($obj) {
 					
 					for($j = $i; $j < count($arrData) && $j < $i + 4; $j++) {
 						
-						error_log(json_encode($arrData[$j]));
-						
 						error_log('CAROUSEL DETAIL INDEX >> '.$j.' -=-=-=-=-=-'.$arrData[$j]['Reason_Dead_Name'] );
 						
 						array_push($crsDet,[
