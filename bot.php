@@ -986,30 +986,71 @@ function retrieveMsgCv($obj) {
 			
 	if(count($arrData) > 1) {
 		
-		$arrMessageDs = array(); 
-		
-		foreach ($arrData as $val) {
-			array_push($arrMessageDs,[
-				'type' => 'postback',
-				'label' => $val['Farm_Name'],
-				'data' => 'action=buy&itemid=123',
-				'text' => $textRep.$val['Farm_Code'],
-			]);
-		}
-		
-		$ret = [
-			'msgType' => 'template',
-			'msgVal' => [
-				'type' => 'template',
-				'altText' => 'this is a buttons template',
-				'template' => [
-					'type' => 'buttons',
-					'title' => 'กรุณาเลือกเล้า',
-					'text' => 'Please select pen.',
-					'actions' => $arrMessageDs
+		if(count($arrData) > 4) {
+			
+			$crsDs = array();
+			
+			for ($i = 0; $i < count($arrData); $i++) {
+				
+				if($i % 4 == 0) {
+					
+					$crsDet = array(); 
+					
+					for($j = $i; $j < count($arrData) && $j < $i + 3; $j++) {
+						array_push($crsDet,[
+							'type' => 'postback',
+							'label' => $arrData[$j]['Farm_Name'],
+							'data' => 'action=buy&itemid=123',
+							'text' => $textRep.$arrData[$j]['Farm_Code'],
+						]);
+					}
+					
+					array_push($crsDs,[
+						'title' => 'กรุณาเลือกเล้า',
+						'text' => ' ',
+						'actions' => $crsDet
+					]);
+				}
+			}
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'carousel',
+							'columns' => $crsDs
+					]
 				]
-			]
-		];
+			];
+		}
+		else {
+			$arrMessageDs = array(); 
+		
+			foreach ($arrData as $val) {
+				array_push($arrMessageDs,[
+					'type' => 'postback',
+					'label' => $val['Farm_Name'],
+					'data' => 'action=buy&itemid=123',
+					'text' => $textRep.$val['Farm_Code'],
+				]);
+			}
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+					'type' => 'template',
+					'altText' => 'this is a buttons template',
+					'template' => [
+						'type' => 'buttons',
+						'title' => 'กรุณาเลือกเล้า',
+						'text' => ' ',
+						'actions' => $arrMessageDs
+					]
+				]
+			];
+		}
 	}
 	else {
 		if(count($arrData) == 1) {
@@ -1063,30 +1104,72 @@ function retrieveMsgFarmOrg($obj) {
 	}
 	
 	if(count($arrData) > 1) {
-		$arrMessageDs = array();
-
-		foreach ($arrData as $val) {
-			array_push($arrMessageDs,[
-				'type' => 'postback',
-				'label' => $val['Farm_Org'],
-				'data' => 'action=buy&itemid=123',
-				'text' => $textRep.$val['Farm_Org'],
-			]);
-		}
 		
-		$ret = [
-			'msgType' => 'template',
-			'msgVal' => [
-				'type' => 'template',
-				'altText' => 'this is a buttons template',
-				'template' => [
-					'type' => 'buttons',
-					'title' => 'กรุณาเลือกเล้า',
-					'text' => 'Please select pen.',
-					'actions' => $arrMessageDs
+		if(count($arrData) > 4) {
+			
+			$crsDs = array();
+			
+			for ($i = 0; $i < count($arrData); $i++) {
+				
+				if($i % 4 == 0) {
+					
+					$crsDet = array(); 
+					
+					for($j = $i; $j < count($arrData) && $j < $i + 3; $j++) {
+						array_push($crsDet,[
+							'type' => 'postback',
+							'label' => $arrData[$j]['Farm_Org'],
+							'data' => 'action=buy&itemid=123',
+							'text' => $textRep.$arrData[$j]['Farm_Org']
+						]);
+					}
+					
+					array_push($crsDs,[
+						'title' => 'กรุณาเลือกหลัง',
+						'text' => ' ',
+						'actions' => $crsDet
+					]);
+				}
+			}
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'carousel',
+							'columns' => $crsDs
+					]
 				]
-			]
-		];
+			];
+		}
+		else {
+			$arrMessageDs = array();
+
+			foreach ($arrData as $val) {
+				array_push($arrMessageDs,[
+					'type' => 'postback',
+					'label' => $val['Farm_Org'],
+					'data' => 'action=buy&itemid=123',
+					'text' => $textRep.$val['Farm_Org'],
+				]);
+			}
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+					'type' => 'template',
+					'altText' => 'this is a buttons template',
+					'template' => [
+						'type' => 'buttons',
+						'title' => 'กรุณาเลือกหลัง',
+						'text' => ' ',
+						'actions' => $arrMessageDs
+					]
+				]
+			];
+		}
 	}
 	else {		
 		if(count($arrData) == 1) {
@@ -1127,30 +1210,72 @@ function retrieveMsgSexStock($obj){
 	$arrData = retrieveServiceData([ 'service' => 'GetBdStocksResult', 'userId' => $obj['userId'], 'orgSel' => $obj['orgSel']]);
 	
 	if(count($arrData) > 1) {
-		$arrMessageDs = array();
-
-		foreach ($arrData as $val) {
-			array_push($arrMessageDs,[
-				'type' => 'postback',
-				'label' => $val['Sex'].' qty :'.$val['Bd_Qty'],
-				'data' => 'action=buy&itemid=123',
-				'text' => '<เพศ> '.$val['Sex'].' qty :'.$val['Bd_Qty'],
-			]);
-		}
 		
-		$ret = [
-			'msgType' => 'template',
-			'msgVal' => [
-				'type' => 'template',
-				'altText' => 'this is a buttons template',
-				'template' => [
-					'type' => 'buttons',
-					'title' => 'กรุณาเลือกพศ',
-					'text' => 'Please select gender.',
-					'actions' => $arrMessageDs
+		if(count($arrData) > 4) {
+			
+			$crsDs = array();
+			
+			for ($i = 0; $i < count($arrData); $i++) {
+				
+				if($i % 4 == 0) {
+					
+					$crsDet = array(); 
+					
+					for($j = $i; $j < count($arrData) && $j < $i + 3; $j++) {
+						array_push($crsDet,[
+							'type' => 'postback',
+							'label' => $arrData[$j]['Sex'].' qty :'.$arrData[$j]['Bd_Qty'],
+							'data' => 'action=buy&itemid=123',
+							'text' => '<เพศ> '.$arrData[$j]['Sex'].' qty :'.$arrData[$j]['Bd_Qty'],
+						]);
+					}
+					
+					array_push($crsDs,[
+						'title' => 'สาเหตุ',
+						'text' => '.',
+						'actions' => $crsDet
+					]);
+				}
+			}
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'carousel',
+							'columns' => $crsDs
+					]
 				]
-			]
-		];
+			];
+		}
+		else {
+			$arrMessageDs = array();
+
+			foreach ($arrData as $val) {
+				array_push($arrMessageDs,[
+					'type' => 'postback',
+					'label' => $val['Sex'].' qty :'.$val['Bd_Qty'],
+					'data' => 'action=buy&itemid=123',
+					'text' => '<เพศ> '.$val['Sex'].' qty :'.$val['Bd_Qty'],
+				]);
+			}
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+					'type' => 'template',
+					'altText' => 'this is a buttons template',
+					'template' => [
+						'type' => 'buttons',
+						'title' => 'กรุณาเลือกพศ',
+						'text' => 'Please select gender.',
+						'actions' => $arrMessageDs
+					]
+				]
+			];
+		}
 	}
 	else {
 		if(count($arrData) == 1) {
@@ -1192,36 +1317,10 @@ function retrieveMsgDeadType($obj) {
 	$arrData = retrieveServiceData([ 'service' => 'GetReasonDeadsResult', 'userId' => $obj['userId']]);
 	
 	if(count($arrData) > 1) {
-		/*
-		$arrMessageDs = array(); 
-		
-		foreach ($arrData as $val) {
-			array_push($arrMessageDs,[
-				'type' => 'postback',
-				'label' => $val['Reason_Dead_Name'],
-				'data' => 'action=buy&itemid=123',
-				'text' => '<สาเหตุ> '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name'],
-			]);
-		}
-		
-		$ret = [
-			'msgType' => 'template',
-			'msgVal' => [
-				'type' => 'template',
-				'altText' => 'this is a buttons template',
-				'template' => [
-					'type' => 'buttons',
-					'title' => 'กรุณาเลือกเหตูผล',
-					'text' => 'Please select reason.',
-					'actions' => $arrMessageDs
-				]
-			]
-		];
-		*/
 		
 		$arrData = array_merge($arrData, $arrData);
 		
-		if(count($arrData) > 3) {
+		if(count($arrData) > 4) {
 			
 			$crsDs = array();
 			
@@ -1245,30 +1344,6 @@ function retrieveMsgDeadType($obj) {
 						'text' => '.',
 						'actions' => $crsDet
 					]);
-					
-					// array_push($crsDs,[
-						// 'title' => 'สาเหตุ',
-						// 'text' => '.',
-						// 'actions' => array([
-							// 'type' => 'postback',
-							// 'label' => 'ตาย/คัดทิ้ง',
-							// 'data' => 'action=buy&itemid=123',
-							// 'text' => '!MaDeadCull',
-						// ],
-						// [
-							// 'type' => 'postback',
-							// 'label' => 'ใข้อาหาร',
-							// 'data' => 'action=buy&itemid=123',
-							// 'text' => '!MaFeed',											
-						// ],
-						// [
-							// 'type' => 'postback',
-							// 'label' => 'ใข้อาหาร',
-							// 'data' => 'action=buy&itemid=123',
-							// 'text' => '!MaFeed',											
-						// ]
-						// )
-					// ]);
 				}
 			}
 			
@@ -1283,57 +1358,34 @@ function retrieveMsgDeadType($obj) {
 					]
 				]
 			];
-			
-			// $ret = [
-				// 'msgType' => 'template',
-				// 'msgVal' => [
-						// 'type' => 'template',
-						// 'altText' => 'this is a buttons template',
-						// 'template' => [
-							// 'type' => 'carousel',
-							// 'columns' => array (
-									// [
-										// 'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-										// 'title' => 'Record Data',
-										// 'text' => 'บันทึกข้อมูล',
-										// 'actions' => array(
-											// [
-												// 'type' => 'postback',
-												// 'label' => 'ตาย/คัดทิ้ง',
-												// 'data' => 'action=buy&itemid=123',
-												// 'text' => '<บันทึกตาย>',
-											// ],
-											// [
-												// 'type' => 'postback',
-												// 'label' => 'ใข้อาหาร',
-												// 'data' => 'action=buy&itemid=123',
-												// 'text' => '<กำลังบันทึกใช้อาหาร>',
-											// ]
-									// )],							
-									// [
-										// 'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/StatusReport.png',
-										// 'title' => 'Report',
-										// 'text' => 'Daily Farm',
-										// 'actions' => array(
-											// [
- 											// 'type' => 'uri',
-											// 'label' => 'สุกรคงเหลือ',
-											// 'uri' => 'https://en.wikipedia.org/wiki/Wiki', 
-											// ],
-											// [
- 											// 'type' => 'uri',
-											// 'label' => 'อาหารคงเหลือ',
-											// 'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
-											// ]
-									// )]											
-							// )													
-						// ]
-					// ]
-					
-					
-				// ];
 		}
-		
+		else {
+			
+			$arrMessageDs = array(); 
+			
+			foreach ($arrData as $val) {
+				array_push($arrMessageDs,[
+					'type' => 'postback',
+					'label' => $val['Reason_Dead_Name'],
+					'data' => 'action=buy&itemid=123',
+					'text' => '<สาเหตุ> '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name'],
+				]);
+			}
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+					'type' => 'template',
+					'altText' => 'this is a buttons template',
+					'template' => [
+						'type' => 'buttons',
+						'title' => 'กรุณาเลือกเหตูผล',
+						'text' => 'Please select reason.',
+						'actions' => $arrMessageDs
+					]
+				]
+			];
+		}
 	}
 	else {
 		$ret = [
@@ -1369,36 +1421,77 @@ function retrieveMsgProduct($obj) {
 	
 	if(count($arrData) > 1) {
 		
-		$arrMessageDs = array(); 
-		
-		
-		
-		foreach ($arrData as $val) {
+		if(count($arrData) > 4) {
 			
-			$unit = ($val['Cal_Method'] == 'Q' ? 'ถุง' : 'กก.');
+			$crsDs = array();
 			
-			array_push($arrMessageDs,[
-				'type' => 'postback',
-				'label' => str_replace('อาหารหมู', '',str_replace(' ','',$val['Product_Name'])).'('.$val['Stock_Qty'].' '.$unit.')',
-				//'label' => str_replace(' ','',$val['Product_Name']),
-				'data' => 'action=buy&itemid=123',
-				'text' => '<เบอร์อาหาร>'.str_replace(' ','',$val['Product_Name']).','.$val['Product_Code']
-			]);
+			for ($i = 0; $i < count($arrData); $i++) {
+				
+				if($i % 4 == 0) {
+					
+					$crsDet = array(); 
+					
+					for($j = $i; $j < count($arrData) && $j < $i + 3; $j++) {
+						array_push($crsDet,[
+							'type' => 'postback',
+							'label' => str_replace('อาหารหมู', '',str_replace(' ','',$arrData[$j]['Product_Name'])).'('.$arrData[$j]['Stock_Qty'].' '.$arrData[$j].')',
+							'data' => 'action=buy&itemid=123',
+							'text' => '<เบอร์อาหาร>'.str_replace(' ','',$arrData[$j]['Product_Name']).','.$arrData[$j]['Product_Code']
+						]);
+					}
+					
+					array_push($crsDs,[
+						'title' => 'สาเหตุ',
+						'text' => '.',
+						'actions' => $crsDet
+					]);
+				}
+			}
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'carousel',
+							'columns' => $crsDs
+					]
+				]
+			];
+		}
+		else {
+			$arrMessageDs = array(); 
+		
+			foreach ($arrData as $val) {
+				
+				$unit = ($val['Cal_Method'] == 'Q' ? 'ถุง' : 'กก.');
+				
+				array_push($arrMessageDs,[
+					'type' => 'postback',
+					'label' => str_replace('อาหารหมู', '',str_replace(' ','',$val['Product_Name'])).'('.$val['Stock_Qty'].' '.$unit.')',
+					'data' => 'action=buy&itemid=123',
+					'text' => '<เบอร์อาหาร>'.str_replace(' ','',$val['Product_Name']).','.$val['Product_Code']
+				]);
+			}
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+					'type' => 'template',
+					'altText' => 'this is a buttons template',
+					'template' => [
+						'type' => 'buttons',
+						'title' => 'กรุณาเลือกเบอร์อาหาร',
+						'text' => 'Please select pen.',
+						'actions' => $arrMessageDs
+					]
+				]
+			];
 		}
 		
-		$ret = [
-			'msgType' => 'template',
-			'msgVal' => [
-				'type' => 'template',
-				'altText' => 'this is a buttons template',
-				'template' => [
-					'type' => 'buttons',
-					'title' => 'กรุณาเลือกเบอร์อาหาร',
-					'text' => 'Please select pen.',
-					'actions' => $arrMessageDs
-				]
-			]
-		];						
+		
+		
 	}
 	else {
 		if(count($arrData) == 1) {
@@ -1457,6 +1550,7 @@ function retrieveMsgReport($obj) {
 	return $ret;
 	
 }
+
 function retrieveGenSWFeedUseResult($obj) {
 	
 	$arrData = retrieveServiceData([ 
