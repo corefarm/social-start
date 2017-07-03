@@ -1241,6 +1241,8 @@ function retrieveMsgDeadType($obj) {
 					
 					$crsDet = [];
 					
+					$lstIndex = 0;
+					
 					for($j = $i; $j < count($arrMessageDs) && $j < 4; $j++) {
 						
 						error_log('CAROUSEL DETAIL INDEX >> '.$j);
@@ -1251,7 +1253,12 @@ function retrieveMsgDeadType($obj) {
 							// 'data' => 'action=buy&itemid=123',
 							// 'text' => '<สาเหตุ> '.$iMes[$j]['Reason_Dead_Code'].','.$iMes[$j]['Reason_Dead_Name']
 						// ]);
+						
+						$lstIndex = $j;
+						
 					}
+					
+					$i = $lstIndex;
 					
 					
 				}
