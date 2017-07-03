@@ -1264,8 +1264,6 @@ function retrieveMsgDeadType($obj) {
 				}
 			}
 			
-			error_log('CRS DS >>>>>>>>'.json_encode($crsDs));
-			
 			$ret = [
 				'msgtype' => 'template',
 				'msgval' => [
