@@ -1227,8 +1227,6 @@ function retrieveMsgDeadType($obj) {
 				
 				if($i % 4 == 0) {
 					
-					$crsCol = array(); 
-					
 					error_log('THIS COL INDEX >> '.$i);
 					
 					$crsDet = array(); 
@@ -1247,16 +1245,16 @@ function retrieveMsgDeadType($obj) {
 					
 					error_log('CRS DETAIL >>>>>>>>>>>>>>>>>'.json_encode($crsDet));
 					
-					
-					$crscol = [
+					array_push($crsDs,[
 						'title' => 'สาเหตุ',
 						'text' => '.',
 						'actions' => $crsdet
-					];
-					
-					array_push($crsDs,$crscol);
+					]);
 				}
 			}
+			
+			error_log('CRS DETAIL >>>>>>>>>>>>>>>>>'.json_encode($crsDs));
+			
 			
 			$ret = [
 				'msgType' => 'template',
