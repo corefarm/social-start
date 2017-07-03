@@ -1285,47 +1285,39 @@ function retrieveMsgDeadType($obj) {
 							'template' => [
 								'type' => 'carousel',
 								'columns' => array (
-										[
-											'title' => 'สาเหตุ',
-											'text' => ' ',
-											'actions' => array(
-												[
+									[
+										'title' => 'Record Data',
+										'text' => 'บันทึกข้อมูล',
+										'actions' => array(
+											[
 												'type' => 'postback',
 												'label' => 'ตาย/คัดทิ้ง',
 												'data' => 'action=buy&itemid=123',
-												'text' => '!madeadcull',
-												],
-												[
+												'text' => '<บันทึกตาย>',
+											],
+											[
 												'type' => 'postback',
 												'label' => 'ใข้อาหาร',
 												'data' => 'action=buy&itemid=123',
-												'text' => '!mafeed',											
-
-												]
-											)
-										],
-										[
-											'title' => 'สาเหตุ',
-											'text' => ' ',
-											'actions' => array(
-												[
-												'type' => 'postback',
-												'label' => 'ตาย/คัดทิ้ง',
-												'data' => 'action=buy&itemid=123',
-												'text' => '!madeadcull',
-												],
-												[
-												'type' => 'postback',
-												'label' => 'ใข้อาหาร',
-												'data' => 'action=buy&itemid=123',
-												'text' => '!mafeed',											
-
-												]
-											)
-										]
-								
-								
-								)	
+												'text' => '<กำลังบันทึกใช้อาหาร>',
+											]
+									)],							
+									[
+										'title' => 'Report',
+										'text' => 'Daily Farm',
+										'actions' => array(
+											[
+ 											'type' => 'uri',
+											'label' => 'สุกรคงเหลือ',
+											'uri' => 'https://en.wikipedia.org/wiki/Wiki', 
+											],
+											[
+ 											'type' => 'uri',
+											'label' => 'อาหารคงเหลือ',
+											'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
+											]
+									)]											
+								)
 														
 							]
 					]
