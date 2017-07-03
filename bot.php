@@ -1240,7 +1240,7 @@ function retrieveMsgDeadType($obj) {
 							'label' => $iMes[$j]['Reason_Dead_Name'],
 							'data' => 'action=buy&itemid=123',
 							'text' => '<สาเหตุ> '.$iMes[$j]['Reason_Dead_Code'].','.$iMes[$j]['Reason_Dead_Name']
-						]
+						]);
 					}
 					
 					$crsCol = [
