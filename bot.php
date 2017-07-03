@@ -380,7 +380,7 @@ if (!is_null($events['events'])) {
 			}
 					
 			if(stristr($text,'<หลัง>') ) {
-				
+				//ssd
 				$STEP3_VALUE = str_replace('<หลัง>','',$text);
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
