@@ -405,7 +405,7 @@ if (!is_null($events['events'])) {
 						
 						$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 						
-						error_log('///////////////////////////////////////////////// FROM Stock >>'.json_encode($msgDeadType['msgVal']));
+						//error_log('///////////////////////////////////////////////// FROM Stock >>'.json_encode($msgDeadType['msgVal']));
 						//final
 						array_push($msg,$msgDeadType['msgVal']);
 						
@@ -425,8 +425,7 @@ if (!is_null($events['events'])) {
 				
 				$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
 				
-				
-				error_log('/////////////////////////////////////////////////'.json_encode($msgDeadType['msgVal']));
+				//error_log('/////////////////////////////////////////////////'.json_encode($msgDeadType['msgVal']));
 				
 				array_push($msg,$msgDeadType['msgVal']);
 				
@@ -1328,7 +1327,7 @@ function retrieveMsgDeadType($obj) {
 		];
 	}
 	
-	//error_log(json_encode($ret));
+	error_log(json_encode($ret));
 	
 	return $ret;
 }
