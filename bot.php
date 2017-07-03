@@ -1224,7 +1224,7 @@ function retrieveMsgDeadType($obj) {
 							'columns' => array (
 									[
 										'title' => 'สาเหตุ',
-										'text' => '',
+										'text' => '-',
 										'actions' => array(
 											[
 											'type' => 'postback',
