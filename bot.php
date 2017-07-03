@@ -1267,9 +1267,7 @@ function retrieveMsgDeadType($obj) {
 						'altText' => 'this is a buttons template',
 						'template' => [
 							'type' => 'carousel',
-							'columns' => $crsDs
-							
-							/*
+							'columns' => 
 							array (
 									[
 										'title' => 'สาเหตุ',
@@ -1292,7 +1290,7 @@ function retrieveMsgDeadType($obj) {
 									]
 							
 							)	
-							*/							
+													
 						]
 				]
 		];
