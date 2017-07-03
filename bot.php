@@ -1241,7 +1241,7 @@ function retrieveMsgDeadType($obj) {
 					
 					for($j = $i; $j < count($arrMessageDs) && $j < $i + 4; $j++) {
 						
-						error_log('CAROUSEL DETAIL INDEX >> '.$j);
+						error_log('CAROUSEL DETAIL INDEX >> '.$j.' -=-=-=-=-=-'.$arrMessageDs[$j]['Reason_Dead_Name'] );
 						
 						array_push($crsDet,[
 							'type' => 'postback',
