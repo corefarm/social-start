@@ -1240,15 +1240,11 @@ function retrieveMsgDeadType($obj) {
 						]);
 					}
 					
-					error_log('CRS DETAIL >>>>>>>>>>>>>>>>>'.json_encode($crsDet));
-					
 					array_push($crsDs,[
 						'title' => 'สาเหตุ',
 						'text' => '.',
 						'actions' => $crsDet
 					]);
-					
-					error_log('CRS DATASOURCE >>>>>>>>>>>>>>>>>'.json_encode($crsDs));
 				}
 			}
 			
