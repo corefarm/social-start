@@ -1265,66 +1265,66 @@ function retrieveMsgDeadType($obj) {
 				}
 			}
 			
-			$ret = [
-				'msgType' => 'template',
-				'msgVal' => [
-						'type' => 'template',
-						'alttext' => 'this is a buttons template',
-						'template' => [
-							'type' => 'carousel',
-							'columns' => $crsDs
-					]
-				]
-			];
-			
 			// $ret = [
 				// 'msgType' => 'template',
 				// 'msgVal' => [
 						// 'type' => 'template',
-						// 'altText' => 'this is a buttons template',
+						// 'alttext' => 'this is a buttons template',
 						// 'template' => [
 							// 'type' => 'carousel',
-							// 'columns' => array (
-									// [
-										// 'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
-										// 'title' => 'Record Data',
-										// 'text' => 'บันทึกข้อมูล',
-										// 'actions' => array(
-											// [
-												// 'type' => 'postback',
-												// 'label' => 'ตาย/คัดทิ้ง',
-												// 'data' => 'action=buy&itemid=123',
-												// 'text' => '<บันทึกตาย>',
-											// ],
-											// [
-												// 'type' => 'postback',
-												// 'label' => 'ใข้อาหาร',
-												// 'data' => 'action=buy&itemid=123',
-												// 'text' => '<กำลังบันทึกใช้อาหาร>',
-											// ]
-									// )],							
-									// [
-										// 'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/StatusReport.png',
-										// 'title' => 'Report',
-										// 'text' => 'Daily Farm',
-										// 'actions' => array(
-											// [
- 											// 'type' => 'uri',
-											// 'label' => 'สุกรคงเหลือ',
-											// 'uri' => 'https://en.wikipedia.org/wiki/Wiki', 
-											// ],
-											// [
- 											// 'type' => 'uri',
-											// 'label' => 'อาหารคงเหลือ',
-											// 'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
-											// ]
-									// )]											
-							// )													
-						// ]
+							// 'columns' => $crsDs
 					// ]
+				// ]
+			// ];
+			
+			$ret = [
+				'msgType' => 'template',
+				'msgVal' => [
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'carousel',
+							'columns' => array (
+									[
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
+										'title' => 'Record Data',
+										'text' => 'บันทึกข้อมูล',
+										'actions' => array(
+											[
+												'type' => 'postback',
+												'label' => 'ตาย/คัดทิ้ง',
+												'data' => 'action=buy&itemid=123',
+												'text' => '<บันทึกตาย>',
+											],
+											[
+												'type' => 'postback',
+												'label' => 'ใข้อาหาร',
+												'data' => 'action=buy&itemid=123',
+												'text' => '<กำลังบันทึกใช้อาหาร>',
+											]
+									)],							
+									[
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/StatusReport.png',
+										'title' => 'Report',
+										'text' => 'Daily Farm',
+										'actions' => array(
+											[
+ 											'type' => 'uri',
+											'label' => 'สุกรคงเหลือ',
+											'uri' => 'https://en.wikipedia.org/wiki/Wiki', 
+											],
+											[
+ 											'type' => 'uri',
+											'label' => 'อาหารคงเหลือ',
+											'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
+											]
+									)]											
+							)													
+						]
+					]
 					
 					
-				// ];
+				];
 		}
 		
 	}
@@ -1338,7 +1338,7 @@ function retrieveMsgDeadType($obj) {
 		];
 	}
 	
-	error_log(json_encode($ret));
+	//error_log(json_encode($ret));
 	
 	return $ret;
 }
