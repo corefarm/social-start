@@ -1277,7 +1277,21 @@ function retrieveMsgDeadType($obj) {
 				// ]
 			// ];
 			
-			$ret = [
+			
+		}
+		
+	}
+	else {
+		$ret = [
+			'msgType' => 'message',
+			'msgVal' => [
+				'type' => 'text',
+				'text' => '<สาเหตุ> '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name']
+			]
+		];
+	}
+	
+	$ret = [
 				'msgtype' => 'template',
 				'msgval' => [
 						'type' => 'template',
@@ -1325,19 +1339,7 @@ function retrieveMsgDeadType($obj) {
 					
 					
 				];
-		}
-		
-	}
-	else {
-		$ret = [
-			'msgType' => 'message',
-			'msgVal' => [
-				'type' => 'text',
-				'text' => '<สาเหตุ> '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name']
-			]
-		];
-	}
-	
+				
 	error_log(json_encode($ret));
 	
 	return $ret;
