@@ -1245,7 +1245,7 @@ function retrieveMsgDeadType($obj) {
 						]);
 					}
 					
-					error_log('CRS DETAIL >>>>>>>>>>>>>>>>>'json_encode($crsDet));
+					error_log('CRS DETAIL >>>>>>>>>>>>>>>>>'.json_encode($crsDet));
 					
 					
 					$crscol = [
