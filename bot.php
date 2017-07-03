@@ -1229,6 +1229,8 @@ function retrieveMsgDeadType($obj) {
 			
 			for ($i = 0; $i < $carousColumn; $i++) {
 				
+				error_log('CAROUSEL COL INDEX >> '.$i);
+				
 				$iMes = 0;
 				
 				if($i % 4 == 0) {
@@ -1236,6 +1238,8 @@ function retrieveMsgDeadType($obj) {
 					$crsDet = [];
 					
 					for($j = $iMes; $j < $iMes + 4; $j++) {
+						
+						error_log('CAROUSEL DETAIL INDEX >> '.$j);
 						
 						array_push($crsDet, [
 							'type' => 'postback',
