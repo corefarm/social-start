@@ -1227,17 +1227,21 @@ function retrieveMsgDeadType($obj) {
 			
 			$crsCol = [];
 			
-			for ($i = 0; $i < $carousColumn; $i++) {
-				
-				error_log('CAROUSEL COL INDEX >> '.$i);
-				
-				$iMes = 0;
+			for ($i = 0; $i < count($arrMessageDs); $i++) {
 				
 				if($i % 4 == 0) {
 
+					error_log('THIS COL INDEX >> '.$i);
+				
+					// $crsCol = [
+						// 'title' => 'สาเหตุ',
+						// 'text' => ' ',
+						// 'actions' => $crsDet
+					// ];
+					
 					$crsDet = [];
 					
-					for($j = $iMes; $j < $iMes + 4; $j++) {
+					for($j = $i; $j < $i + 4; $j++) {
 						
 						error_log('CAROUSEL DETAIL INDEX >> '.$j);
 						
@@ -1249,11 +1253,7 @@ function retrieveMsgDeadType($obj) {
 						]);
 					}
 					
-					$crsCol = [
-						'title' => 'สาเหตุ',
-						'text' => ' ',
-						'actions' => $crsDet
-					];
+					
 				}
 			}
 			
