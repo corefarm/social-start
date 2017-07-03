@@ -1227,7 +1227,7 @@ function retrieveMsgDeadType($obj) {
 			
 			for ($i = 0; $i < count($arrData); $i++) {
 				
-				if($i % 3 == 0) {
+				if($i % 4 == 0) {
 					
 					$crsDet = array(); 
 					
