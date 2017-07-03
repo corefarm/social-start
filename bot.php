@@ -1232,9 +1232,6 @@ function retrieveMsgDeadType($obj) {
 					$crsDet = array(); 
 					
 					for($j = $i; $j < count($arrData) && $j < $i + 4; $j++) {
-						
-						error_log('CAROUSEL DETAIL INDEX >> '.$j.' -=-=-=-=-=-'.$arrData[$j]['Reason_Dead_Name'] );
-						
 						array_push($crsDet,[
 							'type' => 'postback',
 							'label' => $arrData[$j]['Reason_Dead_Name'],
@@ -1248,7 +1245,7 @@ function retrieveMsgDeadType($obj) {
 					array_push($crsDs,[
 						'title' => 'สาเหตุ',
 						'text' => '.',
-						'actions' => $crsdet
+						'actions' => $crsDet
 					]);
 					
 					error_log('CRS DATASOURCE >>>>>>>>>>>>>>>>>'.json_encode($crsDs));
