@@ -404,7 +404,8 @@ if (!is_null($events['events'])) {
 					if($msgSexStock['msgVal']['val']) {
 						
 						$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
-					
+						
+						error_log('///////////////////////////////////////////////// FROM Stock >>'.json_encode($msgDeadType['msgVal']));
 						//final
 						array_push($msg,$msgDeadType['msgVal']);
 						
@@ -423,8 +424,9 @@ if (!is_null($events['events'])) {
 				updateStep(['userId' => $userId, 'step' => 4, 'val' => $STEP4_VALUE, 'menu' => 'dead']);
 				
 				$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
-				/////////////////////////////////////////////////
-				error_log(json_encode($msgDeadType['msgVal']));
+				
+				
+				error_log('/////////////////////////////////////////////////'.json_encode($msgDeadType['msgVal']));
 				
 				array_push($msg,$msgDeadType['msgVal']);
 				
