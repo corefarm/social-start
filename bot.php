@@ -1247,7 +1247,7 @@ function retrieveMsgDeadType($obj) {
 						'title' => 'สาเหตุ',
 						'text' => ' ',
 						'actions' => $crsDet
-					]
+					];
 				}
 			}
 			
