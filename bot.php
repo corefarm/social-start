@@ -1188,7 +1188,7 @@ function retrieveMsgDeadType($obj) {
 	
 	$arrData = retrieveServiceData([ 'service' => 'GetReasonDeadsResult', 'userId' => $obj['userId']]);
 	
-	$ret = [];
+	$ret = array(); 
 	
 	if(count($arrData) > 1) {
 		$arrMessageDs = array(); 
@@ -1227,7 +1227,7 @@ function retrieveMsgDeadType($obj) {
 			
 			error_log('[[[[[data >>>>>>>>>[['.$countData.']] <<<<<< col >>>>>>>'.$carousColumn);
 			
-			$crsCol = [];
+			$crsCol = array(); 
 			
 			for ($i = 0; $i < count($arrMessageDs); $i++) {
 				
@@ -1235,17 +1235,17 @@ function retrieveMsgDeadType($obj) {
 
 					error_log('THIS COL INDEX >> '.$i);
 					
-					$crsDet = [];
+					$crsDet = array(); 
 					
 					for($j = $i; $j < count($arrMessageDs) && $j < $i + 4; $j++) {
 						
 						error_log('CAROUSEL DETAIL INDEX >> '.$j);
 						
-						array_push($crsDet, [
+						array_push($crsDet,[
 							'type' => 'postback',
 							'label' => $arrMessageDs[$j]['Reason_Dead_Name'],
 							'data' => 'action=buy&itemid=123',
-							'text' => '<สาเหตุ> '.$arrMessageDs[$j]['Reason_Dead_Code'].','.$arrMessageDs[$j]['Reason_Dead_Name']
+							'text' => '<สาเหตุ> '.$arrMessageDs[$j]['Reason_Dead_Code'].','.$arrMessageDs[$j]['Reason_Dead_Name'],
 						]);
 					}
 					
