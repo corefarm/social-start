@@ -1316,7 +1316,7 @@ function retrieveMsgDeadType($obj) {
 		];
 	}
 	
-	error_log(json_encode($arr));
+	error_log(json_encode($ret));
 	
 	return $ret;
 }
