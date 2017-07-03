@@ -1239,11 +1239,11 @@ function retrieveMsgDeadType($obj) {
 						]);
 					}
 					
-					array_push($crsDs,[
-						'title' => 'สาเหตุ',
-						'text' => '.',
-						'actions' => $crsDet
-					]);
+					// array_push($crsDs,[
+						// 'title' => 'สาเหตุ',
+						// 'text' => '.',
+						// 'actions' => $crsDet
+					// ]);
 					
 					array_push($crsDs,[
 						'title' => 'สาเหตุ',
