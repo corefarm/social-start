@@ -1236,33 +1236,45 @@ function retrieveMsgDeadType($obj) {
 							'type' => 'postback',
 							'label' => $arrData[$j]['Reason_Dead_Name'],
 							'data' => 'action=buy&itemid=123',
-							'text' => '99'
-							//'text' => '<สาเหตุ> '.$arrData[$j]['Reason_Dead_Code'].','.$arrData[$j]['Reason_Dead_Name'],
+							'text' => '<สาเหตุ> '.$arrData[$j]['Reason_Dead_Code'].','.$arrData[$j]['Reason_Dead_Name'],
 						]);
 					}
-					
-					array_push($crsDs,[
-						'title' => 'สาเหตุ',
-						'text' => '.',
-						'actions' => $crsDet
-					]);
 					
 					// array_push($crsDs,[
 						// 'title' => 'สาเหตุ',
 						// 'text' => '.',
-						// 'actions' => array([
-							// 'type' => 'postback',
-							// 'label' => 'ตาย/คัดทิ้ง',
-							// 'data' => 'action=buy&itemid=123',
-							// 'text' => '!MaDeadCull',
-						// ],
-						// [
-							// 'type' => 'postback',
-							// 'label' => 'ใข้อาหาร',
-							// 'data' => 'action=buy&itemid=123',
-							// 'text' => '!MaFeed',											
-						// ])
+						// 'actions' => $crsDet
 					// ]);
+					
+					array_push($crsDs,[
+						'title' => 'สาเหตุ',
+						'text' => '.',
+						'actions' => array([
+							'type' => 'postback',
+							'label' => 'ตาย/คัดทิ้ง',
+							'data' => 'action=buy&itemid=123',
+							'text' => '!MaDeadCull',
+						],
+						[
+							'type' => 'postback',
+							'label' => 'ใข้อาหาร',
+							'data' => 'action=buy&itemid=123',
+							'text' => '!MaFeed',											
+						],
+						[
+							'type' => 'postback',
+							'label' => 'ใข้อาหาร',
+							'data' => 'action=buy&itemid=123',
+							'text' => '!MaFeed',											
+						],
+						[
+							'type' => 'postback',
+							'label' => 'ใข้อาหาร',
+							'data' => 'action=buy&itemid=123',
+							'text' => '!MaFeed',											
+						]
+						)
+					]);
 				}
 			}
 			
