@@ -1219,7 +1219,7 @@ function retrieveMsgDeadType($obj) {
 		
 		if(count($arrMessageDs) > 4) {
 			
-			$carousColumn = intval($arrMessageDs / 4);
+			$carousColumn = intval(count($arrMessageDs) / 4);
 			
 			error_log('[[[[[data >>>>>>>>>'.$arrMessageDs.' <<<<<< col >>>>>>>'.$carousColumn);
 			
