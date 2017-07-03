@@ -1241,16 +1241,16 @@ function retrieveMsgDeadType($obj) {
 					
 					$crsDet = [];
 					
-					for($j = $i; $j < $i + 4; $j++) {
+					for($j = $i; $j < count($arrMessageDs) && $j < 4; $j++) {
 						
 						error_log('CAROUSEL DETAIL INDEX >> '.$j);
 						
-						array_push($crsDet, [
-							'type' => 'postback',
-							'label' => $iMes[$j]['Reason_Dead_Name'],
-							'data' => 'action=buy&itemid=123',
-							'text' => '<สาเหตุ> '.$iMes[$j]['Reason_Dead_Code'].','.$iMes[$j]['Reason_Dead_Name']
-						]);
+						// array_push($crsDet, [
+							// 'type' => 'postback',
+							// 'label' => $iMes[$j]['Reason_Dead_Name'],
+							// 'data' => 'action=buy&itemid=123',
+							// 'text' => '<สาเหตุ> '.$iMes[$j]['Reason_Dead_Code'].','.$iMes[$j]['Reason_Dead_Name']
+						// ]);
 					}
 					
 					
