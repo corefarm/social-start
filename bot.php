@@ -1221,7 +1221,7 @@ function retrieveMsgDeadType($obj) {
 			
 			$carousColumn = intval(count($arrMessageDs) / 4);
 			
-			$countData = count($arrMessageDs)
+			$countData = count($arrMessageDs);
 			
 			error_log('[[[[[data >>>>>>>>>[['.$countData.']] <<<<<< col >>>>>>>'.$carousColumn);
 			
