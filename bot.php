@@ -1201,21 +1201,21 @@ function retrieveMsgDeadType($obj) {
 				'text' => '<สาเหตุ> '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name'],
 			]);
 		}
-		
-		// $ret = [
-			// 'msgType' => 'template',
-			// 'msgVal' => [
-				// 'type' => 'template',
-				// 'altText' => 'this is a buttons template',
-				// 'template' => [
-					// 'type' => 'buttons',
-					// 'title' => 'กรุณาเลือกเหตูผล',
-					// 'text' => 'Please select reason.',
-					// 'actions' => $arrMessageDs
-				// ]
-			// ]
-		// ];
-		
+		/*
+		$ret = [
+			'msgType' => 'template',
+			'msgVal' => [
+				'type' => 'template',
+				'altText' => 'this is a buttons template',
+				'template' => [
+					'type' => 'buttons',
+					'title' => 'กรุณาเลือกเหตูผล',
+					'text' => 'Please select reason.',
+					'actions' => $arrMessageDs
+				]
+			]
+		];
+		*/
 		
 		$arrMessageDs = array_merge($arrMessageDs, $arrMessageDs);
 		
@@ -1271,9 +1271,6 @@ function retrieveMsgDeadType($obj) {
 			
 		}
 		
-		
-		
-		
 		/*
 		$ret = [
 			'msgType' => 'template',
@@ -1319,6 +1316,7 @@ function retrieveMsgDeadType($obj) {
 		];
 	}
 	
+	error_log(json_encode($arr));
 	
 	return $ret;
 }
