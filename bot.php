@@ -423,7 +423,9 @@ if (!is_null($events['events'])) {
 				updateStep(['userId' => $userId, 'step' => 4, 'val' => $STEP4_VALUE, 'menu' => 'dead']);
 				
 				$msgDeadType = retrieveMsgDeadType([ 'userId' => $userId]);
-					
+				/////////////////////////////////////////////////
+				error_log(json_encode($msgDeadType['msgVal']));
+				
 				array_push($msg,$msgDeadType['msgVal']);
 				
 			}
@@ -1227,8 +1229,6 @@ function retrieveMsgDeadType($obj) {
 				
 				if($i % 4 == 0) {
 					
-					error_log('THIS COL INDEX >> '.$i);
-					
 					$crsDet = array(); 
 					
 					for($j = $i; $j < count($arrData) && $j < $i + 4; $j++) {
@@ -1252,7 +1252,7 @@ function retrieveMsgDeadType($obj) {
 				'msgType' => 'template',
 				'msgVal' => [
 							'type' => 'template',
-							'altText' => '.',
+							'altText' => '-',
 							'template' => [
 								'type' => 'carousel',
 								'columns' => $crsDs
@@ -1307,7 +1307,7 @@ function retrieveMsgDeadType($obj) {
 		];
 	}
 	
-	error_log(json_encode($ret));
+	//error_log(json_encode($ret));
 	
 	return $ret;
 }
