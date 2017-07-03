@@ -1217,19 +1217,13 @@ function retrieveMsgDeadType($obj) {
 		];
 		*/
 		
-		$arrMessageDs = array_merge($arrMessageDs, $arrMessageDs);
+		$arrData = array_merge($arrData, $arrData);
 		
-		if(count($arrMessageDs) > 4) {
-			
-			$carousColumn = intval(count($arrMessageDs) / 4);
-			
-			$countData = count($arrMessageDs);
-			
-			error_log('[[[[[data >>>>>>>>>[['.$countData.']] <<<<<< col >>>>>>>'.$carousColumn);
+		if(count($arrData) > 4) {
 			
 			$crsDs = array();
 			
-			for ($i = 0; $i < count($arrMessageDs); $i++) {
+			for ($i = 0; $i < count($arrData); $i++) {
 				
 				if($i % 4 == 0) {
 					
@@ -1239,17 +1233,17 @@ function retrieveMsgDeadType($obj) {
 					
 					$crsDet = array(); 
 					
-					for($j = $i; $j < count($arrMessageDs) && $j < $i + 4; $j++) {
+					for($j = $i; $j < count($arrData) && $j < $i + 4; $j++) {
 						
-						error_log(json_encode($arrMessageDs[$j]));
+						error_log(json_encode($arrData[$j]));
 						
-						error_log('CAROUSEL DETAIL INDEX >> '.$j.' -=-=-=-=-=-'.$arrMessageDs[$j]['Reason_Dead_Name'] );
+						error_log('CAROUSEL DETAIL INDEX >> '.$j.' -=-=-=-=-=-'.$arrData[$j]['Reason_Dead_Name'] );
 						
 						array_push($crsDet,[
 							'type' => 'postback',
-							'label' => $arrMessageDs[$j]['Reason_Dead_Name'],
+							'label' => $arrData[$j]['Reason_Dead_Name'],
 							'data' => 'action=buy&itemid=123',
-							'text' => '<สาเหตุ> '.$arrMessageDs[$j]['Reason_Dead_Code'].','.$arrMessageDs[$j]['Reason_Dead_Name'],
+							'text' => '<สาเหตุ> '.$arrData[$j]['Reason_Dead_Code'].','.$arrData[$j]['Reason_Dead_Name'],
 						]);
 					}
 					
