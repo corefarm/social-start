@@ -1227,12 +1227,14 @@ function retrieveMsgDeadType($obj) {
 			
 			error_log('[[[[[data >>>>>>>>>[['.$countData.']] <<<<<< col >>>>>>>'.$carousColumn);
 			
-			$crsCol = array(); 
+			$crsDs = array();
 			
 			for ($i = 0; $i < count($arrMessageDs); $i++) {
 				
 				if($i % 4 == 0) {
-
+					
+					$crsCol = array(); 
+					
 					error_log('THIS COL INDEX >> '.$i);
 					
 					$crsDet = array(); 
@@ -1254,6 +1256,8 @@ function retrieveMsgDeadType($obj) {
 						'text' => ' ',
 						'actions' => $crsdet
 					];
+					
+					array_push($crsDs,$crscol);
 				}
 			}
 			
@@ -1264,7 +1268,7 @@ function retrieveMsgDeadType($obj) {
 							'altText' => 'this is a buttons template',
 							'template' => [
 								'type' => 'carousel',
-								'columns' => $crsCol
+								'columns' => $crsDs
 							]
 					]
 			];
