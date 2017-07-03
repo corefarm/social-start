@@ -1191,11 +1191,10 @@ function retrieveMsgDeadType($obj) {
 	
 	$arrData = retrieveServiceData([ 'service' => 'GetReasonDeadsResult', 'userId' => $obj['userId']]);
 	
-	$ret = array();
-	
 	if(count($arrData) > 1) {
-		$arrMessageDs = array(); 
 		/*
+		$arrMessageDs = array(); 
+		
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
@@ -1278,7 +1277,6 @@ function retrieveMsgDeadType($obj) {
 				// ]
 			// ];
 			
-			
 			$ret = [
 				'msgtype' => 'template',
 				'msgval' => [
@@ -1305,37 +1303,6 @@ function retrieveMsgDeadType($obj) {
 												'text' => '<กำลังบันทึกใช้อาหาร>',
 											]
 									)],							
-/* 									[
-										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
-										'title' => 'Stock',
-										'text' => 'รายงานคงเหลือ ',
-										'actions' => array(
-											[
-											'type' => 'postback',
-											'label' => 'ต้องการบันทึก',
-											'data' => 'action=buy&itemid=123',
-											],[
-											'type' => 'uri',
-											'label' => 'View detail',
-											'uri' => 'https://www.google.com/',							
-											]
-									)],	
-									[
-										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/po.jpg',
-										'title' => 'Order',
-										'text' => 'สั่งซื้อ ชิ้นส่วนสุกร ',
-										'actions' => array(
-											[
-											'type' => 'postback',
-											'label' => 'สั่งซื้อ',
-											'data' => 'action=buy&itemid=123',
-											],
-											[
-											'type' => 'postback',
-											'label' => 'ยกเลิกสั่งซื้อ',
-											'data' => 'action=buy&itemid=123',
-											]
-									)], */
 									[
 										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/StatusReport.png',
 										'title' => 'Report',
@@ -1358,8 +1325,6 @@ function retrieveMsgDeadType($obj) {
 					
 					
 				];
-			
-			
 		}
 		
 	}
