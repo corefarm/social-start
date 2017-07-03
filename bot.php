@@ -1290,8 +1290,9 @@ function retrieveMsgDeadType($obj) {
 											]
 										)
 									]
-							*/
-							)													
+							
+							)	
+							*/							
 						]
 				]
 		];
