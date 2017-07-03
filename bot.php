@@ -1243,21 +1243,25 @@ function retrieveMsgDeadType($obj) {
 					array_push($crsDs,[
 						'title' => 'สาเหตุ',
 						'text' => '.',
-						//'actions' => $crsDet
+						'actions' => $crsDet
+					]);
+					
+					array_push($crsDs,[
+						'title' => 'สาเหตุ',
+						'text' => '.',
 						'actions' => array([
-										'type' => 'postback',
-										'label' => 'ตาย/คัดทิ้ง',
-										'data' => 'action=buy&itemid=123',
-										'text' => '!MaDeadCull',
-										],
-										[
-										'type' => 'postback',
-										'label' => 'ใข้อาหาร',
-										'data' => 'action=buy&itemid=123',
-										'text' => '!MaFeed',											
-										]
-									)
-						]);
+							'type' => 'postback',
+							'label' => 'ตาย/คัดทิ้ง',
+							'data' => 'action=buy&itemid=123',
+							'text' => '!MaDeadCull',
+						],
+						[
+							'type' => 'postback',
+							'label' => 'ใข้อาหาร',
+							'data' => 'action=buy&itemid=123',
+							'text' => '!MaFeed',											
+						])
+					]);
 				}
 			}
 			
