@@ -1280,12 +1280,13 @@ function retrieveMsgDeadType($obj) {
 			$ret = [
 				'msgtype' => 'template',
 				'msgval' => [
-							'type' => 'template',
-							'alttext' => 'this is a buttons template',
-							'template' => [
-								'type' => 'carousel',
-								'columns' => array (
+						'type' => 'template',
+						'altText' => 'this is a buttons template',
+						'template' => [
+							'type' => 'carousel',
+							'columns' => array (
 									[
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/pig.jpg',
 										'title' => 'Record Data',
 										'text' => 'บันทึกข้อมูล',
 										'actions' => array(
@@ -1302,7 +1303,39 @@ function retrieveMsgDeadType($obj) {
 												'text' => '<กำลังบันทึกใช้อาหาร>',
 											]
 									)],							
+/* 									[
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/logostockcf.png',
+										'title' => 'Stock',
+										'text' => 'รายงานคงเหลือ ',
+										'actions' => array(
+											[
+											'type' => 'postback',
+											'label' => 'ต้องการบันทึก',
+											'data' => 'action=buy&itemid=123',
+											],[
+											'type' => 'uri',
+											'label' => 'View detail',
+											'uri' => 'https://www.google.com/',							
+											]
+									)],	
 									[
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/po.jpg',
+										'title' => 'Order',
+										'text' => 'สั่งซื้อ ชิ้นส่วนสุกร ',
+										'actions' => array(
+											[
+											'type' => 'postback',
+											'label' => 'สั่งซื้อ',
+											'data' => 'action=buy&itemid=123',
+											],
+											[
+											'type' => 'postback',
+											'label' => 'ยกเลิกสั่งซื้อ',
+											'data' => 'action=buy&itemid=123',
+											]
+									)], */
+									[
+										'thumbnailImageUrl' => 'https://immense-stream-37827.herokuapp.com/StatusReport.png',
 										'title' => 'Report',
 										'text' => 'Daily Farm',
 										'actions' => array(
@@ -1317,10 +1350,11 @@ function retrieveMsgDeadType($obj) {
 											'uri' => 'https://shielded-dawn-30361.herokuapp.com/report/report.php', 
 											]
 									)]											
-								)
-														
-							]
+							)													
+						]
 					]
+					
+					
 				];
 			
 			
