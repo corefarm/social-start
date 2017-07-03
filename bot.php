@@ -1188,6 +1188,8 @@ function retrieveMsgDeadType($obj) {
 	
 	$arrData = retrieveServiceData([ 'service' => 'GetReasonDeadsResult', 'userId' => $obj['userId']]);
 	
+	$ret = [];
+	
 	if(count($arrData) > 1) {
 		$arrMessageDs = array(); 
 
