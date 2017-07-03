@@ -1238,7 +1238,8 @@ function retrieveMsgDeadType($obj) {
 							'type' => 'postback',
 							'label' => $arrData[$j]['Reason_Dead_Name'],
 							'data' => 'action=buy&itemid=123',
-							'text' => '<สาเหตุ> '.$arrData[$j]['Reason_Dead_Code'].','.$arrData[$j]['Reason_Dead_Name'],
+							'text' => 'AAA'
+							// 'text' => '<สาเหตุ> '.$arrData[$j]['Reason_Dead_Code'].','.$arrData[$j]['Reason_Dead_Name'],
 						]);
 					}
 					
@@ -1254,7 +1255,7 @@ function retrieveMsgDeadType($obj) {
 				'msgType' => 'template',
 				'msgVal' => [
 							'type' => 'template',
-							'altText' => '-',
+							'altText' => 'this is a buttons template',
 							'template' => [
 								'type' => 'carousel',
 								'columns' => $crsDs
@@ -1297,6 +1298,7 @@ function retrieveMsgDeadType($obj) {
 				]
 		];
 		
+
 		*/
 	}
 	else {
