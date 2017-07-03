@@ -1192,11 +1192,9 @@ function retrieveMsgDeadType($obj) {
 	
 	$arrData = retrieveServiceData([ 'service' => 'GetReasonDeadsResult', 'userId' => $obj['userId']]);
 	
-	//$ret = array(); 
-	
 	if(count($arrData) > 1) {
 		$arrMessageDs = array(); 
-
+		/*
 		foreach ($arrData as $val) {
 			array_push($arrMessageDs,[
 				'type' => 'postback',
@@ -1205,7 +1203,7 @@ function retrieveMsgDeadType($obj) {
 				'text' => '<สาเหตุ> '.$val['Reason_Dead_Code'].','.$val['Reason_Dead_Name'],
 			]);
 		}
-		/*
+		
 		$ret = [
 			'msgType' => 'template',
 			'msgVal' => [
@@ -1264,7 +1262,7 @@ function retrieveMsgDeadType($obj) {
 			
 		}
 		
-		/*
+		
 		$ret = [
 			'msgType' => 'template',
 			'msgVal' => [
@@ -1298,7 +1296,7 @@ function retrieveMsgDeadType($obj) {
 		];
 		
 
-		*/
+		
 	}
 	else {
 		$ret = [
