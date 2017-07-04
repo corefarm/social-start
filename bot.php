@@ -290,7 +290,7 @@ if (!is_null($events['events'])) {
 				array_push($msg,[
 						'type' => 'text',
 						'text' => 'กดกด 
-						\\n\\n chr(10) (^L) 
+						\\n\\n chr(10) (^L) \r\n
 						kdhskdjk'
 				]);
 				
