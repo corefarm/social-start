@@ -268,7 +268,7 @@ if (!is_null($events['events'])) {
 			}
 			*/
 			
-			if(stristr($text,'<บันทึกตาย>') ) {
+			if(stristr($text,'<บันทึกสุกรตาย>') ) {
 				
 				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
 				
@@ -461,7 +461,7 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'สรุปข้อมูล บันทึกตาย'.chr(10).
+							'text' => 'สรุปข้อมูล บันทึกสุกรตาย'.chr(10).
 									'เล้า : '.$row['STEP3_VALUE'].chr(10).
 									'เพศ : '.$row['STEP4_VALUE'].chr(10).
 									'จำนวน : '.$text.' ตัว'.chr(10).
