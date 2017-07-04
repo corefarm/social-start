@@ -1509,7 +1509,7 @@ function retrieveMsgProduct($obj) {
 					for($j = $i; $j < count($arrData) && $j < $i + 3; $j++) {
 						array_push($crsDet,[
 							'type' => 'postback',
-							'label' => str_replace('อาหารหมู', '',str_replace(' ','',$arrData[$j]['Product_Name'])).'('.$arrData[$j]['Stock_Qty'].' '.$arrData[$j].')',
+							'label' => str_replace('อาหารหมู', '',str_replace(' ','',$arrData[$j]['Product_Name'])).'='.$arrData[$j]['Stock_Qty'].' '.$arrData[$j].'',
 							'data' => 'action=buy&itemid=123',
 							'text' => '<เบอร์อาหาร>'.str_replace(' ','',$arrData[$j]['Product_Name']).','.$arrData[$j]['Product_Code']
 						]);
@@ -1544,7 +1544,7 @@ function retrieveMsgProduct($obj) {
 				
 				array_push($arrMessageDs,[
 					'type' => 'postback',
-					'label' => str_replace('อาหารหมู', '',str_replace(' ','',$val['Product_Name'])).'('.$val['Stock_Qty'].' '.$unit.')',
+					'label' => str_replace('อาหารหมู', '',str_replace(' ','',$val['Product_Name'])).'='.$val['Stock_Qty'].' '.$unit.'',
 					'data' => 'action=buy&itemid=123',
 					'text' => '<เบอร์อาหาร>'.str_replace(' ','',$val['Product_Name']).','.$val['Product_Code']
 				]);
