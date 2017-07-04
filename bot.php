@@ -284,7 +284,7 @@ if (!is_null($events['events'])) {
 				
 				array_push($msg,[
 						'type' => 'text',
-						'text' => '<วันที่>'.$STEP1_VALUE.'0x100041 kdhskdjk'
+						'text' => '<วันที่>'.$STEP1_VALUE.' \u000A kdhskdjk'
 				]);
 				
 				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'dead']);
