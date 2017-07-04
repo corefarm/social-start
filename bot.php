@@ -289,7 +289,8 @@ if (!is_null($events['events'])) {
 				
 				array_push($msg,[
 						'type' => 'text',
-						'text' => 'กดกด 
+						'text' => '
+						กดกด 
 						kdhskdjk'
 				]);
 				
