@@ -289,9 +289,7 @@ if (!is_null($events['events'])) {
 				
 				array_push($msg,[
 						'type' => 'text',
-						'text' => '
-						กดกด 
-						kdhskdjk'
+						'text' => 'กดกด '.chr(10).'kdhskdjk'
 				]);
 				
 				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'dead']);
