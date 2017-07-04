@@ -461,8 +461,8 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'สรุปข้อมูล '.chr(10).
-									'บันทึกตาย เล้า '.$row['STEP3_VALUE'].chr(10).
+							'text' => 'สรุปข้อมูล บันทึกตาย'.chr(10).
+									'เล้า '.$row['STEP3_VALUE'].chr(10).
 									'เพศ '.$row['STEP4_VALUE'].chr(10).
 									'จำนวน  '.$text.' ตัว'.chr(10).
 									'ยืนยันการบันทึก ? ',
@@ -836,11 +836,11 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'สรุปข้อมูล  '.
-									'  บันทึกเบิก เล้า '.$row['STEP3_VALUE'].
-									'  '.explode(',',$row['STEP4_VALUE'])[0].
-									'  จำนวน  '.$text.
-									'  ยืนยันข้อมูล ? ',
+							'text' => 'สรุปข้อมูล  บันทึกเบิก'.chr(10).
+									'เล้า '.$row['STEP3_VALUE'].chr(10).
+									''.explode(',',$row['STEP4_VALUE'])[0].chr(10).
+									'จำนวน  '.$text.chr(10).
+									'ยืนยันการบันทึก ? ',
 							'actions' => array(
 								[
 								'type' => 'message',
