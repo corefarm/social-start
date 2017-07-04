@@ -462,9 +462,9 @@ if (!is_null($events['events'])) {
 						'template' => [
 							'type' => 'confirm',
 							'text' => 'สรุปข้อมูล บันทึกตาย'.chr(10).
-									'เล้า '.$row['STEP3_VALUE'].chr(10).
-									'เพศ '.$row['STEP4_VALUE'].chr(10).
-									'จำนวน  '.$text.' ตัว'.chr(10).
+									'เล้า : '.$row['STEP3_VALUE'].chr(10).
+									'เพศ : '.$row['STEP4_VALUE'].chr(10).
+									'จำนวน : '.$text.' ตัว'.chr(10).
 									'ยืนยันการบันทึก ? ',
 							'actions' => array(
 								[
@@ -837,9 +837,9 @@ if (!is_null($events['events'])) {
 						'template' => [
 							'type' => 'confirm',
 							'text' => 'สรุปข้อมูล  บันทึกเบิก'.chr(10).
-									'เล้า '.$row['STEP3_VALUE'].chr(10).
+									'เล้า : '.$row['STEP3_VALUE'].chr(10).
 									''.explode(',',$row['STEP4_VALUE'])[0].chr(10).
-									'จำนวน  '.$text.chr(10).
+									'จำนวน : '.$text.chr(10).
 									'ยืนยันการบันทึก ? ',
 							'actions' => array(
 								[
