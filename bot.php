@@ -287,6 +287,11 @@ if (!is_null($events['events'])) {
 						'text' => '<วันที่>'.$STEP1_VALUE.' \u000A kdhskdjk'
 				]);
 				
+				array_push($msg,[
+						'type' => 'text',
+						'text' => 'กดกด \u000A kdhskdjk'
+				]);
+				
 				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'dead']);
 				
 				$msgCv = retrieveMsgCv(['userId' => $userId, 'menu' => 'dead']);
