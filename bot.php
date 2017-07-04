@@ -462,7 +462,7 @@ if (!is_null($events['events'])) {
 						'template' => [
 							'type' => 'confirm',
 							'text' => 'สรุปข้อมูล  '.
-									'  บันทึกตาย เล้า '.$row['STEP3_VALUE'].
+									'*  บันทึกตาย เล้า '.$row['STEP3_VALUE'].
 									'  เพศ '.$row['STEP4_VALUE'].
 									'  จำนวน  '.$text.
 									'  ยืนยันข้อมูล ? ',
@@ -1301,7 +1301,7 @@ function retrieveMsgSexStock($obj){
 					}
 					
 					array_push($crsDs,[
-						'title' => 'สาเหตุ',
+						'title' => 'กรุณาเลือกเพศ',
 						'text' => '.',
 						'actions' => $crsDet
 					]);
@@ -1339,8 +1339,8 @@ function retrieveMsgSexStock($obj){
 					'altText' => 'this is a buttons template',
 					'template' => [
 						'type' => 'buttons',
-						'title' => 'กรุณาเลือกพศ',
-						'text' => 'Please select gender.',
+						'title' => 'กรุณาเลือกเพศ',
+						'text' => ' ',
 						'actions' => $arrMessageDs
 					]
 				]
@@ -1410,8 +1410,8 @@ function retrieveMsgDeadType($obj) {
 					}
 					
 					array_push($crsDs,[
-						'title' => 'สาเหตุ',
-						'text' => '.',
+						'title' => 'กรุณาเลือกเหตูผล',
+						'text' => ' ',
 						'actions' => $crsDet
 					]);
 				}
@@ -1450,7 +1450,7 @@ function retrieveMsgDeadType($obj) {
 					'template' => [
 						'type' => 'buttons',
 						'title' => 'กรุณาเลือกเหตูผล',
-						'text' => 'Please select reason.',
+						'text' => ' ',
 						'actions' => $arrMessageDs
 					]
 				]
@@ -1511,8 +1511,8 @@ function retrieveMsgProduct($obj) {
 					}
 					
 					array_push($crsDs,[
-						'title' => 'สาเหตุ',
-						'text' => '.',
+						'title' => 'กรุณาเลือกเบอร์อาหาร',
+						'text' => ' ',
 						'actions' => $crsDet
 					]);
 				}
@@ -1553,7 +1553,7 @@ function retrieveMsgProduct($obj) {
 					'template' => [
 						'type' => 'buttons',
 						'title' => 'กรุณาเลือกเบอร์อาหาร',
-						'text' => 'Please select pen.',
+						'text' => ' ',
 						'actions' => $arrMessageDs
 					]
 				]
