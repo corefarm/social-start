@@ -831,6 +831,11 @@ if (!is_null($events['events'])) {
 				
 				updateStep(['userId' => $userId, 'step' => 5, 'val' => $text, 'menu' => 'feed']);
 				
+				$unit = 'กก.';
+				
+				if(stristr(explode(',',$row['STEP4_VALUE'])[0],'กก') ) {
+					$unit = 'ถุง';
+				}
 				array_push($msg,[
 						'type' => 'template',
 						'altText' => 'this is a confirm  template',
@@ -839,7 +844,7 @@ if (!is_null($events['events'])) {
 							'text' => 'สรุปข้อมูล  บันทึกเบิก'.chr(10).
 									'เล้า : '.$row['STEP3_VALUE'].chr(10).
 									''.explode(',',$row['STEP4_VALUE'])[0].chr(10).
-									'จำนวน : '.$text.chr(10).
+									'จำนวน : '.$text.' '.$unit.chr(10).
 									'ยืนยันการบันทึก ? ',
 							'actions' => array(
 								[
