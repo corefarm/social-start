@@ -1393,8 +1393,6 @@ function retrieveMsgDeadType($obj) {
 	
 	if(count($arrData) > 1) {
 		
-		$arrData = array_merge($arrData, $arrData);
-		
 		if(count($arrData) > 4) {
 			
 			$crsDs = array();
