@@ -670,13 +670,16 @@ if (!is_null($events['events'])) {
 				
 				writeData($sql);
 				
-				$today = date('d/m/Y'); 
-				
-				$STEP1_VALUE = $today;
+				$STEP1_VALUE = date('d/m/Y'); 
 				
 				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'feed']);
 				
 				$msgCv = retrieveMsgCv(['userId' => $userId, 'menu' => 'feed']);
+				
+				array_push($msg,[
+						'type' => 'text',
+						'text' => '<วันที่>'.$STEP1_VALUE
+				]);
 				
 				if($msgCv['msgType'] == 'template') {
 					array_push($msg,$msgCv['msgVal']);
