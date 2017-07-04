@@ -658,7 +658,7 @@ if (!is_null($events['events'])) {
 			}
 			*/
 			
-			if(stristr($text,'<บันทึกใช้อาหาร>') ) {
+			if(stristr($text,'<บันทึกใช้อาหาร>')) {
 				
 				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
 				
@@ -672,7 +672,7 @@ if (!is_null($events['events'])) {
 				
 				$today = date('d/m/Y'); 
 				
-				$STEP1_VALUE = $todayว
+				$STEP1_VALUE = $today;
 				
 				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'feed']);
 				
