@@ -91,8 +91,8 @@ if (!is_null($events['events'])) {
 								]
 							)
 						]
-				];			
-			}			
+				];
+			}
             
 			if (strtolower($text)  == 'con') {
 				$messages = [
@@ -380,7 +380,7 @@ if (!is_null($events['events'])) {
 			}
 					
 			if(stristr($text,'<หลัง>') ) {
-				//ssd
+				
 				$STEP3_VALUE = str_replace('<หลัง>','',$text);
 				
 				$sql =  " UPDATE  \"FR_DATA_COLLECTION\"
@@ -563,7 +563,8 @@ if (!is_null($events['events'])) {
 			
 			//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= FEED USAGE =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 			
-			if($text == '<กำลังบันทึกใช้อาหาร>') {
+			/*
+			if($text == '<บันทึกใช้อาหาร>') {
 				
 				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
 				
@@ -606,6 +607,72 @@ if (!is_null($events['events'])) {
 			if(stristr($text,'<วันที่เบิกอาหาร>') ) {
 				
 				$STEP1_VALUE = str_replace('<วันที่เบิกอาหาร>','',$text);
+				
+				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'feed']);
+				
+				$msgCv = retrieveMsgCv(['userId' => $userId, 'menu' => 'feed']);
+				
+				if($msgCv['msgType'] == 'template') {
+					array_push($msg,$msgCv['msgVal']);
+				}
+				else {
+					
+					updateStep(['userId' => $userId, 'step' => 2, 'val' => $msgCv['msgVal']['val'], 'menu' => 'feed']);
+					
+					array_push($msg,$msgCv['msgVal']);
+					
+					$msgFarmOrg = retrieveMsgFarmOrg(['userId' => $userId, 'cvFarm' => $msgCv['msgVal']['val'], 'menu' => 'feed']);
+					
+					if($msgFarmOrg['msgType'] == 'template') {
+						
+						array_push($msg,$msgFarmOrg['msgVal']);
+					}
+					else {
+						
+						updateStep(['userId' => $userId, 'step' => 3, 'val' => $msgFarmOrg['msgVal']['val'], 'menu' => 'feed']);
+						
+						array_push($msg,$msgFarmOrg['msgVal']);
+						
+						$msgProduct = retrieveMsgProduct(['userId' => $userId , 'orgSel' => $msgFarmOrg['msgVal']['val']]);
+						
+						if($msgProduct['msgType'] == 'template') {
+							
+							array_push($msg,$msgProduct['msgVal']);
+						}
+						else {
+							
+							updateStep(['userId' => $userId, 'step' => 4, 'val' => $msgProduct['msgVal']['val'], 'menu' => 'feed']);
+							
+							array_push($msg,$msgProduct['msgVal']);
+							
+							array_push($msg,[
+								'msgType' => 'message',
+								'msgVal' => [
+									'type' => 'text',
+									'text' => 'กรุณากรอกจำนวนอาหาร'
+								]
+							]);
+						}
+					}
+				}
+			}
+			*/
+			
+			if(stristr($text,'<บันทึกใช้อาหาร>') ) {
+				
+				$sqlDelete = "DELETE FROM \"FR_DATA_COLLECTION\" WHERE \"USER_ID\" = '$userId' ";
+				
+				writeData($sqlDelete);
+				
+				$sql = "INSERT INTO \"FR_DATA_COLLECTION\"(
+				\"USER_ID\", \"PROCESS_NAME\", \"STEP_ACTION\", \"CREATE_DATE\", \"PROCESS_STATUS\")
+				VALUES ('$userId', 'FEEDUSAGE', 'MENUSELECT', now(), 'KEYING') ";
+				
+				writeData($sql);
+				
+				$today = date('d/m/Y'); 
+				
+				$STEP1_VALUE = $todayว
 				
 				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'feed']);
 				
