@@ -462,7 +462,7 @@ if (!is_null($events['events'])) {
 						'template' => [
 							'type' => 'confirm',
 							'text' => 'สรุปข้อมูล  '.
-									'\\n บันทึกตาย เล้า '.$row['STEP3_VALUE'].
+									'/\/n บันทึกตาย เล้า '.$row['STEP3_VALUE'].
 									'  เพศ '.$row['STEP4_VALUE'].
 									'  จำนวน  '.$text.
 									'  ยืนยันข้อมูล ? ',
