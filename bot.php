@@ -284,7 +284,7 @@ if (!is_null($events['events'])) {
 				
 				array_push($msg,[
 						'type' => 'text',
-						'text' => '<วันที่>'.$STEP1_VALUE
+						'text' => '<วันที่>\n'.$STEP1_VALUE
 				]);
 				
 				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'dead']);
@@ -461,7 +461,7 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'สรุปข้อมูล\nบันทึกตาย เล้า '.$row['STEP3_VALUE'].
+							'text' => 'สรุปข้อมูล บันทึกตาย เล้า '.$row['STEP3_VALUE'].
 									'  เพศ '.$row['STEP4_VALUE'].
 									'  จำนวน  '.$text.
 									'  ยืนยันข้อมูล ? ',
