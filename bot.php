@@ -287,11 +287,6 @@ if (!is_null($events['events'])) {
 						'text' => '<วันที่>'.$STEP1_VALUE
 				]);
 				
-				array_push($msg,[
-						'type' => 'text',
-						'text' => 'กดกด '.chr(10).'kdhskdjk'
-				]);
-				
 				updateStep(['userId' => $userId, 'step' => 1, 'val' => $STEP1_VALUE, 'menu' => 'dead']);
 				
 				$msgCv = retrieveMsgCv(['userId' => $userId, 'menu' => 'dead']);
@@ -466,10 +461,11 @@ if (!is_null($events['events'])) {
 						'altText' => 'this is a confirm  template',
 						'template' => [
 							'type' => 'confirm',
-							'text' => 'สรุปข้อมูล บันทึกตาย เล้า '.$row['STEP3_VALUE'].
-									'  เพศ '.$row['STEP4_VALUE'].
-									'  จำนวน  '.$text.
-									'  ยืนยันข้อมูล ? ',
+							'text' => 'สรุปข้อมูล '.chr(10).
+									'บันทึกตาย เล้า '.$row['STEP3_VALUE'].chr(10).
+									'เพศ '.$row['STEP4_VALUE'].chr(10).
+									'จำนวน  '.$text.' ตัว'.chr(10).
+									'ยืนยันการบันทึก ? ',
 							'actions' => array(
 								[
 								'type' => 'message',
